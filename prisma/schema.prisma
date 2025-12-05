@@ -1,0 +1,156 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+}
+
+model Student {
+  id        Int     @id @default(autoincrement())
+  studentId String  @unique
+  name      String
+  email     String? @unique
+  password  String
+  batchId   Int?
+  batch     Batch?  @relation(fields: [batchId], references: [id])
+
+  // Admission Fields
+  fatherName               String
+  courseMode               String // "Online" or "Offline"
+  courseDetails            String
+  communicationAddress     String
+  permanentAddress         String
+  mobileNumber             String
+  dateOfBirth              String
+  placeOfBirth             String
+  educationalQualification String
+  extraExperience          String?
+  astrologicalExperience   String?
+  occupation               String
+  photoUrl                 String?
+  certificateUrl           String?
+  idProofUrl               String?
+
+  createdAt DateTime @default(now())
+
+  fees    Fee[]
+  reviews Review[]
+}
+
+model Batch {
+  id             Int             @id @default(autoincrement())
+  name           String
+  timing         String
+  monthlyFee     Float
+  students       Student[]
+  studyMaterials StudyMaterial[]
+}
+
+model StudyMaterial {
+  id        Int      @id @default(autoincrement())
+  title     String
+  type      String // "PDF", "DOC", "Image", "Video"
+  url       String //url of that type
+  batchId   Int
+  batch     Batch    @relation(fields: [batchId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Fee {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  student   Student  @relation(fields: [studentId], references: [id])
+  month     String
+  year      Int
+  amount    Float
+  status    String // "Paid", "Pending", "Overdue"
+  createdAt DateTime @default(now())
+}
+
+model Consultation {
+  id Int @id @default(autoincrement())
+
+  consultationType String
+  preferredMode    String
+
+  consultationDate String
+  timeSlot         String
+
+  fullName     String
+  gender       String
+  dateOfBirth  DateTime
+  timeOfBirth  String?
+  placeOfBirth String
+  country      String
+  state        String
+  city         String
+  pinCode      String
+
+  phoneNumber  String
+  emailAddress String?
+
+  careerGuidance     Boolean @default(false)
+  loveLife           Boolean @default(false)
+  marriageLife       Boolean @default(false)
+  healthWellbeing    Boolean @default(false)
+  financialCondition Boolean @default(false)
+  business           Boolean @default(false)
+  spiritualGrowth    Boolean @default(false)
+  others             String?
+
+  consultedBefore   Boolean
+  specificQuestions String?
+
+  openToRemedies      String?
+  declarationAccepted Boolean
+  signature           String?
+  declarationDate     DateTime?
+
+  onlineFee     Float?
+  offlineFee    Float?
+  bookingAmount Float?
+
+  // 🚀 Razorpay fields
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  razorpaySignature String?
+  paymentStatus     String  @default("Pending") // Pending / Paid / Failed
+
+  status    String   @default("Pending")
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  feedback  String
+  status    String // "Pending", "Approved", "Rejected"
+  studentId Int?
+  student   Student? @relation(fields: [studentId], references: [id])
+  clientId  Int?
+  createdAt DateTime @default(now())
+}
+
+model CMS {
+  id        Int      @id @default(autoincrement())
+  section   String // "Hero", "About", "Philosophy", etc.
+  content   String
+  imageUrl  String?
+  updatedAt DateTime @updatedAt
+}
