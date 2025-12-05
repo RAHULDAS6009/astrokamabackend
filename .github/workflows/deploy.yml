@@ -1,0 +1,61 @@
+name: Build and Deploy Backend to Docker Hub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v4
+
+      # Login to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Build and Push Backend Image
+      - name: Build and Push Backend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./docker/Dockerfile.backend
+          push: true
+          tags: rahulcs26/astrobackend:latest
+          build-args: |
+            DATABASE_URL=${{ secrets.PROD_DATABASE }}
+
+      - name: Verify Pushed Image
+        run: docker pull rahulcs26/astrobackend:latest
+
+      # Deploy to VM (EC2, VPS, etc)
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            # Stop old container
+            sudo docker stop web-backend || true
+            sudo docker rm web-backend || true
+
+            # Clean system
+            docker system prune -f
+            docker system prune -a -f --volumes
+
+            # Pull latest backend image
+            sudo docker pull rahulcs26/astrobackend:latest
+
+            # Run backend with all required env variables
+            sudo docker run -d --name web-backend -p 5000:5000 -e DATABASE_URL="${{ secrets.PROD_DATABASE || '' }}" -e JWT_SECRET="${{ secrets.JWT_SECRET || '' }}" -e REDIS_URL="${{ secrets.REDIS_URL || '' }}" -e CLOUDINARY_NAME="${{ secrets.CLOUDINARY_NAME || '' }}" -e CLOUDINARY_KEY="${{ secrets.CLOUDINARY_KEY || '' }}" -e CLOUDINARY_SECRET="${{ secrets.CLOUDINARY_SECRET || '' }}" -e EMAIL_USER="${{ secrets.EMAIL_USER || '' }}" -e EMAIL_PASS="${{ secrets.EMAIL_PASS || '' }}" -e WHATSAPP_TOKEN="${{ secrets.WHATSAPP_TOKEN || '' }}" -e WHATSAPP_PHONE_ID="${{ secrets.WHATSAPP_PHONE_ID || '' }}" -e RAZORPAY_KEY_ID="${{ secrets.RAZORPAY_KEY_ID || '' }}" -e RAZORPAY_KEY_SECRET="${{ secrets.RAZORPAY_KEY_SECRET || '' }}" rahulcs26/astrobackend:latest
+
+
+            # Run DB migrations inside running container
+            sudo docker exec web-backend npm run db:migrate
