@@ -4,7 +4,7 @@ const authMiddleware = (requiredRole) => {
     return (req, res, next) => {
         try {
             const authHeader = req.headers.authorization;
-            if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            if (!authHeader || !authHeader.startsWith("Bearer")) {
                 return res.status(401).json({ message: "No token provided" });
             }
             const token = authHeader.split(" ")[1];
@@ -13,7 +13,7 @@ const authMiddleware = (requiredRole) => {
                 throw new Error("JWT_SECRET is not defined in environment variables");
             }
             // decode token
-            const decoded = jwt.verify("asaas", secret);
+            const decoded = jwt.verify(token, secret);
             // Ensure decoded is JwtPayload type
             if (typeof decoded === "object" &&
                 decoded !== null &&

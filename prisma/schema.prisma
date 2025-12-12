@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -22,65 +19,137 @@ model Admin {
 }
 
 model Student {
-  id        Int     @id @default(autoincrement())
-  studentId String  @unique
-  name      String
-  email     String? @unique
-  password  String
-  batchId   Int?
-  batch     Batch?  @relation(fields: [batchId], references: [id])
-
-  // Admission Fields
-  fatherName               String
+  id                       Int     @id @default(autoincrement())
+  studentId                String  @unique
+  name                     String
+  email                    String? @unique
+  gender                   String?
+  password                 String
+  courseId                 Int?
+  course                   Course? @relation(fields: [courseId], references: [id])
+  branchId                 String?
+  branch                   Branch? @relation(fields: [branchId], references: [id])
+  rollNo                   Int? // Sequential number within course/batch
+  gurdianName              String?
+  relationWithGurdain      String?
   courseMode               String // "Online" or "Offline"
   courseDetails            String
   communicationAddress     String
   permanentAddress         String
   mobileNumber             String
+  whatsappNumber           String? // Added WhatsApp number field
   dateOfBirth              String
   placeOfBirth             String
   educationalQualification String
   extraExperience          String?
   astrologicalExperience   String?
-  occupation               String
+  occupation               String?
   photoUrl                 String?
   certificateUrl           String?
   idProofUrl               String?
 
   createdAt DateTime @default(now())
 
-  fees    Fee[]
-  reviews Review[]
+  fees Fee[]
 }
 
-model Batch {
+model Course {
   id             Int             @id @default(autoincrement())
-  name           String
-  timing         String
-  monthlyFee     Float
-  students       Student[]
+  ranking        Int?
+  name           String // e.g., "Offline Astrology Full Course"
+  type           String? //offline or online 
+  description    String?
+  duration       Int?
+  bannerpdf      String?
+  bannerimage    String?
+  courseCode     String          @unique // e.g., "OFL", "ONL_LONG", "KAVACH"
+  gridTitle      String[]
+  courseType     String? // "Offline", "Online", "Kavach", "Vastu", "Reiki"
+  isActive       Boolean         @default(true)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  branches       Branch[]
   studyMaterials StudyMaterial[]
+  students       Student[]
+}
+
+model Branch {
+  id               String          @id @default(uuid())
+  course           Course?         @relation(fields: [courseId], references: [id])
+  courseId         Int?
+  name             String
+  branchCode       String?
+  color            String?
+  durationMonths   Int?
+  classType        String? //weekly or monthly 
+  daysPerClassType Int?
+  classHour        Int?
+  daysJSON         String?
+  student          Student[]
+  semsters         Semester[]
+  studyMaterial    StudyMaterial[]
+}
+
+model Semester {
+  id            String          @id @default(uuid())
+  name          String
+  number        Int?
+  startDate     String?
+  endDate       String?
+  fees          Int?
+  lateFeeDate   String?
+  lateFeeFine   Int?
+  admissionFee  Int? // Admission fee for first semester
+  studyMaterial StudyMaterial[]
+  feeRecords    Fee[] // Payment records for this semester
+
+  branch   Branch? @relation(fields: [branchId], references: [id])
+  branchId String?
 }
 
 model StudyMaterial {
-  id        Int      @id @default(autoincrement())
-  title     String
-  type      String // "PDF", "DOC", "Image", "Video"
-  url       String //url of that type
-  batchId   Int
-  batch     Batch    @relation(fields: [batchId], references: [id])
-  createdAt DateTime @default(now())
+  id         Int       @id @default(autoincrement())
+  title      String
+  type       String // "PDF", "DOC", "Image", "Video"
+  url        String //url of that type
+  courseId   Int?
+  course     Course?   @relation(fields: [courseId], references: [id])
+  createdAt  DateTime  @default(now())
+  branch     Branch?   @relation(fields: [branchId], references: [id])
+  branchId   String?
+  semester   Semester? @relation(fields: [semesterId], references: [id])
+  semesterId String?
 }
 
 model Fee {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   studentId Int
-  student   Student  @relation(fields: [studentId], references: [id])
-  month     String
-  year      Int
-  amount    Float
-  status    String // "Paid", "Pending", "Overdue"
+  student   Student @relation(fields: [studentId], references: [id])
+
+  // Semester relation
+  semesterId String?
+  semester   Semester? @relation(fields: [semesterId], references: [id])
+
+  // Payment Details
+  description String? // "Admission Fee - Semester 1", "Month Jan-25", etc.
+  amount      Float
+  lateFine    Float   @default(0)
+
+  // Payment Status
+  status      String    @default("Pending") // "Paid", "Pending", "Overdue"
+  paymentMode String? // "Online - Razorpay", "Cash", "Bank Transfer"
+  paymentDate DateTime?
+
+  // Razorpay Details
+  paymentId String? // Razorpay Payment ID
+  orderId   String? // Razorpay Order ID
+
+  // Legacy fields (keep for backward compatibility)
+  month String?
+  year  Int?
+
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Consultation {
@@ -90,7 +159,6 @@ model Consultation {
   preferredMode    String
 
   consultationDate String
-  timeSlot         String
 
   fullName     String
   gender       String
@@ -125,8 +193,8 @@ model Consultation {
   onlineFee     Float?
   offlineFee    Float?
   bookingAmount Float?
+  timeSlot      TimeSlot?
 
-  // 🚀 Razorpay fields
   razorpayOrderId   String?
   razorpayPaymentId String?
   razorpaySignature String?
@@ -136,13 +204,50 @@ model Consultation {
   createdAt DateTime @default(now())
 }
 
+model ScheduleTemplate {
+  id        Int        @id @default(autoincrement())
+  name      String // "Morning Slots", "Weekend Schedule", etc.
+  dayOfWeek Int? // 0=Sunday, 1=Monday, ... 6=Saturday (null for date-specific)
+  isActive  Boolean    @default(true)
+  slots     TimeSlot[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model TimeSlot {
+  id          Int      @id @default(autoincrement())
+  date        DateTime // Specific date for this slot
+  startTime   String // "09:00"
+  endTime     String // "10:00"
+  duration    Int // in minutes (e.g., 60)
+  slotType    String   @default("full") // "full", "half", "custom"
+  isBooked    Boolean  @default(false)
+  isBlocked   Boolean  @default(false) // Admin can block slots
+  maxBookings Int      @default(1)
+
+  // Relations
+  templateId Int?
+  template   ScheduleTemplate? @relation(fields: [templateId], references: [id])
+
+  consultationId Int?          @unique
+  consultation   Consultation? @relation(fields: [consultationId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+  @@index([isBooked, isBlocked])
+}
+
 model Review {
   id        Int      @id @default(autoincrement())
-  rating    Int
+  rating    Int?
+  name      String?
+  phoneno   String?
+  email     String?
   feedback  String
   status    String // "Pending", "Approved", "Rejected"
-  studentId Int?
-  student   Student? @relation(fields: [studentId], references: [id])
+  imageUrl  String?
   clientId  Int?
   createdAt DateTime @default(now())
 }

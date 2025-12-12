@@ -1,41 +1,41 @@
 import { prisma } from "../lib/prisma.js";
 export const reviewController = {
-    // ⭐ STUDENT CREATES REVIEW
-    createStudentReview: async (req, res) => {
-        try {
-            const { rating, feedback } = req.body;
-            const review = await prisma.review.create({
-                data: {
-                    studentId: req.user?.id,
-                    rating,
-                    feedback,
-                    status: "Pending",
-                },
-            });
-            res.json(review);
-        }
-        catch (err) {
-            console.error(err);
-            res.status(500).json({ message: "Failed to submit review" });
-        }
-    },
     // ⭐ CLIENT REVIEW (WITHOUT LOGIN)
     createClientReview: async (req, res) => {
         try {
-            const { rating, feedback } = req.body;
-            const review = await prisma.review.create({
+            const { rating, feedback, imageUrl, name, phoneno, email } = req.body;
+            if (!name) {
+                return res.status(400).json({ msg: "Please enter your name" });
+            }
+            let client = null;
+            // ✔ CHECK if email exists, but don't throw error if not found
+            if (email) {
+                client = await prisma.consultation.findFirst({
+                    where: {
+                        emailAddress: email,
+                    },
+                });
+            }
+            // ✔ Create review (clientId only if exists)
+            await prisma.review.create({
                 data: {
-                    rating,
+                    name,
+                    phoneno,
+                    email,
+                    rating: Number(rating),
                     feedback,
+                    imageUrl,
                     status: "Pending",
-                    // clientId is optional — use if you add a client model later
+                    clientId: client ? client.id : null, // optional linking
                 },
             });
-            res.json(review);
+            return res.json({
+                msg: "Review submitted successfully!",
+            });
         }
         catch (err) {
             console.error(err);
-            res.status(500).json({ message: "Failed to submit review" });
+            return res.status(500).json({ message: "Failed to submit review" });
         }
     },
     // ⭐ GET ALL PENDING REVIEWS (ADMIN)
@@ -43,9 +43,6 @@ export const reviewController = {
         try {
             const reviews = await prisma.review.findMany({
                 where: { status: "Pending" },
-                include: {
-                    student: true,
-                },
             });
             res.json(reviews);
         }

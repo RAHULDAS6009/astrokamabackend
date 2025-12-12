@@ -21,7 +21,7 @@ const authMiddleware = (requiredRole?: string) => {
     try {
       const authHeader = req.headers.authorization;
 
-      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      if (!authHeader || !authHeader.startsWith("Bearer")) {
         return res.status(401).json({ message: "No token provided" });
       }
 
@@ -33,7 +33,7 @@ const authMiddleware = (requiredRole?: string) => {
       }
 
       // decode token
-      const decoded = jwt.verify("asaas", secret);
+      const decoded = jwt.verify(token, secret);
 
       // Ensure decoded is JwtPayload type
       if (

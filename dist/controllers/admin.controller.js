@@ -12,10 +12,12 @@ export const adminController = {
             const admin = await prisma.admin.findUnique({ where: { email } });
             if (!admin)
                 return res.status(400).json({ message: "Admin not found" });
-            const match = await bcrypt.compare(password, admin.password);
+            // const match = await bcrypt.compare(password, admin.password);
+            const match = password === admin.password;
             if (!match)
                 return res.status(400).json({ message: "Invalid password" });
-            const token = jwt.sign({ id: admin.id, role: "ADMIN" }, process.env.JWT_SECRET, { expiresIn: "2d" });
+            console.log("hello");
+            const token = jwt.sign({ id: admin.id, role: "ADMIN" }, process.env.JWT_SECRET || "");
             res.json({ token, admin });
         }
         catch (err) {
@@ -27,9 +29,7 @@ export const adminController = {
     // -------------------------------
     getStudents: async (req, res) => {
         try {
-            const students = await prisma.student.findMany({
-                include: { batch: true },
-            });
+            const students = await prisma.student.findMany({});
             res.json(students);
         }
         catch (err) {

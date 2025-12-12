@@ -145,3 +145,106 @@ export const consultationController = {
         }
     },
 };
+export const adminConsultationController = {
+    // ====================================================================================
+    // GET CONSULTATIONS WITH FILTERS
+    // ====================================================================================
+    getConsultations: async (req, res) => {
+        try {
+            const { startDate, endDate, status, mode } = req.query;
+            const where = {};
+            if (startDate && endDate) {
+                where.createdAt = {
+                    gte: new Date(startDate),
+                    lte: new Date(endDate),
+                };
+            }
+            if (status)
+                where.status = status;
+            if (mode)
+                where.preferredMode = mode;
+            const consultations = await prisma.consultation.findMany({
+                where,
+                include: { timeSlot: true },
+                orderBy: { createdAt: "desc" },
+            });
+            res.json({ success: true, data: consultations });
+        }
+        catch (err) {
+            console.log(err);
+            return res.status(500).json({ success: false });
+        }
+    },
+    // ====================================================================================
+    // UPDATE STATUS
+    // ====================================================================================
+    updateStatus: async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            const { status } = req.body;
+            const updated = await prisma.consultation.update({
+                where: { id },
+                data: { status },
+            });
+            res.json({
+                success: true,
+                message: "Consultation status updated",
+                data: updated,
+            });
+        }
+        catch (err) {
+            console.log(err);
+            res.status(500).json({ success: false });
+        }
+    },
+    // ====================================================================================
+    // ASSIGN / CHANGE SLOT
+    // ====================================================================================
+    assignSlot: async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            const { slotId } = req.body;
+            // Free old slot
+            await prisma.timeSlot.updateMany({
+                where: { consultationId: id },
+                data: { consultationId: null, isBooked: false },
+            });
+            // Assign new slot
+            const updated = await prisma.timeSlot.update({
+                where: { id: slotId },
+                data: {
+                    isBooked: true,
+                    consultation: { connect: { id } },
+                },
+            });
+            res.json({
+                success: true,
+                message: "Slot assigned successfully",
+                data: updated,
+            });
+        }
+        catch (err) {
+            console.log(err);
+            res.status(500).json({ success: false });
+        }
+    },
+    // ====================================================================================
+    // DELETE CONSULTATION
+    // ====================================================================================
+    deleteConsultation: async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            await prisma.consultation.delete({
+                where: { id },
+            });
+            res.json({
+                success: true,
+                message: "Consultation deleted",
+            });
+        }
+        catch (err) {
+            console.log(err);
+            res.status(500).json({ success: false });
+        }
+    },
+};

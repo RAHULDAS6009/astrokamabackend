@@ -69,10 +69,14 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
     Admin: 'Admin',
     Student: 'Student',
-    Batch: 'Batch',
+    Course: 'Course',
+    Branch: 'Branch',
+    Semester: 'Semester',
     StudyMaterial: 'StudyMaterial',
     Fee: 'Fee',
     Consultation: 'Consultation',
+    ScheduleTemplate: 'ScheduleTemplate',
+    TimeSlot: 'TimeSlot',
     Review: 'Review',
     CMS: 'CMS'
 };
@@ -97,14 +101,19 @@ export const StudentScalarFieldEnum = {
     studentId: 'studentId',
     name: 'name',
     email: 'email',
+    gender: 'gender',
     password: 'password',
-    batchId: 'batchId',
-    fatherName: 'fatherName',
+    courseId: 'courseId',
+    branchId: 'branchId',
+    rollNo: 'rollNo',
+    gurdianName: 'gurdianName',
+    relationWithGurdain: 'relationWithGurdain',
     courseMode: 'courseMode',
     courseDetails: 'courseDetails',
     communicationAddress: 'communicationAddress',
     permanentAddress: 'permanentAddress',
     mobileNumber: 'mobileNumber',
+    whatsappNumber: 'whatsappNumber',
     dateOfBirth: 'dateOfBirth',
     placeOfBirth: 'placeOfBirth',
     educationalQualification: 'educationalQualification',
@@ -116,35 +125,78 @@ export const StudentScalarFieldEnum = {
     idProofUrl: 'idProofUrl',
     createdAt: 'createdAt'
 };
-export const BatchScalarFieldEnum = {
+export const CourseScalarFieldEnum = {
+    id: 'id',
+    ranking: 'ranking',
+    name: 'name',
+    type: 'type',
+    description: 'description',
+    duration: 'duration',
+    bannerpdf: 'bannerpdf',
+    bannerimage: 'bannerimage',
+    courseCode: 'courseCode',
+    gridTitle: 'gridTitle',
+    courseType: 'courseType',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const BranchScalarFieldEnum = {
+    id: 'id',
+    courseId: 'courseId',
+    name: 'name',
+    branchCode: 'branchCode',
+    color: 'color',
+    durationMonths: 'durationMonths',
+    classType: 'classType',
+    daysPerClassType: 'daysPerClassType',
+    classHour: 'classHour',
+    daysJSON: 'daysJSON'
+};
+export const SemesterScalarFieldEnum = {
     id: 'id',
     name: 'name',
-    timing: 'timing',
-    monthlyFee: 'monthlyFee'
+    number: 'number',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    fees: 'fees',
+    lateFeeDate: 'lateFeeDate',
+    lateFeeFine: 'lateFeeFine',
+    admissionFee: 'admissionFee',
+    branchId: 'branchId'
 };
 export const StudyMaterialScalarFieldEnum = {
     id: 'id',
     title: 'title',
     type: 'type',
     url: 'url',
-    batchId: 'batchId',
-    createdAt: 'createdAt'
+    courseId: 'courseId',
+    createdAt: 'createdAt',
+    branchId: 'branchId',
+    semesterId: 'semesterId'
 };
 export const FeeScalarFieldEnum = {
     id: 'id',
     studentId: 'studentId',
+    semesterId: 'semesterId',
+    description: 'description',
+    amount: 'amount',
+    lateFine: 'lateFine',
+    status: 'status',
+    paymentMode: 'paymentMode',
+    paymentDate: 'paymentDate',
+    paymentId: 'paymentId',
+    orderId: 'orderId',
     month: 'month',
     year: 'year',
-    amount: 'amount',
-    status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
 };
 export const ConsultationScalarFieldEnum = {
     id: 'id',
     consultationType: 'consultationType',
     preferredMode: 'preferredMode',
     consultationDate: 'consultationDate',
-    timeSlot: 'timeSlot',
     fullName: 'fullName',
     gender: 'gender',
     dateOfBirth: 'dateOfBirth',
@@ -180,12 +232,38 @@ export const ConsultationScalarFieldEnum = {
     status: 'status',
     createdAt: 'createdAt'
 };
+export const ScheduleTemplateScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    dayOfWeek: 'dayOfWeek',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const TimeSlotScalarFieldEnum = {
+    id: 'id',
+    date: 'date',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    duration: 'duration',
+    slotType: 'slotType',
+    isBooked: 'isBooked',
+    isBlocked: 'isBlocked',
+    maxBookings: 'maxBookings',
+    templateId: 'templateId',
+    consultationId: 'consultationId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
 export const ReviewScalarFieldEnum = {
     id: 'id',
     rating: 'rating',
+    name: 'name',
+    phoneno: 'phoneno',
+    email: 'email',
     feedback: 'feedback',
     status: 'status',
-    studentId: 'studentId',
+    imageUrl: 'imageUrl',
     clientId: 'clientId',
     createdAt: 'createdAt'
 };

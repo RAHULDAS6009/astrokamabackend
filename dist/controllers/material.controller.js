@@ -10,14 +10,14 @@ export const materialController = {
                 return res.status(404).json({ message: "Student not found" });
             }
             // 2️⃣ Check if batch is assigned
-            if (!student.batchId) {
+            if (!student.courseId) {
                 return res
                     .status(400)
                     .json({ message: "Student is not assigned to any batch yet" });
             }
             // 3️⃣ Fetch materials for student's batch
             const materials = await prisma.studyMaterial.findMany({
-                where: { batchId: student.batchId },
+                where: { courseId: student.courseId },
             });
             res.json(materials);
         }

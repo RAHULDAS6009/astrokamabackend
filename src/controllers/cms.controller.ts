@@ -4,7 +4,7 @@ import { prisma } from "../lib/prisma.js";
 export const cmsController = {
   // ------------------------------------
   // GET CMS CONTENT BY SECTION
-  // /cms/:section
+  // GET /cms/:section
   // ------------------------------------
   getContent: async (req: Request, res: Response) => {
     try {
@@ -20,34 +20,69 @@ export const cmsController = {
 
       res.json(content);
     } catch (err) {
-      res.status(500).json({ error: err });
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 
   // ------------------------------------
-  // UPDATE OR CREATE CMS SECTION
-  // /cms/:section
+  // CREATE CMS CONTENT
+  // POST /cms
   // ------------------------------------
-  updateContent: async (req: Request, res: Response) => {
+  createContent: async (req: Request, res: Response) => {
     try {
-      const section = req.params.section;
-      const { content, imageUrl } = req.body;
+      const { section, content, imageUrl } = req.body;
 
-      // Validate required fields
       if (!section || !content) {
         return res
           .status(400)
           .json({ message: "Section and content are required" });
       }
 
-      // Try to find existing section
+      // Prevent duplicating a section
+      const exists = await prisma.cMS.findFirst({ where: { section } });
+      if (exists) {
+        return res.status(400).json({
+          message: "Section already exists, use update API instead",
+        });
+      }
+
+      const created = await prisma.cMS.create({
+        data: { section, content, imageUrl: imageUrl ?? null },
+      });
+
+      res.status(201).json({
+        message: "CMS section created successfully",
+        data: created,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
+  // ------------------------------------
+  // UPDATE OR CREATE CMS SECTION
+  // PUT /cms/:section
+  // ------------------------------------
+  updateContent: async (req: Request, res: Response) => {
+    try {
+      const section = req.params.section;
+      const { content, imageUrl } = req.body;
+
+      if (!section || !content) {
+        return res
+          .status(400)
+          .json({ message: "Section and content are required" });
+      }
+
       const existing = await prisma.cMS.findFirst({ where: { section } });
 
       let updated;
       if (existing) {
         updated = await prisma.cMS.update({
-          where: { id: existing.id }, // must use unique id
-          data: { content, imageUrl: imageUrl ?? null }, // ensure optional field is null if undefined
+          where: { id: existing.id },
+          data: { content, imageUrl: imageUrl ?? null },
         });
       } else {
         updated = await prisma.cMS.create({
@@ -56,9 +91,34 @@ export const cmsController = {
       }
 
       res.json({
-        message: "CMS section updated successfully",
+        message: "CMS section saved successfully",
         data: updated,
       });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
+  // ------------------------------------
+  // DELETE CMS CONTENT
+  // DELETE /cms/:section
+  // ------------------------------------
+  deleteContent: async (req: Request, res: Response) => {
+    try {
+      const section = req.params.section;
+
+      const existing = await prisma.cMS.findFirst({ where: { section } });
+
+      if (!existing) {
+        return res.status(404).json({ message: "Section not found" });
+      }
+
+      await prisma.cMS.delete({
+        where: { id: existing.id },
+      });
+
+      res.json({ message: "CMS section deleted successfully" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });

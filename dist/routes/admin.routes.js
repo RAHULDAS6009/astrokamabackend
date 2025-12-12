@@ -1,32 +1,92 @@
 import { Router } from "express";
 import { adminController } from "../controllers/admin.controller.js";
-import { consultationController } from "../controllers/consultation.controller.js";
+import { adminConsultationController, consultationController, } from "../controllers/consultation.controller.js";
 import { reviewController } from "../controllers/review.controller.js";
-import { feeController } from "../controllers/fee.controller.js";
-import { batchController } from "../controllers/batch.controller.js";
+import { courseController } from "../controllers/course.controller.js";
 import { cmsController } from "../controllers/cms.controller.js";
 import { auth } from "../middleware/auth.js";
+import { adminFeeController } from "../controllers/adminFeeController.js";
+import { adminStudentController } from "../controllers/student.controller.js";
 const router = Router();
 // NO auth for login
 router.post("/login", adminController.login);
 // Admin Protected Routes
 router.use(auth.admin);
+//create course
+router.post("/course", courseController.createCourse);
+//update course
+router.put("/course/:id", courseController.updateCourse);
+//delete course
+router.delete("/course/:id", courseController.deleteCourse);
+//get course
+router.get("/course", courseController.getAllCourses);
+//get all admission if approve from admin then move to the Stduent DB
+//fees Download excel for all fess
+//upload study material for branches/batches
 // Student Management
-router.get("/students", adminController.getStudents);
-router.post("/students/approve", adminController.approveStudent);
-// Batch Management
-router.post("/batch", batchController.createBatch);
-router.get("/batch", batchController.getBatches);
-router.put("/batch/:id", batchController.updateBatch);
-// Fees
-router.get("/fees", feeController.getAllFees);
-// Admin
+//consultation bookings -> manage it in a way so that it can show and manage all of that
+router.get("/students", adminStudentController.getAllStudents);
+router.get("/students/:studentId", adminStudentController.getStudentById);
+router.put("/students/:studentId", adminStudentController.updateStudent);
+router.delete("/students/:studentId", adminStudentController.deleteStudent);
+router.get("/fees/statistics", adminFeeController.getFeeStatistics);
+router.get("/fees/defaulters", adminFeeController.getDefaulters);
+router.get("/fees", adminFeeController.getAllFees);
+router.get("/fees/student/:studentId", adminFeeController.getStudentFees);
+router.post("/fees/manual-payment", adminFeeController.createManualPayment);
+router.post("/fees/bulk-payment", adminFeeController.bulkPaymentUpdate);
+router.put("/fees/:feeId", adminFeeController.updatePayment);
+router.delete("/fees/:feeId", adminFeeController.deletePayment);
 router.get("/bookings", consultationController.getAllBookings);
 router.put("/bookings/:id/status", consultationController.updateStatus);
-// Reviews
 router.get("/reviews", reviewController.getPending);
 router.put("/reviews/:id", reviewController.approveOrReject);
-// CMS
-router.get("/cms/:key", cmsController.getContent);
-router.post("/cms/:key", cmsController.updateContent);
+router.get("/:section", cmsController.getContent);
+router.post("/", cmsController.createContent);
+router.put("/:section", cmsController.updateContent);
+router.delete("/:section", cmsController.deleteContent);
+router.get("/schedule/slots", adminConsultationController.getConsultations);
+// router.put("/schedule/slots/bulk", adminConsultationController.createBulkSlots);
+// router.put("/schedule/slots/:id/block", adminConsultationController.blockSlot);
+router.delete("/schedule/slots/:id", adminConsultationController.deleteConsultation);
+// router.get("/students", adminController.getStudents);
+// router.get("/", adminFeeController.getAllFees);
+// // Get fees by student ID
+// router.get("/student/:studentId", adminFeeController.getStudentFees);
+// // Create manual payment entry
+// router.post("/manual-payment", adminFeeController.createManualPayment);
+// // Update existing payment
+// router.put("/:feeId", adminFeeController.updatePayment);
+// // Delete payment
+// router.delete("/:feeId", adminFeeController.deletePayment);
+// // Get fee statistics
+// router.get("/statistics", adminFeeController.getFeeStatistics);
+// // Get defaulters list
+// router.get("/defaulters", adminFeeController.getDefaulters);
+// // Bulk payment update
+// router.post(
+//   "/bulk-payment",
+//   adminFeeController.bulkPaymentUpdate
+// );
+// // Get all students
+// router.get("/", adminStudentController.getAllStudents);
+// // Get single student
+// router.get("/:studentId", adminStudentController.getStudentById);
+// // Update student
+// router.put("/:studentId", adminStudentController.updateStudent);
+// // Delete student
+// router.delete("/:studentId", adminStudentController.deleteStudent);
+// router.post("/students/approve", adminController.approveStudent);
+// // Batch Management
+// // Fees
+// router.get("/fees", feeController.getAllFees);
+// // booking
+// router.get("/bookings", consultationController.getAllBookings);
+// router.put("/bookings/:id/status", consultationController.updateStatus);
+// // Reviews
+// router.get("/reviews", reviewController.getPending);
+// router.put("/reviews/:id", reviewController.approveOrReject);
+// // CMS
+// router.get("/cms/:key", cmsController.getContent);
+// router.post("/cms/:key", cmsController.updateContent);
 export default router;
