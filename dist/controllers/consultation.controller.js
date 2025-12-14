@@ -1,30 +1,55 @@
+// ============================================================
+// FILE 1: Backend - Update consultationController.ts
+// ============================================================
 import { prisma } from "../lib/prisma.js";
 import { razorpay } from "../config/razorpay.js";
 import crypto from "crypto";
 export const consultationController = {
     // ======================================================
-    // CLIENT BOOKING (NO SIGNUP)
+    // GET AVAILABLE SLOTS FOR A DATE RANGE
+    // ======================================================
+    getAvailableSlots: async (_, res) => {
+        const slots = await prisma.timeSlot.findMany({
+            orderBy: { date: "asc" },
+        });
+        res.json({
+            success: true,
+            message: "Available slots",
+            data: slots,
+            meta: { total: slots.length },
+        });
+    },
+    // ======================================================
+    // CLIENT BOOKING WITH SLOT RESERVATION
     // ======================================================
     bookForClient: async (req, res) => {
-        console.log("hello from bookForClient");
         try {
             const data = req.body;
-            console.log("form book client", req.body);
-            // Convert paymentAmount to paise
+            console.log(data);
+            // Validate slot availability
+            if (data.slotId) {
+                const slot = await prisma.timeSlot.findUnique({
+                    where: { id: parseInt(data.slotId) },
+                });
+                if (!slot || slot.isBooked || slot.isBlocked) {
+                    return res.status(400).json({
+                        success: false,
+                        message: "Selected time slot is no longer available",
+                    });
+                }
+            }
             const amountInPaise = Math.round(data.paymentAmount * 100);
-            // 1️⃣ Create Razorpay Order
             const order = await razorpay.orders.create({
                 amount: amountInPaise,
                 currency: "INR",
                 receipt: `receipt_${Date.now()}`,
             });
-            // 2️⃣ Return order ONLY (NO DB WRITE)
             return res.status(201).json({
                 success: true,
                 orderId: order.id,
                 amount: amountInPaise,
                 key: process.env.RAZORPAY_KEY_ID,
-                formData: data, // we need this later during verification
+                formData: data,
             });
         }
         catch (error) {
@@ -33,13 +58,11 @@ export const consultationController = {
         }
     },
     // ======================================================
-    // VERIFY PAYMENT
+    // VERIFY PAYMENT AND BOOK SLOT
     // ======================================================
     verifyPayment: async (req, res) => {
         try {
-            console.log("hello from verify payment");
             const { razorpay_order_id, razorpay_payment_id, razorpay_signature, formData, } = req.body;
-            console.log("Verify body:", req.body);
             // Validate signature
             const sign = `${razorpay_order_id}|${razorpay_payment_id}`;
             const expectedSignature = crypto
@@ -52,64 +75,95 @@ export const consultationController = {
                     message: "Invalid Razorpay signature",
                 });
             }
-            // 3️⃣ CREATE consultation entry now (after successful payment)
-            const consultation = await prisma.consultation.create({
-                data: {
-                    consultationType: formData.consultType,
-                    preferredMode: formData.consultModes[0],
-                    consultationDate: "",
-                    timeSlot: formData.schedule.time,
-                    // Personal info
-                    fullName: formData.personal.fullName,
-                    gender: formData.personal.gender,
-                    dateOfBirth: new Date(formData.personal.dob),
-                    timeOfBirth: formData.personal.tob,
-                    placeOfBirth: `${formData.birthPlace.city}, ${formData.birthPlace.state}, ${formData.birthPlace.country}`,
-                    country: formData.birthPlace.country,
-                    state: formData.birthPlace.state,
-                    city: formData.birthPlace.city,
-                    pinCode: formData.birthPlace.pincode,
-                    phoneNumber: formData.contact.phone,
-                    emailAddress: formData.contact.email,
-                    // Preferences
-                    careerGuidance: formData.preferences.topics.includes("Career Guidance"),
-                    loveLife: formData.preferences.topics.includes("Love Life"),
-                    marriageLife: formData.preferences.topics.includes("Marriage Life"),
-                    healthWellbeing: formData.preferences.topics.includes("Health Wellbeing"),
-                    financialCondition: formData.preferences.topics.includes("Financial Condition"),
-                    business: formData.preferences.topics.includes("Business"),
-                    spiritualGrowth: formData.preferences.topics.includes("Spiritual Growth"),
-                    others: formData.preferences.others,
-                    consultedBefore: formData.consultedBefore === "Yes",
-                    specificQuestions: formData.specificConcerns,
-                    openToRemedies: formData.remedies,
-                    declarationAccepted: true,
-                    declarationDate: new Date(),
-                    bookingAmount: formData.paymentAmount,
-                    razorpayOrderId: razorpay_order_id,
-                    razorpayPaymentId: razorpay_payment_id,
-                    razorpaySignature: razorpay_signature,
-                    paymentStatus: "Paid",
-                    status: "Confirmed",
-                },
+            // Use transaction to ensure slot is booked atomically
+            const result = await prisma.$transaction(async (tx) => {
+                // Check and book slot
+                let slotId = null;
+                if (formData.slotId) {
+                    const slot = await tx.timeSlot.findUnique({
+                        where: { id: parseInt(formData.slotId) },
+                    });
+                    if (!slot || slot.isBooked || slot.isBlocked) {
+                        throw new Error("Time slot is no longer available");
+                    }
+                    slotId = slot.id;
+                }
+                // Create consultation
+                const consultation = await tx.consultation.create({
+                    data: {
+                        consultationType: formData.consultType,
+                        preferredMode: formData.consultModes[0],
+                        consultationDate: formData.schedule?.date || "",
+                        timeSlot: slotId
+                            ? {
+                                connect: { id: slotId },
+                            }
+                            : undefined,
+                        fullName: formData.personal.fullName,
+                        gender: formData.personal.gender,
+                        dateOfBirth: new Date(formData.personal.dob),
+                        timeOfBirth: formData.personal.tob,
+                        placeOfBirth: `${formData.birthPlace.city}, ${formData.birthPlace.state}, ${formData.birthPlace.country}`,
+                        country: formData.birthPlace.country,
+                        state: formData.birthPlace.state,
+                        city: formData.birthPlace.city,
+                        pinCode: formData.birthPlace.pincode,
+                        phoneNumber: formData.contact.phone,
+                        emailAddress: formData.contact.email,
+                        careerGuidance: formData.preferences.topics.includes("Career Guidance"),
+                        loveLife: formData.preferences.topics.includes("Love Life"),
+                        marriageLife: formData.preferences.topics.includes("Marriage Life"),
+                        healthWellbeing: formData.preferences.topics.includes("Health Wellbeing"),
+                        financialCondition: formData.preferences.topics.includes("Financial Condition"),
+                        business: formData.preferences.topics.includes("Business"),
+                        spiritualGrowth: formData.preferences.topics.includes("Spiritual Growth"),
+                        others: formData.preferences.others,
+                        consultedBefore: formData.consultedBefore === "Yes",
+                        specificQuestions: formData.specificConcerns,
+                        openToRemedies: formData.remedies,
+                        declarationAccepted: true,
+                        declarationDate: new Date(),
+                        bookingAmount: formData.paymentAmount,
+                        razorpayOrderId: razorpay_order_id,
+                        razorpayPaymentId: razorpay_payment_id,
+                        razorpaySignature: razorpay_signature,
+                        paymentStatus: "Paid",
+                        status: "Confirmed",
+                    },
+                });
+                // Mark slot as booked
+                if (slotId) {
+                    await tx.timeSlot.update({
+                        where: { id: slotId },
+                        data: {
+                            isBooked: true,
+                            consultationId: consultation.id,
+                        },
+                    });
+                }
+                return consultation;
             });
             return res.json({
                 success: true,
                 message: "Payment verified & consultation created",
-                consultationId: consultation.id,
+                consultationId: result.id,
             });
         }
         catch (err) {
             console.log(err);
-            return res.status(500).json({ success: false, error: err });
+            return res.status(500).json({
+                success: false,
+                error: err.message || "Booking failed",
+            });
         }
     },
-    // ======================================================
-    // ADMIN → GET ALL BOOKINGS
-    // ======================================================
     getAllBookings: async (req, res) => {
+        console.log("ssdsds");
         try {
             const bookings = await prisma.consultation.findMany({
+                include: {
+                    timeSlot: true,
+                },
                 orderBy: { createdAt: "desc" },
             });
             return res.json({
@@ -122,9 +176,6 @@ export const consultationController = {
             return res.status(500).json({ success: false, error: err });
         }
     },
-    // ======================================================
-    // ADMIN → UPDATE STATUS (Pending / Confirmed / Completed / Cancelled)
-    // ======================================================
     updateStatus: async (req, res) => {
         try {
             const id = Number(req.params.id);
@@ -145,106 +196,94 @@ export const consultationController = {
         }
     },
 };
+const addMinutes = (time, mins) => {
+    const [h, m] = time.split(":").map(Number);
+    const d = new Date();
+    d.setHours(h, m + mins, 0);
+    return d.toTimeString().slice(0, 5);
+};
+export const adminSlotController = {
+    // Generate slots for a date
+    generateSlots: async (req, res) => {
+        const { date, startTime, endTime, duration } = req.body;
+        const slots = [];
+        let start = startTime;
+        while (start < endTime) {
+            const end = addMinutes(start, duration);
+            slots.push({
+                date: new Date(date),
+                startTime: start,
+                endTime: end,
+                duration,
+            });
+            start = end;
+        }
+        await prisma.timeSlot.createMany({ data: slots });
+        res.json({ success: true });
+    },
+    // Admin sees all slots
+    getSlots: async (req, res) => {
+        const { date } = req.query;
+        const slots = await prisma.timeSlot.findMany({
+            where: date ? { date: new Date(date) } : {},
+            orderBy: { startTime: "asc" },
+        });
+        res.json({ success: true, data: slots });
+    },
+    // Block slots
+    blockSlots: async (req, res) => {
+        const { slotIds } = req.body;
+        await prisma.timeSlot.updateMany({
+            where: { id: { in: slotIds }, isBooked: false },
+            data: { isBlocked: true },
+        });
+        res.json({ success: true });
+    },
+    // Unblock slots
+    unblockSlots: async (req, res) => {
+        const { slotIds } = req.body;
+        await prisma.timeSlot.updateMany({
+            where: { id: { in: slotIds } },
+            data: { isBlocked: false },
+        });
+        res.json({ success: true });
+    },
+};
 export const adminConsultationController = {
-    // ====================================================================================
-    // GET CONSULTATIONS WITH FILTERS
-    // ====================================================================================
-    getConsultations: async (req, res) => {
-        try {
-            const { startDate, endDate, status, mode } = req.query;
-            const where = {};
-            if (startDate && endDate) {
-                where.createdAt = {
-                    gte: new Date(startDate),
-                    lte: new Date(endDate),
-                };
-            }
-            if (status)
-                where.status = status;
-            if (mode)
-                where.preferredMode = mode;
-            const consultations = await prisma.consultation.findMany({
-                where,
-                include: { timeSlot: true },
-                orderBy: { createdAt: "desc" },
-            });
-            res.json({ success: true, data: consultations });
-        }
-        catch (err) {
-            console.log(err);
-            return res.status(500).json({ success: false });
-        }
+    getAll: async (req, res) => {
+        const { status, mode } = req.query;
+        const consultations = await prisma.consultation.findMany({
+            where: {
+                status: status,
+                preferredMode: mode,
+            },
+            include: { timeSlot: true },
+            orderBy: { createdAt: "desc" },
+        });
+        res.json({
+            success: true,
+            data: consultations,
+        });
     },
-    // ====================================================================================
-    // UPDATE STATUS
-    // ====================================================================================
     updateStatus: async (req, res) => {
-        try {
-            const id = Number(req.params.id);
-            const { status } = req.body;
-            const updated = await prisma.consultation.update({
-                where: { id },
-                data: { status },
-            });
-            res.json({
-                success: true,
-                message: "Consultation status updated",
-                data: updated,
-            });
-        }
-        catch (err) {
-            console.log(err);
-            res.status(500).json({ success: false });
-        }
+        const id = Number(req.params.id);
+        const { status } = req.body;
+        const updated = await prisma.consultation.update({
+            where: { id },
+            data: { status },
+        });
+        res.json({
+            success: true,
+            message: "Status updated",
+            data: updated,
+        });
     },
-    // ====================================================================================
-    // ASSIGN / CHANGE SLOT
-    // ====================================================================================
-    assignSlot: async (req, res) => {
-        try {
-            const id = Number(req.params.id);
-            const { slotId } = req.body;
-            // Free old slot
-            await prisma.timeSlot.updateMany({
-                where: { consultationId: id },
-                data: { consultationId: null, isBooked: false },
-            });
-            // Assign new slot
-            const updated = await prisma.timeSlot.update({
-                where: { id: slotId },
-                data: {
-                    isBooked: true,
-                    consultation: { connect: { id } },
-                },
-            });
-            res.json({
-                success: true,
-                message: "Slot assigned successfully",
-                data: updated,
-            });
-        }
-        catch (err) {
-            console.log(err);
-            res.status(500).json({ success: false });
-        }
-    },
-    // ====================================================================================
-    // DELETE CONSULTATION
-    // ====================================================================================
-    deleteConsultation: async (req, res) => {
-        try {
-            const id = Number(req.params.id);
-            await prisma.consultation.delete({
-                where: { id },
-            });
-            res.json({
-                success: true,
-                message: "Consultation deleted",
-            });
-        }
-        catch (err) {
-            console.log(err);
-            res.status(500).json({ success: false });
-        }
+    delete: async (req, res) => {
+        const id = Number(req.params.id);
+        await prisma.consultation.delete({ where: { id } });
+        res.json({
+            success: true,
+            message: "Consultation deleted",
+        });
     },
 };

@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { adminController } from "../controllers/admin.controller.js";
-import { adminConsultationController, consultationController, } from "../controllers/consultation.controller.js";
-import { reviewController } from "../controllers/review.controller.js";
+import { adminConsultationController, adminSlotController, } from "../controllers/consultation.controller.js";
 import { courseController } from "../controllers/course.controller.js";
-import { cmsController } from "../controllers/cms.controller.js";
 import { auth } from "../middleware/auth.js";
 import { adminFeeController } from "../controllers/adminFeeController.js";
 import { adminStudentController } from "../controllers/student.controller.js";
@@ -37,18 +35,34 @@ router.post("/fees/manual-payment", adminFeeController.createManualPayment);
 router.post("/fees/bulk-payment", adminFeeController.bulkPaymentUpdate);
 router.put("/fees/:feeId", adminFeeController.updatePayment);
 router.delete("/fees/:feeId", adminFeeController.deletePayment);
-router.get("/bookings", consultationController.getAllBookings);
-router.put("/bookings/:id/status", consultationController.updateStatus);
-router.get("/reviews", reviewController.getPending);
-router.put("/reviews/:id", reviewController.approveOrReject);
-router.get("/:section", cmsController.getContent);
-router.post("/", cmsController.createContent);
-router.put("/:section", cmsController.updateContent);
-router.delete("/:section", cmsController.deleteContent);
-router.get("/schedule/slots", adminConsultationController.getConsultations);
+// router.get("/bookings", consultationController.getAllBookings);
+// router.put("/bookings/:id/status", consultationController.updateStatus);
+// router.get("/reviews", reviewController.getPending);
+// router.put("/reviews/:id", reviewController.approveOrReject);
+// router.get("/:section", cmsController.getContent);
+// router.post("/", cmsController.createContent);
+// router.put("/:section", cmsController.updateContent);
+// router.delete("/:section", cmsController.deleteContent);
+// router.post("/block", adminConsultationController.blockFullDay);
+// router.post("/block-time", adminConsultationController.blockTimeRange);
+// router.patch("/unblock", adminConsultationController.unblock);
+// router.get("/blocked-slots", adminConsultationController.getBlockedSlots);
+// router.get("/available-slots", adminConsultationController.getAvailableSlots);
+// Get all bookings
+// Update booking status
+router.post("/slots/generate", adminSlotController.generateSlots);
+router.get("/slots", adminSlotController.getSlots);
+router.put("/slots/block", adminSlotController.blockSlots);
+router.put("/slots/unblock", adminSlotController.unblockSlots);
+router.get("/consultations", adminConsultationController.getAll);
+router.put("/consultations/:id/status", adminConsultationController.updateStatus);
+router.delete("/consultations/:id", adminConsultationController.delete);
 // router.put("/schedule/slots/bulk", adminConsultationController.createBulkSlots);
 // router.put("/schedule/slots/:id/block", adminConsultationController.blockSlot);
-router.delete("/schedule/slots/:id", adminConsultationController.deleteConsultation);
+// router.delete(
+//   "/schedule/slots/:id",
+//   adminConsultationController.deleteConsultation
+// );
 // router.get("/students", adminController.getStudents);
 // router.get("/", adminFeeController.getAllFees);
 // // Get fees by student ID

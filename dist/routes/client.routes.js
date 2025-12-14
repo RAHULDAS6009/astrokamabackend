@@ -3,6 +3,7 @@ import { consultationController } from "../controllers/consultation.controller.j
 import { reviewController } from "../controllers/review.controller.js";
 const router = Router();
 // Book consultation
+// router.get("/slots", consultationController.getAvailableSlots);
 router.post("/consultation/book", consultationController.bookForClient);
 router.post("/consultation/verify", consultationController.verifyPayment);
 // Give review
