@@ -29,27 +29,20 @@ export type AggregateCourse = {
 export type CourseAvgAggregateOutputType = {
   id: number | null
   ranking: number | null
-  duration: number | null
 }
 
 export type CourseSumAggregateOutputType = {
   id: number | null
   ranking: number | null
-  duration: number | null
 }
 
 export type CourseMinAggregateOutputType = {
   id: number | null
   ranking: number | null
   name: string | null
-  type: string | null
   description: string | null
-  duration: number | null
   bannerpdf: string | null
   bannerimage: string | null
-  courseCode: string | null
-  courseType: string | null
-  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,14 +51,9 @@ export type CourseMaxAggregateOutputType = {
   id: number | null
   ranking: number | null
   name: string | null
-  type: string | null
   description: string | null
-  duration: number | null
   bannerpdf: string | null
   bannerimage: string | null
-  courseCode: string | null
-  courseType: string | null
-  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -74,15 +62,10 @@ export type CourseCountAggregateOutputType = {
   id: number
   ranking: number
   name: number
-  type: number
   description: number
-  duration: number
   bannerpdf: number
   bannerimage: number
-  courseCode: number
   gridTitle: number
-  courseType: number
-  isActive: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -92,27 +75,20 @@ export type CourseCountAggregateOutputType = {
 export type CourseAvgAggregateInputType = {
   id?: true
   ranking?: true
-  duration?: true
 }
 
 export type CourseSumAggregateInputType = {
   id?: true
   ranking?: true
-  duration?: true
 }
 
 export type CourseMinAggregateInputType = {
   id?: true
   ranking?: true
   name?: true
-  type?: true
   description?: true
-  duration?: true
   bannerpdf?: true
   bannerimage?: true
-  courseCode?: true
-  courseType?: true
-  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -121,14 +97,9 @@ export type CourseMaxAggregateInputType = {
   id?: true
   ranking?: true
   name?: true
-  type?: true
   description?: true
-  duration?: true
   bannerpdf?: true
   bannerimage?: true
-  courseCode?: true
-  courseType?: true
-  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -137,15 +108,10 @@ export type CourseCountAggregateInputType = {
   id?: true
   ranking?: true
   name?: true
-  type?: true
   description?: true
-  duration?: true
   bannerpdf?: true
   bannerimage?: true
-  courseCode?: true
   gridTitle?: true
-  courseType?: true
-  isActive?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -239,17 +205,12 @@ export type CourseGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type CourseGroupByOutputType = {
   id: number
-  ranking: number | null
+  ranking: number
   name: string
-  type: string | null
   description: string | null
-  duration: number | null
   bannerpdf: string | null
   bannerimage: string | null
-  courseCode: string
   gridTitle: string[]
-  courseType: string | null
-  isActive: boolean
   createdAt: Date
   updatedAt: Date
   _count: CourseCountAggregateOutputType | null
@@ -279,80 +240,51 @@ export type CourseWhereInput = {
   OR?: Prisma.CourseWhereInput[]
   NOT?: Prisma.CourseWhereInput | Prisma.CourseWhereInput[]
   id?: Prisma.IntFilter<"Course"> | number
-  ranking?: Prisma.IntNullableFilter<"Course"> | number | null
+  ranking?: Prisma.IntFilter<"Course"> | number
   name?: Prisma.StringFilter<"Course"> | string
-  type?: Prisma.StringNullableFilter<"Course"> | string | null
   description?: Prisma.StringNullableFilter<"Course"> | string | null
-  duration?: Prisma.IntNullableFilter<"Course"> | number | null
   bannerpdf?: Prisma.StringNullableFilter<"Course"> | string | null
   bannerimage?: Prisma.StringNullableFilter<"Course"> | string | null
-  courseCode?: Prisma.StringFilter<"Course"> | string
   gridTitle?: Prisma.StringNullableListFilter<"Course">
-  courseType?: Prisma.StringNullableFilter<"Course"> | string | null
-  isActive?: Prisma.BoolFilter<"Course"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Course"> | Date | string
-  branches?: Prisma.BranchListRelationFilter
-  studyMaterials?: Prisma.StudyMaterialListRelationFilter
-  students?: Prisma.StudentListRelationFilter
 }
 
 export type CourseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  ranking?: Prisma.SortOrderInput | Prisma.SortOrder
+  ranking?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  duration?: Prisma.SortOrderInput | Prisma.SortOrder
   bannerpdf?: Prisma.SortOrderInput | Prisma.SortOrder
   bannerimage?: Prisma.SortOrderInput | Prisma.SortOrder
-  courseCode?: Prisma.SortOrder
   gridTitle?: Prisma.SortOrder
-  courseType?: Prisma.SortOrderInput | Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branches?: Prisma.BranchOrderByRelationAggregateInput
-  studyMaterials?: Prisma.StudyMaterialOrderByRelationAggregateInput
-  students?: Prisma.StudentOrderByRelationAggregateInput
 }
 
 export type CourseWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  courseCode?: string
+  ranking?: number
   AND?: Prisma.CourseWhereInput | Prisma.CourseWhereInput[]
   OR?: Prisma.CourseWhereInput[]
   NOT?: Prisma.CourseWhereInput | Prisma.CourseWhereInput[]
-  ranking?: Prisma.IntNullableFilter<"Course"> | number | null
   name?: Prisma.StringFilter<"Course"> | string
-  type?: Prisma.StringNullableFilter<"Course"> | string | null
   description?: Prisma.StringNullableFilter<"Course"> | string | null
-  duration?: Prisma.IntNullableFilter<"Course"> | number | null
   bannerpdf?: Prisma.StringNullableFilter<"Course"> | string | null
   bannerimage?: Prisma.StringNullableFilter<"Course"> | string | null
   gridTitle?: Prisma.StringNullableListFilter<"Course">
-  courseType?: Prisma.StringNullableFilter<"Course"> | string | null
-  isActive?: Prisma.BoolFilter<"Course"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Course"> | Date | string
-  branches?: Prisma.BranchListRelationFilter
-  studyMaterials?: Prisma.StudyMaterialListRelationFilter
-  students?: Prisma.StudentListRelationFilter
-}, "id" | "courseCode">
+}, "id" | "ranking">
 
 export type CourseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  ranking?: Prisma.SortOrderInput | Prisma.SortOrder
+  ranking?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  duration?: Prisma.SortOrderInput | Prisma.SortOrder
   bannerpdf?: Prisma.SortOrderInput | Prisma.SortOrder
   bannerimage?: Prisma.SortOrderInput | Prisma.SortOrder
-  courseCode?: Prisma.SortOrder
   gridTitle?: Prisma.SortOrder
-  courseType?: Prisma.SortOrderInput | Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CourseCountOrderByAggregateInput
@@ -367,152 +299,95 @@ export type CourseScalarWhereWithAggregatesInput = {
   OR?: Prisma.CourseScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CourseScalarWhereWithAggregatesInput | Prisma.CourseScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Course"> | number
-  ranking?: Prisma.IntNullableWithAggregatesFilter<"Course"> | number | null
+  ranking?: Prisma.IntWithAggregatesFilter<"Course"> | number
   name?: Prisma.StringWithAggregatesFilter<"Course"> | string
-  type?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
-  duration?: Prisma.IntNullableWithAggregatesFilter<"Course"> | number | null
   bannerpdf?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
   bannerimage?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
-  courseCode?: Prisma.StringWithAggregatesFilter<"Course"> | string
   gridTitle?: Prisma.StringNullableListFilter<"Course">
-  courseType?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
-  isActive?: Prisma.BoolWithAggregatesFilter<"Course"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Course"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Course"> | Date | string
 }
 
 export type CourseCreateInput = {
-  ranking?: number | null
+  ranking: number
   name: string
-  type?: string | null
   description?: string | null
-  duration?: number | null
   bannerpdf?: string | null
   bannerimage?: string | null
-  courseCode: string
   gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branches?: Prisma.BranchCreateNestedManyWithoutCourseInput
-  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
-  students?: Prisma.StudentCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUncheckedCreateInput = {
   id?: number
-  ranking?: number | null
+  ranking: number
   name: string
-  type?: string | null
   description?: string | null
-  duration?: number | null
   bannerpdf?: string | null
   bannerimage?: string | null
-  courseCode: string
   gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutCourseInput
-  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
-  students?: Prisma.StudentUncheckedCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUpdateInput = {
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ranking?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
   gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branches?: Prisma.BranchUpdateManyWithoutCourseNestedInput
-  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
-  students?: Prisma.StudentUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ranking?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
   gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branches?: Prisma.BranchUncheckedUpdateManyWithoutCourseNestedInput
-  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
-  students?: Prisma.StudentUncheckedUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseCreateManyInput = {
   id?: number
-  ranking?: number | null
+  ranking: number
   name: string
-  type?: string | null
   description?: string | null
-  duration?: number | null
   bannerpdf?: string | null
   bannerimage?: string | null
-  courseCode: string
   gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type CourseUpdateManyMutationInput = {
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ranking?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
   gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CourseUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ranking?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
   gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type CourseNullableScalarRelationFilter = {
-  is?: Prisma.CourseWhereInput | null
-  isNot?: Prisma.CourseWhereInput | null
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -527,15 +402,10 @@ export type CourseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ranking?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  duration?: Prisma.SortOrder
   bannerpdf?: Prisma.SortOrder
   bannerimage?: Prisma.SortOrder
-  courseCode?: Prisma.SortOrder
   gridTitle?: Prisma.SortOrder
-  courseType?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -543,21 +413,15 @@ export type CourseCountOrderByAggregateInput = {
 export type CourseAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ranking?: Prisma.SortOrder
-  duration?: Prisma.SortOrder
 }
 
 export type CourseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ranking?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  duration?: Prisma.SortOrder
   bannerpdf?: Prisma.SortOrder
   bannerimage?: Prisma.SortOrder
-  courseCode?: Prisma.SortOrder
-  courseType?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -566,14 +430,9 @@ export type CourseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ranking?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  duration?: Prisma.SortOrder
   bannerpdf?: Prisma.SortOrder
   bannerimage?: Prisma.SortOrder
-  courseCode?: Prisma.SortOrder
-  courseType?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -581,23 +440,6 @@ export type CourseMinOrderByAggregateInput = {
 export type CourseSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ranking?: Prisma.SortOrder
-  duration?: Prisma.SortOrder
-}
-
-export type CourseCreateNestedOneWithoutStudentsInput = {
-  create?: Prisma.XOR<Prisma.CourseCreateWithoutStudentsInput, Prisma.CourseUncheckedCreateWithoutStudentsInput>
-  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutStudentsInput
-  connect?: Prisma.CourseWhereUniqueInput
-}
-
-export type CourseUpdateOneWithoutStudentsNestedInput = {
-  create?: Prisma.XOR<Prisma.CourseCreateWithoutStudentsInput, Prisma.CourseUncheckedCreateWithoutStudentsInput>
-  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutStudentsInput
-  upsert?: Prisma.CourseUpsertWithoutStudentsInput
-  disconnect?: Prisma.CourseWhereInput | boolean
-  delete?: Prisma.CourseWhereInput | boolean
-  connect?: Prisma.CourseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseUpdateToOneWithWhereWithoutStudentsInput, Prisma.CourseUpdateWithoutStudentsInput>, Prisma.CourseUncheckedUpdateWithoutStudentsInput>
 }
 
 export type CourseCreategridTitleInput = {
@@ -609,395 +451,28 @@ export type CourseUpdategridTitleInput = {
   push?: string | string[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type CourseCreateNestedOneWithoutBranchesInput = {
-  create?: Prisma.XOR<Prisma.CourseCreateWithoutBranchesInput, Prisma.CourseUncheckedCreateWithoutBranchesInput>
-  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutBranchesInput
-  connect?: Prisma.CourseWhereUniqueInput
-}
-
-export type CourseUpdateOneWithoutBranchesNestedInput = {
-  create?: Prisma.XOR<Prisma.CourseCreateWithoutBranchesInput, Prisma.CourseUncheckedCreateWithoutBranchesInput>
-  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutBranchesInput
-  upsert?: Prisma.CourseUpsertWithoutBranchesInput
-  disconnect?: Prisma.CourseWhereInput | boolean
-  delete?: Prisma.CourseWhereInput | boolean
-  connect?: Prisma.CourseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseUpdateToOneWithWhereWithoutBranchesInput, Prisma.CourseUpdateWithoutBranchesInput>, Prisma.CourseUncheckedUpdateWithoutBranchesInput>
-}
-
-export type CourseCreateNestedOneWithoutStudyMaterialsInput = {
-  create?: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
-  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutStudyMaterialsInput
-  connect?: Prisma.CourseWhereUniqueInput
-}
-
-export type CourseUpdateOneWithoutStudyMaterialsNestedInput = {
-  create?: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
-  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutStudyMaterialsInput
-  upsert?: Prisma.CourseUpsertWithoutStudyMaterialsInput
-  disconnect?: Prisma.CourseWhereInput | boolean
-  delete?: Prisma.CourseWhereInput | boolean
-  connect?: Prisma.CourseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseUpdateToOneWithWhereWithoutStudyMaterialsInput, Prisma.CourseUpdateWithoutStudyMaterialsInput>, Prisma.CourseUncheckedUpdateWithoutStudyMaterialsInput>
-}
-
-export type CourseCreateWithoutStudentsInput = {
-  ranking?: number | null
-  name: string
-  type?: string | null
-  description?: string | null
-  duration?: number | null
-  bannerpdf?: string | null
-  bannerimage?: string | null
-  courseCode: string
-  gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  branches?: Prisma.BranchCreateNestedManyWithoutCourseInput
-  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
-}
-
-export type CourseUncheckedCreateWithoutStudentsInput = {
-  id?: number
-  ranking?: number | null
-  name: string
-  type?: string | null
-  description?: string | null
-  duration?: number | null
-  bannerpdf?: string | null
-  bannerimage?: string | null
-  courseCode: string
-  gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutCourseInput
-  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
-}
-
-export type CourseCreateOrConnectWithoutStudentsInput = {
-  where: Prisma.CourseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CourseCreateWithoutStudentsInput, Prisma.CourseUncheckedCreateWithoutStudentsInput>
-}
-
-export type CourseUpsertWithoutStudentsInput = {
-  update: Prisma.XOR<Prisma.CourseUpdateWithoutStudentsInput, Prisma.CourseUncheckedUpdateWithoutStudentsInput>
-  create: Prisma.XOR<Prisma.CourseCreateWithoutStudentsInput, Prisma.CourseUncheckedCreateWithoutStudentsInput>
-  where?: Prisma.CourseWhereInput
-}
-
-export type CourseUpdateToOneWithWhereWithoutStudentsInput = {
-  where?: Prisma.CourseWhereInput
-  data: Prisma.XOR<Prisma.CourseUpdateWithoutStudentsInput, Prisma.CourseUncheckedUpdateWithoutStudentsInput>
-}
-
-export type CourseUpdateWithoutStudentsInput = {
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
-  gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branches?: Prisma.BranchUpdateManyWithoutCourseNestedInput
-  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
-}
-
-export type CourseUncheckedUpdateWithoutStudentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
-  gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branches?: Prisma.BranchUncheckedUpdateManyWithoutCourseNestedInput
-  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
-}
-
-export type CourseCreateWithoutBranchesInput = {
-  ranking?: number | null
-  name: string
-  type?: string | null
-  description?: string | null
-  duration?: number | null
-  bannerpdf?: string | null
-  bannerimage?: string | null
-  courseCode: string
-  gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
-  students?: Prisma.StudentCreateNestedManyWithoutCourseInput
-}
-
-export type CourseUncheckedCreateWithoutBranchesInput = {
-  id?: number
-  ranking?: number | null
-  name: string
-  type?: string | null
-  description?: string | null
-  duration?: number | null
-  bannerpdf?: string | null
-  bannerimage?: string | null
-  courseCode: string
-  gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
-  students?: Prisma.StudentUncheckedCreateNestedManyWithoutCourseInput
-}
-
-export type CourseCreateOrConnectWithoutBranchesInput = {
-  where: Prisma.CourseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CourseCreateWithoutBranchesInput, Prisma.CourseUncheckedCreateWithoutBranchesInput>
-}
-
-export type CourseUpsertWithoutBranchesInput = {
-  update: Prisma.XOR<Prisma.CourseUpdateWithoutBranchesInput, Prisma.CourseUncheckedUpdateWithoutBranchesInput>
-  create: Prisma.XOR<Prisma.CourseCreateWithoutBranchesInput, Prisma.CourseUncheckedCreateWithoutBranchesInput>
-  where?: Prisma.CourseWhereInput
-}
-
-export type CourseUpdateToOneWithWhereWithoutBranchesInput = {
-  where?: Prisma.CourseWhereInput
-  data: Prisma.XOR<Prisma.CourseUpdateWithoutBranchesInput, Prisma.CourseUncheckedUpdateWithoutBranchesInput>
-}
-
-export type CourseUpdateWithoutBranchesInput = {
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
-  gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
-  students?: Prisma.StudentUpdateManyWithoutCourseNestedInput
-}
-
-export type CourseUncheckedUpdateWithoutBranchesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
-  gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
-  students?: Prisma.StudentUncheckedUpdateManyWithoutCourseNestedInput
-}
-
-export type CourseCreateWithoutStudyMaterialsInput = {
-  ranking?: number | null
-  name: string
-  type?: string | null
-  description?: string | null
-  duration?: number | null
-  bannerpdf?: string | null
-  bannerimage?: string | null
-  courseCode: string
-  gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  branches?: Prisma.BranchCreateNestedManyWithoutCourseInput
-  students?: Prisma.StudentCreateNestedManyWithoutCourseInput
-}
-
-export type CourseUncheckedCreateWithoutStudyMaterialsInput = {
-  id?: number
-  ranking?: number | null
-  name: string
-  type?: string | null
-  description?: string | null
-  duration?: number | null
-  bannerpdf?: string | null
-  bannerimage?: string | null
-  courseCode: string
-  gridTitle?: Prisma.CourseCreategridTitleInput | string[]
-  courseType?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutCourseInput
-  students?: Prisma.StudentUncheckedCreateNestedManyWithoutCourseInput
-}
-
-export type CourseCreateOrConnectWithoutStudyMaterialsInput = {
-  where: Prisma.CourseWhereUniqueInput
-  create: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
-}
-
-export type CourseUpsertWithoutStudyMaterialsInput = {
-  update: Prisma.XOR<Prisma.CourseUpdateWithoutStudyMaterialsInput, Prisma.CourseUncheckedUpdateWithoutStudyMaterialsInput>
-  create: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
-  where?: Prisma.CourseWhereInput
-}
-
-export type CourseUpdateToOneWithWhereWithoutStudyMaterialsInput = {
-  where?: Prisma.CourseWhereInput
-  data: Prisma.XOR<Prisma.CourseUpdateWithoutStudyMaterialsInput, Prisma.CourseUncheckedUpdateWithoutStudyMaterialsInput>
-}
-
-export type CourseUpdateWithoutStudyMaterialsInput = {
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
-  gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branches?: Prisma.BranchUpdateManyWithoutCourseNestedInput
-  students?: Prisma.StudentUpdateManyWithoutCourseNestedInput
-}
-
-export type CourseUncheckedUpdateWithoutStudyMaterialsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ranking?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bannerpdf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bannerimage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseCode?: Prisma.StringFieldUpdateOperationsInput | string
-  gridTitle?: Prisma.CourseUpdategridTitleInput | string[]
-  courseType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branches?: Prisma.BranchUncheckedUpdateManyWithoutCourseNestedInput
-  students?: Prisma.StudentUncheckedUpdateManyWithoutCourseNestedInput
-}
-
-
-/**
- * Count Type CourseCountOutputType
- */
-
-export type CourseCountOutputType = {
-  branches: number
-  studyMaterials: number
-  students: number
-}
-
-export type CourseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branches?: boolean | CourseCountOutputTypeCountBranchesArgs
-  studyMaterials?: boolean | CourseCountOutputTypeCountStudyMaterialsArgs
-  students?: boolean | CourseCountOutputTypeCountStudentsArgs
-}
-
-/**
- * CourseCountOutputType without action
- */
-export type CourseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CourseCountOutputType
-   */
-  select?: Prisma.CourseCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * CourseCountOutputType without action
- */
-export type CourseCountOutputTypeCountBranchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BranchWhereInput
-}
-
-/**
- * CourseCountOutputType without action
- */
-export type CourseCountOutputTypeCountStudyMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudyMaterialWhereInput
-}
-
-/**
- * CourseCountOutputType without action
- */
-export type CourseCountOutputTypeCountStudentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudentWhereInput
-}
 
 
 export type CourseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   ranking?: boolean
   name?: boolean
-  type?: boolean
   description?: boolean
-  duration?: boolean
   bannerpdf?: boolean
   bannerimage?: boolean
-  courseCode?: boolean
   gridTitle?: boolean
-  courseType?: boolean
-  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branches?: boolean | Prisma.Course$branchesArgs<ExtArgs>
-  studyMaterials?: boolean | Prisma.Course$studyMaterialsArgs<ExtArgs>
-  students?: boolean | Prisma.Course$studentsArgs<ExtArgs>
-  _count?: boolean | Prisma.CourseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["course"]>
 
 export type CourseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   ranking?: boolean
   name?: boolean
-  type?: boolean
   description?: boolean
-  duration?: boolean
   bannerpdf?: boolean
   bannerimage?: boolean
-  courseCode?: boolean
   gridTitle?: boolean
-  courseType?: boolean
-  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["course"]>
@@ -1006,15 +481,10 @@ export type CourseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   ranking?: boolean
   name?: boolean
-  type?: boolean
   description?: boolean
-  duration?: boolean
   bannerpdf?: boolean
   bannerimage?: boolean
-  courseCode?: boolean
   gridTitle?: boolean
-  courseType?: boolean
-  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["course"]>
@@ -1023,49 +493,27 @@ export type CourseSelectScalar = {
   id?: boolean
   ranking?: boolean
   name?: boolean
-  type?: boolean
   description?: boolean
-  duration?: boolean
   bannerpdf?: boolean
   bannerimage?: boolean
-  courseCode?: boolean
   gridTitle?: boolean
-  courseType?: boolean
-  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CourseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ranking" | "name" | "type" | "description" | "duration" | "bannerpdf" | "bannerimage" | "courseCode" | "gridTitle" | "courseType" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
-export type CourseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branches?: boolean | Prisma.Course$branchesArgs<ExtArgs>
-  studyMaterials?: boolean | Prisma.Course$studyMaterialsArgs<ExtArgs>
-  students?: boolean | Prisma.Course$studentsArgs<ExtArgs>
-  _count?: boolean | Prisma.CourseCountOutputTypeDefaultArgs<ExtArgs>
-}
-export type CourseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type CourseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CourseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ranking" | "name" | "description" | "bannerpdf" | "bannerimage" | "gridTitle" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
 
 export type $CoursePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Course"
-  objects: {
-    branches: Prisma.$BranchPayload<ExtArgs>[]
-    studyMaterials: Prisma.$StudyMaterialPayload<ExtArgs>[]
-    students: Prisma.$StudentPayload<ExtArgs>[]
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    ranking: number | null
+    ranking: number
     name: string
-    type: string | null
     description: string | null
-    duration: number | null
     bannerpdf: string | null
     bannerimage: string | null
-    courseCode: string
     gridTitle: string[]
-    courseType: string | null
-    isActive: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["course"]>
@@ -1462,9 +910,6 @@ readonly fields: CourseFieldRefs;
  */
 export interface Prisma__CourseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  branches<T extends Prisma.Course$branchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$branchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  studyMaterials<T extends Prisma.Course$studyMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$studyMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  students<T extends Prisma.Course$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1497,15 +942,10 @@ export interface CourseFieldRefs {
   readonly id: Prisma.FieldRef<"Course", 'Int'>
   readonly ranking: Prisma.FieldRef<"Course", 'Int'>
   readonly name: Prisma.FieldRef<"Course", 'String'>
-  readonly type: Prisma.FieldRef<"Course", 'String'>
   readonly description: Prisma.FieldRef<"Course", 'String'>
-  readonly duration: Prisma.FieldRef<"Course", 'Int'>
   readonly bannerpdf: Prisma.FieldRef<"Course", 'String'>
   readonly bannerimage: Prisma.FieldRef<"Course", 'String'>
-  readonly courseCode: Prisma.FieldRef<"Course", 'String'>
   readonly gridTitle: Prisma.FieldRef<"Course", 'String[]'>
-  readonly courseType: Prisma.FieldRef<"Course", 'String'>
-  readonly isActive: Prisma.FieldRef<"Course", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Course", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Course", 'DateTime'>
 }
@@ -1525,10 +965,6 @@ export type CourseFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  /**
    * Filter, which Course to fetch.
    */
   where: Prisma.CourseWhereUniqueInput
@@ -1547,10 +983,6 @@ export type CourseFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  /**
    * Filter, which Course to fetch.
    */
   where: Prisma.CourseWhereUniqueInput
@@ -1568,10 +1000,6 @@ export type CourseFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Course
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
   /**
    * Filter, which Course to fetch.
    */
@@ -1621,10 +1049,6 @@ export type CourseFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  /**
    * Filter, which Course to fetch.
    */
   where?: Prisma.CourseWhereInput
@@ -1673,10 +1097,6 @@ export type CourseFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  /**
    * Filter, which Courses to fetch.
    */
   where?: Prisma.CourseWhereInput
@@ -1719,10 +1139,6 @@ export type CourseCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Course
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
   /**
    * The data needed to create a Course.
    */
@@ -1771,10 +1187,6 @@ export type CourseUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Course
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
   /**
    * The data needed to update a Course.
    */
@@ -1842,10 +1254,6 @@ export type CourseUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  /**
    * The filter to search for the Course to update in case it exists.
    */
   where: Prisma.CourseWhereUniqueInput
@@ -1872,10 +1280,6 @@ export type CourseDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  /**
    * Filter which Course to delete.
    */
   where: Prisma.CourseWhereUniqueInput
@@ -1896,78 +1300,6 @@ export type CourseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Course.branches
- */
-export type Course$branchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Branch
-   */
-  select?: Prisma.BranchSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Branch
-   */
-  omit?: Prisma.BranchOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BranchInclude<ExtArgs> | null
-  where?: Prisma.BranchWhereInput
-  orderBy?: Prisma.BranchOrderByWithRelationInput | Prisma.BranchOrderByWithRelationInput[]
-  cursor?: Prisma.BranchWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BranchScalarFieldEnum | Prisma.BranchScalarFieldEnum[]
-}
-
-/**
- * Course.studyMaterials
- */
-export type Course$studyMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the StudyMaterial
-   */
-  select?: Prisma.StudyMaterialSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the StudyMaterial
-   */
-  omit?: Prisma.StudyMaterialOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StudyMaterialInclude<ExtArgs> | null
-  where?: Prisma.StudyMaterialWhereInput
-  orderBy?: Prisma.StudyMaterialOrderByWithRelationInput | Prisma.StudyMaterialOrderByWithRelationInput[]
-  cursor?: Prisma.StudyMaterialWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.StudyMaterialScalarFieldEnum | Prisma.StudyMaterialScalarFieldEnum[]
-}
-
-/**
- * Course.students
- */
-export type Course$studentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Student
-   */
-  select?: Prisma.StudentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Student
-   */
-  omit?: Prisma.StudentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StudentInclude<ExtArgs> | null
-  where?: Prisma.StudentWhereInput
-  orderBy?: Prisma.StudentOrderByWithRelationInput | Prisma.StudentOrderByWithRelationInput[]
-  cursor?: Prisma.StudentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.StudentScalarFieldEnum | Prisma.StudentScalarFieldEnum[]
-}
-
-/**
  * Course without action
  */
 export type CourseDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1979,8 +1311,4 @@ export type CourseDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Course
    */
   omit?: Prisma.CourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
 }

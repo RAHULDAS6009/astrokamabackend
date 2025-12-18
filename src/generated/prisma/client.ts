@@ -55,6 +55,11 @@ export type Student = Prisma.StudentModel
  */
 export type Course = Prisma.CourseModel
 /**
+ * Model location
+ * 
+ */
+export type location = Prisma.locationModel
+/**
  * Model Branch
  * 
  */

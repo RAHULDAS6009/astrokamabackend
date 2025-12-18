@@ -1,29 +1,72 @@
 import { prisma } from "../lib/prisma.js";
 export const materialController = {
+    /* =====================================================
+       GET MATERIALS BY STUDENT BATCH (BRANCH)
+    ====================================================== */
     getMaterialsByBatch: async (req, res) => {
         try {
-            // 1️⃣ Find the logged-in student
+            // ============================
+            // AUTH CHECK
+            // ============================
+            if (!req.user?.id) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Unauthorized",
+                });
+            }
+            // ============================
+            // FETCH STUDENT WITH BRANCH
+            // ============================
             const student = await prisma.student.findUnique({
-                where: { id: req.user?.id },
+                where: { id: req.user.id },
+                include: {
+                    branch: {
+                        include: {
+                            studyMaterial: true,
+                            semsters: {
+                                include: {
+                                    studyMaterial: true,
+                                },
+                            },
+                        },
+                    },
+                },
             });
             if (!student) {
-                return res.status(404).json({ message: "Student not found" });
+                return res.status(404).json({
+                    success: false,
+                    message: "Student not found",
+                });
             }
-            // 2️⃣ Check if batch is assigned
-            if (!student.courseId) {
-                return res
-                    .status(400)
-                    .json({ message: "Student is not assigned to any batch yet" });
+            // ============================
+            // CHECK BATCH (BRANCH)
+            // ============================
+            if (!student.branchId || !student.branch) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Student is not assigned to any batch yet",
+                });
             }
-            // 3️⃣ Fetch materials for student's batch
-            const materials = await prisma.studyMaterial.findMany({
-                where: { courseId: student.courseId },
+            // ============================
+            // COLLECT MATERIALS
+            // ============================
+            const branchMaterials = student.branch.studyMaterial || [];
+            const semesterMaterials = student.branch.semsters.flatMap((sem) => sem.studyMaterial || []) || [];
+            const allMaterials = [...branchMaterials, ...semesterMaterials];
+            // ============================
+            // RESPONSE
+            // ============================
+            res.json({
+                success: true,
+                data: allMaterials,
             });
-            res.json(materials);
         }
         catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Failed to fetch materials" });
+            console.error("Error fetching materials:", error);
+            res.status(500).json({
+                success: false,
+                message: "Failed to fetch materials",
+            });
         }
     },
 };

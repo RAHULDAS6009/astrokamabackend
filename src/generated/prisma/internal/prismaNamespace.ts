@@ -387,6 +387,7 @@ export const ModelName = {
   Admin: 'Admin',
   Student: 'Student',
   Course: 'Course',
+  location: 'location',
   Branch: 'Branch',
   Semester: 'Semester',
   StudyMaterial: 'StudyMaterial',
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "student" | "course" | "branch" | "semester" | "studyMaterial" | "fee" | "consultation" | "scheduleTemplate" | "timeSlot" | "review" | "cMS"
+    modelProps: "admin" | "student" | "course" | "location" | "branch" | "semester" | "studyMaterial" | "fee" | "consultation" | "scheduleTemplate" | "timeSlot" | "review" | "cMS"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -634,6 +635,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CourseCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CourseCountAggregateOutputType> | number
+        }
+      }
+    }
+    location: {
+      payload: Prisma.$locationPayload<ExtArgs>
+      fields: Prisma.locationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.locationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.locationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>
+        }
+        findFirst: {
+          args: Prisma.locationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.locationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>
+        }
+        findMany: {
+          args: Prisma.locationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>[]
+        }
+        create: {
+          args: Prisma.locationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>
+        }
+        createMany: {
+          args: Prisma.locationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.locationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>[]
+        }
+        delete: {
+          args: Prisma.locationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>
+        }
+        update: {
+          args: Prisma.locationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>
+        }
+        deleteMany: {
+          args: Prisma.locationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.locationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.locationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>[]
+        }
+        upsert: {
+          args: Prisma.locationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$locationPayload>
+        }
+        aggregate: {
+          args: Prisma.LocationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLocation>
+        }
+        groupBy: {
+          args: Prisma.locationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LocationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.locationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LocationCountAggregateOutputType> | number
         }
       }
     }
@@ -1360,7 +1435,6 @@ export const StudentScalarFieldEnum = {
   email: 'email',
   gender: 'gender',
   password: 'password',
-  courseId: 'courseId',
   branchId: 'branchId',
   rollNo: 'rollNo',
   gurdianName: 'gurdianName',
@@ -1390,15 +1464,10 @@ export const CourseScalarFieldEnum = {
   id: 'id',
   ranking: 'ranking',
   name: 'name',
-  type: 'type',
   description: 'description',
-  duration: 'duration',
   bannerpdf: 'bannerpdf',
   bannerimage: 'bannerimage',
-  courseCode: 'courseCode',
   gridTitle: 'gridTitle',
-  courseType: 'courseType',
-  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1406,17 +1475,36 @@ export const CourseScalarFieldEnum = {
 export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
 
 
+export const LocationScalarFieldEnum = {
+  id: 'id',
+  location: 'location'
+} as const
+
+export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
+
+
 export const BranchScalarFieldEnum = {
   id: 'id',
-  courseId: 'courseId',
+  locationId: 'locationId',
+  uploadPhoto1: 'uploadPhoto1',
+  uploadPhoto2: 'uploadPhoto2',
+  text: 'text',
+  isActive: 'isActive',
+  tabHeader1: 'tabHeader1',
+  tabHeader2: 'tabHeader2',
   name: 'name',
   branchCode: 'branchCode',
   color: 'color',
   durationMonths: 'durationMonths',
-  classType: 'classType',
-  daysPerClassType: 'daysPerClassType',
+  module: 'module',
+  daysPerWeek: 'daysPerWeek',
+  daysJSON: 'daysJSON',
+  noofsemster: 'noofsemster',
+  admissionfee: 'admissionfee',
+  monthlyfee: 'monthlyfee',
   classHour: 'classHour',
-  daysJSON: 'daysJSON'
+  classType: 'classType',
+  daysPerClassType: 'daysPerClassType'
 } as const
 
 export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
@@ -1443,7 +1531,6 @@ export const StudyMaterialScalarFieldEnum = {
   title: 'title',
   type: 'type',
   url: 'url',
-  courseId: 'courseId',
   createdAt: 'createdAt',
   branchId: 'branchId',
   semesterId: 'semesterId'
@@ -1749,6 +1836,7 @@ export type GlobalOmitConfig = {
   admin?: Prisma.AdminOmit
   student?: Prisma.StudentOmit
   course?: Prisma.CourseOmit
+  location?: Prisma.locationOmit
   branch?: Prisma.BranchOmit
   semester?: Prisma.SemesterOmit
   studyMaterial?: Prisma.StudyMaterialOmit

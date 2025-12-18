@@ -27,111 +27,185 @@ export type AggregateBranch = {
 }
 
 export type BranchAvgAggregateOutputType = {
-  courseId: number | null
   durationMonths: number | null
-  daysPerClassType: number | null
+  noofsemster: number | null
+  admissionfee: number | null
+  monthlyfee: number | null
   classHour: number | null
+  daysPerClassType: number | null
 }
 
 export type BranchSumAggregateOutputType = {
-  courseId: number | null
   durationMonths: number | null
-  daysPerClassType: number | null
+  noofsemster: number | null
+  admissionfee: number | null
+  monthlyfee: number | null
   classHour: number | null
+  daysPerClassType: number | null
 }
 
 export type BranchMinAggregateOutputType = {
   id: string | null
-  courseId: number | null
+  locationId: string | null
+  uploadPhoto1: string | null
+  uploadPhoto2: string | null
+  text: string | null
+  isActive: boolean | null
+  tabHeader1: string | null
+  tabHeader2: string | null
   name: string | null
   branchCode: string | null
   color: string | null
   durationMonths: number | null
+  module: string | null
+  daysPerWeek: string | null
+  daysJSON: string | null
+  noofsemster: number | null
+  admissionfee: number | null
+  monthlyfee: number | null
+  classHour: number | null
   classType: string | null
   daysPerClassType: number | null
-  classHour: number | null
-  daysJSON: string | null
 }
 
 export type BranchMaxAggregateOutputType = {
   id: string | null
-  courseId: number | null
+  locationId: string | null
+  uploadPhoto1: string | null
+  uploadPhoto2: string | null
+  text: string | null
+  isActive: boolean | null
+  tabHeader1: string | null
+  tabHeader2: string | null
   name: string | null
   branchCode: string | null
   color: string | null
   durationMonths: number | null
+  module: string | null
+  daysPerWeek: string | null
+  daysJSON: string | null
+  noofsemster: number | null
+  admissionfee: number | null
+  monthlyfee: number | null
+  classHour: number | null
   classType: string | null
   daysPerClassType: number | null
-  classHour: number | null
-  daysJSON: string | null
 }
 
 export type BranchCountAggregateOutputType = {
   id: number
-  courseId: number
+  locationId: number
+  uploadPhoto1: number
+  uploadPhoto2: number
+  text: number
+  isActive: number
+  tabHeader1: number
+  tabHeader2: number
   name: number
   branchCode: number
   color: number
   durationMonths: number
+  module: number
+  daysPerWeek: number
+  daysJSON: number
+  noofsemster: number
+  admissionfee: number
+  monthlyfee: number
+  classHour: number
   classType: number
   daysPerClassType: number
-  classHour: number
-  daysJSON: number
   _all: number
 }
 
 
 export type BranchAvgAggregateInputType = {
-  courseId?: true
   durationMonths?: true
-  daysPerClassType?: true
+  noofsemster?: true
+  admissionfee?: true
+  monthlyfee?: true
   classHour?: true
+  daysPerClassType?: true
 }
 
 export type BranchSumAggregateInputType = {
-  courseId?: true
   durationMonths?: true
-  daysPerClassType?: true
+  noofsemster?: true
+  admissionfee?: true
+  monthlyfee?: true
   classHour?: true
+  daysPerClassType?: true
 }
 
 export type BranchMinAggregateInputType = {
   id?: true
-  courseId?: true
+  locationId?: true
+  uploadPhoto1?: true
+  uploadPhoto2?: true
+  text?: true
+  isActive?: true
+  tabHeader1?: true
+  tabHeader2?: true
   name?: true
   branchCode?: true
   color?: true
   durationMonths?: true
+  module?: true
+  daysPerWeek?: true
+  daysJSON?: true
+  noofsemster?: true
+  admissionfee?: true
+  monthlyfee?: true
+  classHour?: true
   classType?: true
   daysPerClassType?: true
-  classHour?: true
-  daysJSON?: true
 }
 
 export type BranchMaxAggregateInputType = {
   id?: true
-  courseId?: true
+  locationId?: true
+  uploadPhoto1?: true
+  uploadPhoto2?: true
+  text?: true
+  isActive?: true
+  tabHeader1?: true
+  tabHeader2?: true
   name?: true
   branchCode?: true
   color?: true
   durationMonths?: true
+  module?: true
+  daysPerWeek?: true
+  daysJSON?: true
+  noofsemster?: true
+  admissionfee?: true
+  monthlyfee?: true
+  classHour?: true
   classType?: true
   daysPerClassType?: true
-  classHour?: true
-  daysJSON?: true
 }
 
 export type BranchCountAggregateInputType = {
   id?: true
-  courseId?: true
+  locationId?: true
+  uploadPhoto1?: true
+  uploadPhoto2?: true
+  text?: true
+  isActive?: true
+  tabHeader1?: true
+  tabHeader2?: true
   name?: true
   branchCode?: true
   color?: true
   durationMonths?: true
+  module?: true
+  daysPerWeek?: true
+  daysJSON?: true
+  noofsemster?: true
+  admissionfee?: true
+  monthlyfee?: true
+  classHour?: true
   classType?: true
   daysPerClassType?: true
-  classHour?: true
-  daysJSON?: true
   _all?: true
 }
 
@@ -223,15 +297,26 @@ export type BranchGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type BranchGroupByOutputType = {
   id: string
-  courseId: number | null
+  locationId: string | null
+  uploadPhoto1: string | null
+  uploadPhoto2: string | null
+  text: string | null
+  isActive: boolean
+  tabHeader1: string | null
+  tabHeader2: string | null
   name: string
   branchCode: string | null
   color: string | null
   durationMonths: number | null
+  module: string | null
+  daysPerWeek: string | null
+  daysJSON: string | null
+  noofsemster: number | null
+  admissionfee: number | null
+  monthlyfee: number | null
+  classHour: number | null
   classType: string | null
   daysPerClassType: number | null
-  classHour: number | null
-  daysJSON: string | null
   _count: BranchCountAggregateOutputType | null
   _avg: BranchAvgAggregateOutputType | null
   _sum: BranchSumAggregateOutputType | null
@@ -259,69 +344,113 @@ export type BranchWhereInput = {
   OR?: Prisma.BranchWhereInput[]
   NOT?: Prisma.BranchWhereInput | Prisma.BranchWhereInput[]
   id?: Prisma.StringFilter<"Branch"> | string
-  courseId?: Prisma.IntNullableFilter<"Branch"> | number | null
+  locationId?: Prisma.StringNullableFilter<"Branch"> | string | null
+  uploadPhoto1?: Prisma.StringNullableFilter<"Branch"> | string | null
+  uploadPhoto2?: Prisma.StringNullableFilter<"Branch"> | string | null
+  text?: Prisma.StringNullableFilter<"Branch"> | string | null
+  isActive?: Prisma.BoolFilter<"Branch"> | boolean
+  tabHeader1?: Prisma.StringNullableFilter<"Branch"> | string | null
+  tabHeader2?: Prisma.StringNullableFilter<"Branch"> | string | null
   name?: Prisma.StringFilter<"Branch"> | string
   branchCode?: Prisma.StringNullableFilter<"Branch"> | string | null
   color?: Prisma.StringNullableFilter<"Branch"> | string | null
   durationMonths?: Prisma.IntNullableFilter<"Branch"> | number | null
+  module?: Prisma.StringNullableFilter<"Branch"> | string | null
+  daysPerWeek?: Prisma.StringNullableFilter<"Branch"> | string | null
+  daysJSON?: Prisma.StringNullableFilter<"Branch"> | string | null
+  noofsemster?: Prisma.IntNullableFilter<"Branch"> | number | null
+  admissionfee?: Prisma.IntNullableFilter<"Branch"> | number | null
+  monthlyfee?: Prisma.IntNullableFilter<"Branch"> | number | null
+  classHour?: Prisma.IntNullableFilter<"Branch"> | number | null
   classType?: Prisma.StringNullableFilter<"Branch"> | string | null
   daysPerClassType?: Prisma.IntNullableFilter<"Branch"> | number | null
-  classHour?: Prisma.IntNullableFilter<"Branch"> | number | null
-  daysJSON?: Prisma.StringNullableFilter<"Branch"> | string | null
-  course?: Prisma.XOR<Prisma.CourseNullableScalarRelationFilter, Prisma.CourseWhereInput> | null
-  student?: Prisma.StudentListRelationFilter
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.locationWhereInput> | null
   semsters?: Prisma.SemesterListRelationFilter
+  student?: Prisma.StudentListRelationFilter
   studyMaterial?: Prisma.StudyMaterialListRelationFilter
 }
 
 export type BranchOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  uploadPhoto1?: Prisma.SortOrderInput | Prisma.SortOrder
+  uploadPhoto2?: Prisma.SortOrderInput | Prisma.SortOrder
+  text?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  tabHeader1?: Prisma.SortOrderInput | Prisma.SortOrder
+  tabHeader2?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrderInput | Prisma.SortOrder
   color?: Prisma.SortOrderInput | Prisma.SortOrder
   durationMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  module?: Prisma.SortOrderInput | Prisma.SortOrder
+  daysPerWeek?: Prisma.SortOrderInput | Prisma.SortOrder
+  daysJSON?: Prisma.SortOrderInput | Prisma.SortOrder
+  noofsemster?: Prisma.SortOrderInput | Prisma.SortOrder
+  admissionfee?: Prisma.SortOrderInput | Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrderInput | Prisma.SortOrder
+  classHour?: Prisma.SortOrderInput | Prisma.SortOrder
   classType?: Prisma.SortOrderInput | Prisma.SortOrder
   daysPerClassType?: Prisma.SortOrderInput | Prisma.SortOrder
-  classHour?: Prisma.SortOrderInput | Prisma.SortOrder
-  daysJSON?: Prisma.SortOrderInput | Prisma.SortOrder
-  course?: Prisma.CourseOrderByWithRelationInput
-  student?: Prisma.StudentOrderByRelationAggregateInput
+  location?: Prisma.locationOrderByWithRelationInput
   semsters?: Prisma.SemesterOrderByRelationAggregateInput
+  student?: Prisma.StudentOrderByRelationAggregateInput
   studyMaterial?: Prisma.StudyMaterialOrderByRelationAggregateInput
 }
 
 export type BranchWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  branchCode?: string
   AND?: Prisma.BranchWhereInput | Prisma.BranchWhereInput[]
   OR?: Prisma.BranchWhereInput[]
   NOT?: Prisma.BranchWhereInput | Prisma.BranchWhereInput[]
-  courseId?: Prisma.IntNullableFilter<"Branch"> | number | null
+  locationId?: Prisma.StringNullableFilter<"Branch"> | string | null
+  uploadPhoto1?: Prisma.StringNullableFilter<"Branch"> | string | null
+  uploadPhoto2?: Prisma.StringNullableFilter<"Branch"> | string | null
+  text?: Prisma.StringNullableFilter<"Branch"> | string | null
+  isActive?: Prisma.BoolFilter<"Branch"> | boolean
+  tabHeader1?: Prisma.StringNullableFilter<"Branch"> | string | null
+  tabHeader2?: Prisma.StringNullableFilter<"Branch"> | string | null
   name?: Prisma.StringFilter<"Branch"> | string
-  branchCode?: Prisma.StringNullableFilter<"Branch"> | string | null
   color?: Prisma.StringNullableFilter<"Branch"> | string | null
   durationMonths?: Prisma.IntNullableFilter<"Branch"> | number | null
+  module?: Prisma.StringNullableFilter<"Branch"> | string | null
+  daysPerWeek?: Prisma.StringNullableFilter<"Branch"> | string | null
+  daysJSON?: Prisma.StringNullableFilter<"Branch"> | string | null
+  noofsemster?: Prisma.IntNullableFilter<"Branch"> | number | null
+  admissionfee?: Prisma.IntNullableFilter<"Branch"> | number | null
+  monthlyfee?: Prisma.IntNullableFilter<"Branch"> | number | null
+  classHour?: Prisma.IntNullableFilter<"Branch"> | number | null
   classType?: Prisma.StringNullableFilter<"Branch"> | string | null
   daysPerClassType?: Prisma.IntNullableFilter<"Branch"> | number | null
-  classHour?: Prisma.IntNullableFilter<"Branch"> | number | null
-  daysJSON?: Prisma.StringNullableFilter<"Branch"> | string | null
-  course?: Prisma.XOR<Prisma.CourseNullableScalarRelationFilter, Prisma.CourseWhereInput> | null
-  student?: Prisma.StudentListRelationFilter
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.locationWhereInput> | null
   semsters?: Prisma.SemesterListRelationFilter
+  student?: Prisma.StudentListRelationFilter
   studyMaterial?: Prisma.StudyMaterialListRelationFilter
-}, "id">
+}, "id" | "branchCode">
 
 export type BranchOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  uploadPhoto1?: Prisma.SortOrderInput | Prisma.SortOrder
+  uploadPhoto2?: Prisma.SortOrderInput | Prisma.SortOrder
+  text?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  tabHeader1?: Prisma.SortOrderInput | Prisma.SortOrder
+  tabHeader2?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrderInput | Prisma.SortOrder
   color?: Prisma.SortOrderInput | Prisma.SortOrder
   durationMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  module?: Prisma.SortOrderInput | Prisma.SortOrder
+  daysPerWeek?: Prisma.SortOrderInput | Prisma.SortOrder
+  daysJSON?: Prisma.SortOrderInput | Prisma.SortOrder
+  noofsemster?: Prisma.SortOrderInput | Prisma.SortOrder
+  admissionfee?: Prisma.SortOrderInput | Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrderInput | Prisma.SortOrder
+  classHour?: Prisma.SortOrderInput | Prisma.SortOrder
   classType?: Prisma.SortOrderInput | Prisma.SortOrder
   daysPerClassType?: Prisma.SortOrderInput | Prisma.SortOrder
-  classHour?: Prisma.SortOrderInput | Prisma.SortOrder
-  daysJSON?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.BranchCountOrderByAggregateInput
   _avg?: Prisma.BranchAvgOrderByAggregateInput
   _max?: Prisma.BranchMaxOrderByAggregateInput
@@ -334,117 +463,205 @@ export type BranchScalarWhereWithAggregatesInput = {
   OR?: Prisma.BranchScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BranchScalarWhereWithAggregatesInput | Prisma.BranchScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Branch"> | string
-  courseId?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
+  locationId?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  uploadPhoto1?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  uploadPhoto2?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  text?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  isActive?: Prisma.BoolWithAggregatesFilter<"Branch"> | boolean
+  tabHeader1?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  tabHeader2?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"Branch"> | string
   branchCode?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   color?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   durationMonths?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
+  module?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  daysPerWeek?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  daysJSON?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  noofsemster?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
+  admissionfee?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
+  monthlyfee?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
+  classHour?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
   classType?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   daysPerClassType?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
-  classHour?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
-  daysJSON?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
 }
 
 export type BranchCreateInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  course?: Prisma.CourseCreateNestedOneWithoutBranchesInput
-  student?: Prisma.StudentCreateNestedManyWithoutBranchInput
+  location?: Prisma.locationCreateNestedOneWithoutBranchesInput
   semsters?: Prisma.SemesterCreateNestedManyWithoutBranchInput
+  student?: Prisma.StudentCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateInput = {
   id?: string
-  courseId?: number | null
+  locationId?: string | null
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
   semsters?: Prisma.SemesterUncheckedCreateNestedManyWithoutBranchInput
+  student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course?: Prisma.CourseUpdateOneWithoutBranchesNestedInput
-  student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
+  location?: Prisma.locationUpdateOneWithoutBranchesNestedInput
   semsters?: Prisma.SemesterUpdateManyWithoutBranchNestedInput
+  student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
   semsters?: Prisma.SemesterUncheckedUpdateManyWithoutBranchNestedInput
+  student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateManyInput = {
   id?: string
-  courseId?: number | null
+  locationId?: string | null
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
 }
 
 export type BranchUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BranchUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BranchNullableScalarRelationFilter = {
@@ -464,55 +681,92 @@ export type BranchOrderByRelationAggregateInput = {
 
 export type BranchCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  uploadPhoto1?: Prisma.SortOrder
+  uploadPhoto2?: Prisma.SortOrder
+  text?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  tabHeader1?: Prisma.SortOrder
+  tabHeader2?: Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrder
   color?: Prisma.SortOrder
   durationMonths?: Prisma.SortOrder
+  module?: Prisma.SortOrder
+  daysPerWeek?: Prisma.SortOrder
+  daysJSON?: Prisma.SortOrder
+  noofsemster?: Prisma.SortOrder
+  admissionfee?: Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrder
+  classHour?: Prisma.SortOrder
   classType?: Prisma.SortOrder
   daysPerClassType?: Prisma.SortOrder
-  classHour?: Prisma.SortOrder
-  daysJSON?: Prisma.SortOrder
 }
 
 export type BranchAvgOrderByAggregateInput = {
-  courseId?: Prisma.SortOrder
   durationMonths?: Prisma.SortOrder
-  daysPerClassType?: Prisma.SortOrder
+  noofsemster?: Prisma.SortOrder
+  admissionfee?: Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrder
   classHour?: Prisma.SortOrder
+  daysPerClassType?: Prisma.SortOrder
 }
 
 export type BranchMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  uploadPhoto1?: Prisma.SortOrder
+  uploadPhoto2?: Prisma.SortOrder
+  text?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  tabHeader1?: Prisma.SortOrder
+  tabHeader2?: Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrder
   color?: Prisma.SortOrder
   durationMonths?: Prisma.SortOrder
+  module?: Prisma.SortOrder
+  daysPerWeek?: Prisma.SortOrder
+  daysJSON?: Prisma.SortOrder
+  noofsemster?: Prisma.SortOrder
+  admissionfee?: Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrder
+  classHour?: Prisma.SortOrder
   classType?: Prisma.SortOrder
   daysPerClassType?: Prisma.SortOrder
-  classHour?: Prisma.SortOrder
-  daysJSON?: Prisma.SortOrder
 }
 
 export type BranchMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  uploadPhoto1?: Prisma.SortOrder
+  uploadPhoto2?: Prisma.SortOrder
+  text?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  tabHeader1?: Prisma.SortOrder
+  tabHeader2?: Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrder
   color?: Prisma.SortOrder
   durationMonths?: Prisma.SortOrder
+  module?: Prisma.SortOrder
+  daysPerWeek?: Prisma.SortOrder
+  daysJSON?: Prisma.SortOrder
+  noofsemster?: Prisma.SortOrder
+  admissionfee?: Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrder
+  classHour?: Prisma.SortOrder
   classType?: Prisma.SortOrder
   daysPerClassType?: Prisma.SortOrder
-  classHour?: Prisma.SortOrder
-  daysJSON?: Prisma.SortOrder
 }
 
 export type BranchSumOrderByAggregateInput = {
-  courseId?: Prisma.SortOrder
   durationMonths?: Prisma.SortOrder
-  daysPerClassType?: Prisma.SortOrder
+  noofsemster?: Prisma.SortOrder
+  admissionfee?: Prisma.SortOrder
+  monthlyfee?: Prisma.SortOrder
   classHour?: Prisma.SortOrder
+  daysPerClassType?: Prisma.SortOrder
 }
 
 export type BranchCreateNestedOneWithoutStudentInput = {
@@ -531,46 +785,50 @@ export type BranchUpdateOneWithoutStudentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutStudentInput, Prisma.BranchUpdateWithoutStudentInput>, Prisma.BranchUncheckedUpdateWithoutStudentInput>
 }
 
-export type BranchCreateNestedManyWithoutCourseInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutCourseInput, Prisma.BranchUncheckedCreateWithoutCourseInput> | Prisma.BranchCreateWithoutCourseInput[] | Prisma.BranchUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutCourseInput | Prisma.BranchCreateOrConnectWithoutCourseInput[]
-  createMany?: Prisma.BranchCreateManyCourseInputEnvelope
+export type BranchCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutLocationInput, Prisma.BranchUncheckedCreateWithoutLocationInput> | Prisma.BranchCreateWithoutLocationInput[] | Prisma.BranchUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutLocationInput | Prisma.BranchCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.BranchCreateManyLocationInputEnvelope
   connect?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
 }
 
-export type BranchUncheckedCreateNestedManyWithoutCourseInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutCourseInput, Prisma.BranchUncheckedCreateWithoutCourseInput> | Prisma.BranchCreateWithoutCourseInput[] | Prisma.BranchUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutCourseInput | Prisma.BranchCreateOrConnectWithoutCourseInput[]
-  createMany?: Prisma.BranchCreateManyCourseInputEnvelope
+export type BranchUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutLocationInput, Prisma.BranchUncheckedCreateWithoutLocationInput> | Prisma.BranchCreateWithoutLocationInput[] | Prisma.BranchUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutLocationInput | Prisma.BranchCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.BranchCreateManyLocationInputEnvelope
   connect?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
 }
 
-export type BranchUpdateManyWithoutCourseNestedInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutCourseInput, Prisma.BranchUncheckedCreateWithoutCourseInput> | Prisma.BranchCreateWithoutCourseInput[] | Prisma.BranchUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutCourseInput | Prisma.BranchCreateOrConnectWithoutCourseInput[]
-  upsert?: Prisma.BranchUpsertWithWhereUniqueWithoutCourseInput | Prisma.BranchUpsertWithWhereUniqueWithoutCourseInput[]
-  createMany?: Prisma.BranchCreateManyCourseInputEnvelope
+export type BranchUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutLocationInput, Prisma.BranchUncheckedCreateWithoutLocationInput> | Prisma.BranchCreateWithoutLocationInput[] | Prisma.BranchUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutLocationInput | Prisma.BranchCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.BranchUpsertWithWhereUniqueWithoutLocationInput | Prisma.BranchUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.BranchCreateManyLocationInputEnvelope
   set?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
   disconnect?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
   delete?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
   connect?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
-  update?: Prisma.BranchUpdateWithWhereUniqueWithoutCourseInput | Prisma.BranchUpdateWithWhereUniqueWithoutCourseInput[]
-  updateMany?: Prisma.BranchUpdateManyWithWhereWithoutCourseInput | Prisma.BranchUpdateManyWithWhereWithoutCourseInput[]
+  update?: Prisma.BranchUpdateWithWhereUniqueWithoutLocationInput | Prisma.BranchUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.BranchUpdateManyWithWhereWithoutLocationInput | Prisma.BranchUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.BranchScalarWhereInput | Prisma.BranchScalarWhereInput[]
 }
 
-export type BranchUncheckedUpdateManyWithoutCourseNestedInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutCourseInput, Prisma.BranchUncheckedCreateWithoutCourseInput> | Prisma.BranchCreateWithoutCourseInput[] | Prisma.BranchUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutCourseInput | Prisma.BranchCreateOrConnectWithoutCourseInput[]
-  upsert?: Prisma.BranchUpsertWithWhereUniqueWithoutCourseInput | Prisma.BranchUpsertWithWhereUniqueWithoutCourseInput[]
-  createMany?: Prisma.BranchCreateManyCourseInputEnvelope
+export type BranchUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutLocationInput, Prisma.BranchUncheckedCreateWithoutLocationInput> | Prisma.BranchCreateWithoutLocationInput[] | Prisma.BranchUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutLocationInput | Prisma.BranchCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.BranchUpsertWithWhereUniqueWithoutLocationInput | Prisma.BranchUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.BranchCreateManyLocationInputEnvelope
   set?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
   disconnect?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
   delete?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
   connect?: Prisma.BranchWhereUniqueInput | Prisma.BranchWhereUniqueInput[]
-  update?: Prisma.BranchUpdateWithWhereUniqueWithoutCourseInput | Prisma.BranchUpdateWithWhereUniqueWithoutCourseInput[]
-  updateMany?: Prisma.BranchUpdateManyWithWhereWithoutCourseInput | Prisma.BranchUpdateManyWithWhereWithoutCourseInput[]
+  update?: Prisma.BranchUpdateWithWhereUniqueWithoutLocationInput | Prisma.BranchUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.BranchUpdateManyWithWhereWithoutLocationInput | Prisma.BranchUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.BranchScalarWhereInput | Prisma.BranchScalarWhereInput[]
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type BranchCreateNestedOneWithoutSemstersInput = {
@@ -607,30 +865,52 @@ export type BranchUpdateOneWithoutStudyMaterialNestedInput = {
 
 export type BranchCreateWithoutStudentInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  course?: Prisma.CourseCreateNestedOneWithoutBranchesInput
+  location?: Prisma.locationCreateNestedOneWithoutBranchesInput
   semsters?: Prisma.SemesterCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutStudentInput = {
   id?: string
-  courseId?: number | null
+  locationId?: string | null
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
   semsters?: Prisma.SemesterUncheckedCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutBranchInput
 }
@@ -653,88 +933,132 @@ export type BranchUpdateToOneWithWhereWithoutStudentInput = {
 
 export type BranchUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course?: Prisma.CourseUpdateOneWithoutBranchesNestedInput
+  location?: Prisma.locationUpdateOneWithoutBranchesNestedInput
   semsters?: Prisma.SemesterUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   semsters?: Prisma.SemesterUncheckedUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUncheckedUpdateManyWithoutBranchNestedInput
 }
 
-export type BranchCreateWithoutCourseInput = {
+export type BranchCreateWithoutLocationInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  student?: Prisma.StudentCreateNestedManyWithoutBranchInput
   semsters?: Prisma.SemesterCreateNestedManyWithoutBranchInput
+  student?: Prisma.StudentCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialCreateNestedManyWithoutBranchInput
 }
 
-export type BranchUncheckedCreateWithoutCourseInput = {
+export type BranchUncheckedCreateWithoutLocationInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
   semsters?: Prisma.SemesterUncheckedCreateNestedManyWithoutBranchInput
+  student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutBranchInput
 }
 
-export type BranchCreateOrConnectWithoutCourseInput = {
+export type BranchCreateOrConnectWithoutLocationInput = {
   where: Prisma.BranchWhereUniqueInput
-  create: Prisma.XOR<Prisma.BranchCreateWithoutCourseInput, Prisma.BranchUncheckedCreateWithoutCourseInput>
+  create: Prisma.XOR<Prisma.BranchCreateWithoutLocationInput, Prisma.BranchUncheckedCreateWithoutLocationInput>
 }
 
-export type BranchCreateManyCourseInputEnvelope = {
-  data: Prisma.BranchCreateManyCourseInput | Prisma.BranchCreateManyCourseInput[]
+export type BranchCreateManyLocationInputEnvelope = {
+  data: Prisma.BranchCreateManyLocationInput | Prisma.BranchCreateManyLocationInput[]
   skipDuplicates?: boolean
 }
 
-export type BranchUpsertWithWhereUniqueWithoutCourseInput = {
+export type BranchUpsertWithWhereUniqueWithoutLocationInput = {
   where: Prisma.BranchWhereUniqueInput
-  update: Prisma.XOR<Prisma.BranchUpdateWithoutCourseInput, Prisma.BranchUncheckedUpdateWithoutCourseInput>
-  create: Prisma.XOR<Prisma.BranchCreateWithoutCourseInput, Prisma.BranchUncheckedCreateWithoutCourseInput>
+  update: Prisma.XOR<Prisma.BranchUpdateWithoutLocationInput, Prisma.BranchUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.BranchCreateWithoutLocationInput, Prisma.BranchUncheckedCreateWithoutLocationInput>
 }
 
-export type BranchUpdateWithWhereUniqueWithoutCourseInput = {
+export type BranchUpdateWithWhereUniqueWithoutLocationInput = {
   where: Prisma.BranchWhereUniqueInput
-  data: Prisma.XOR<Prisma.BranchUpdateWithoutCourseInput, Prisma.BranchUncheckedUpdateWithoutCourseInput>
+  data: Prisma.XOR<Prisma.BranchUpdateWithoutLocationInput, Prisma.BranchUncheckedUpdateWithoutLocationInput>
 }
 
-export type BranchUpdateManyWithWhereWithoutCourseInput = {
+export type BranchUpdateManyWithWhereWithoutLocationInput = {
   where: Prisma.BranchScalarWhereInput
-  data: Prisma.XOR<Prisma.BranchUpdateManyMutationInput, Prisma.BranchUncheckedUpdateManyWithoutCourseInput>
+  data: Prisma.XOR<Prisma.BranchUpdateManyMutationInput, Prisma.BranchUncheckedUpdateManyWithoutLocationInput>
 }
 
 export type BranchScalarWhereInput = {
@@ -742,43 +1066,76 @@ export type BranchScalarWhereInput = {
   OR?: Prisma.BranchScalarWhereInput[]
   NOT?: Prisma.BranchScalarWhereInput | Prisma.BranchScalarWhereInput[]
   id?: Prisma.StringFilter<"Branch"> | string
-  courseId?: Prisma.IntNullableFilter<"Branch"> | number | null
+  locationId?: Prisma.StringNullableFilter<"Branch"> | string | null
+  uploadPhoto1?: Prisma.StringNullableFilter<"Branch"> | string | null
+  uploadPhoto2?: Prisma.StringNullableFilter<"Branch"> | string | null
+  text?: Prisma.StringNullableFilter<"Branch"> | string | null
+  isActive?: Prisma.BoolFilter<"Branch"> | boolean
+  tabHeader1?: Prisma.StringNullableFilter<"Branch"> | string | null
+  tabHeader2?: Prisma.StringNullableFilter<"Branch"> | string | null
   name?: Prisma.StringFilter<"Branch"> | string
   branchCode?: Prisma.StringNullableFilter<"Branch"> | string | null
   color?: Prisma.StringNullableFilter<"Branch"> | string | null
   durationMonths?: Prisma.IntNullableFilter<"Branch"> | number | null
+  module?: Prisma.StringNullableFilter<"Branch"> | string | null
+  daysPerWeek?: Prisma.StringNullableFilter<"Branch"> | string | null
+  daysJSON?: Prisma.StringNullableFilter<"Branch"> | string | null
+  noofsemster?: Prisma.IntNullableFilter<"Branch"> | number | null
+  admissionfee?: Prisma.IntNullableFilter<"Branch"> | number | null
+  monthlyfee?: Prisma.IntNullableFilter<"Branch"> | number | null
+  classHour?: Prisma.IntNullableFilter<"Branch"> | number | null
   classType?: Prisma.StringNullableFilter<"Branch"> | string | null
   daysPerClassType?: Prisma.IntNullableFilter<"Branch"> | number | null
-  classHour?: Prisma.IntNullableFilter<"Branch"> | number | null
-  daysJSON?: Prisma.StringNullableFilter<"Branch"> | string | null
 }
 
 export type BranchCreateWithoutSemstersInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  course?: Prisma.CourseCreateNestedOneWithoutBranchesInput
+  location?: Prisma.locationCreateNestedOneWithoutBranchesInput
   student?: Prisma.StudentCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutSemstersInput = {
   id?: string
-  courseId?: number | null
+  locationId?: string | null
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
   student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
   studyMaterial?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutBranchInput
 }
@@ -801,62 +1158,106 @@ export type BranchUpdateToOneWithWhereWithoutSemstersInput = {
 
 export type BranchUpdateWithoutSemstersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course?: Prisma.CourseUpdateOneWithoutBranchesNestedInput
+  location?: Prisma.locationUpdateOneWithoutBranchesNestedInput
   student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutSemstersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateWithoutStudyMaterialInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  course?: Prisma.CourseCreateNestedOneWithoutBranchesInput
-  student?: Prisma.StudentCreateNestedManyWithoutBranchInput
+  location?: Prisma.locationCreateNestedOneWithoutBranchesInput
   semsters?: Prisma.SemesterCreateNestedManyWithoutBranchInput
+  student?: Prisma.StudentCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutStudyMaterialInput = {
   id?: string
-  courseId?: number | null
+  locationId?: string | null
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
-  student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
   semsters?: Prisma.SemesterUncheckedCreateNestedManyWithoutBranchInput
+  student?: Prisma.StudentUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutStudyMaterialInput = {
@@ -877,86 +1278,152 @@ export type BranchUpdateToOneWithWhereWithoutStudyMaterialInput = {
 
 export type BranchUpdateWithoutStudyMaterialInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course?: Prisma.CourseUpdateOneWithoutBranchesNestedInput
-  student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
+  location?: Prisma.locationUpdateOneWithoutBranchesNestedInput
   semsters?: Prisma.SemesterUpdateManyWithoutBranchNestedInput
+  student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutStudyMaterialInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
   semsters?: Prisma.SemesterUncheckedUpdateManyWithoutBranchNestedInput
+  student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
 }
 
-export type BranchCreateManyCourseInput = {
+export type BranchCreateManyLocationInput = {
   id?: string
+  uploadPhoto1?: string | null
+  uploadPhoto2?: string | null
+  text?: string | null
+  isActive?: boolean
+  tabHeader1?: string | null
+  tabHeader2?: string | null
   name: string
   branchCode?: string | null
   color?: string | null
   durationMonths?: number | null
+  module?: string | null
+  daysPerWeek?: string | null
+  daysJSON?: string | null
+  noofsemster?: number | null
+  admissionfee?: number | null
+  monthlyfee?: number | null
+  classHour?: number | null
   classType?: string | null
   daysPerClassType?: number | null
-  classHour?: number | null
-  daysJSON?: string | null
 }
 
-export type BranchUpdateWithoutCourseInput = {
+export type BranchUpdateWithoutLocationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
   semsters?: Prisma.SemesterUpdateManyWithoutBranchNestedInput
+  student?: Prisma.StudentUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUpdateManyWithoutBranchNestedInput
 }
 
-export type BranchUncheckedUpdateWithoutCourseInput = {
+export type BranchUncheckedUpdateWithoutLocationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
   semsters?: Prisma.SemesterUncheckedUpdateManyWithoutBranchNestedInput
+  student?: Prisma.StudentUncheckedUpdateManyWithoutBranchNestedInput
   studyMaterial?: Prisma.StudyMaterialUncheckedUpdateManyWithoutBranchNestedInput
 }
 
-export type BranchUncheckedUpdateManyWithoutCourseInput = {
+export type BranchUncheckedUpdateManyWithoutLocationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  uploadPhoto1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadPhoto2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  text?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  module?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysPerWeek?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noofsemster?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  admissionfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  monthlyfee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   classType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   daysPerClassType?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  classHour?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  daysJSON?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -965,14 +1432,14 @@ export type BranchUncheckedUpdateManyWithoutCourseInput = {
  */
 
 export type BranchCountOutputType = {
-  student: number
   semsters: number
+  student: number
   studyMaterial: number
 }
 
 export type BranchCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | BranchCountOutputTypeCountStudentArgs
   semsters?: boolean | BranchCountOutputTypeCountSemstersArgs
+  student?: boolean | BranchCountOutputTypeCountStudentArgs
   studyMaterial?: boolean | BranchCountOutputTypeCountStudyMaterialArgs
 }
 
@@ -989,15 +1456,15 @@ export type BranchCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * BranchCountOutputType without action
  */
-export type BranchCountOutputTypeCountStudentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudentWhereInput
+export type BranchCountOutputTypeCountSemstersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SemesterWhereInput
 }
 
 /**
  * BranchCountOutputType without action
  */
-export type BranchCountOutputTypeCountSemstersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SemesterWhereInput
+export type BranchCountOutputTypeCountStudentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentWhereInput
 }
 
 /**
@@ -1010,97 +1477,152 @@ export type BranchCountOutputTypeCountStudyMaterialArgs<ExtArgs extends runtime.
 
 export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  courseId?: boolean
+  locationId?: boolean
+  uploadPhoto1?: boolean
+  uploadPhoto2?: boolean
+  text?: boolean
+  isActive?: boolean
+  tabHeader1?: boolean
+  tabHeader2?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
   durationMonths?: boolean
+  module?: boolean
+  daysPerWeek?: boolean
+  daysJSON?: boolean
+  noofsemster?: boolean
+  admissionfee?: boolean
+  monthlyfee?: boolean
+  classHour?: boolean
   classType?: boolean
   daysPerClassType?: boolean
-  classHour?: boolean
-  daysJSON?: boolean
-  course?: boolean | Prisma.Branch$courseArgs<ExtArgs>
-  student?: boolean | Prisma.Branch$studentArgs<ExtArgs>
+  location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
   semsters?: boolean | Prisma.Branch$semstersArgs<ExtArgs>
+  student?: boolean | Prisma.Branch$studentArgs<ExtArgs>
   studyMaterial?: boolean | Prisma.Branch$studyMaterialArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["branch"]>
 
 export type BranchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  courseId?: boolean
+  locationId?: boolean
+  uploadPhoto1?: boolean
+  uploadPhoto2?: boolean
+  text?: boolean
+  isActive?: boolean
+  tabHeader1?: boolean
+  tabHeader2?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
   durationMonths?: boolean
+  module?: boolean
+  daysPerWeek?: boolean
+  daysJSON?: boolean
+  noofsemster?: boolean
+  admissionfee?: boolean
+  monthlyfee?: boolean
+  classHour?: boolean
   classType?: boolean
   daysPerClassType?: boolean
-  classHour?: boolean
-  daysJSON?: boolean
-  course?: boolean | Prisma.Branch$courseArgs<ExtArgs>
+  location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
 }, ExtArgs["result"]["branch"]>
 
 export type BranchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  courseId?: boolean
+  locationId?: boolean
+  uploadPhoto1?: boolean
+  uploadPhoto2?: boolean
+  text?: boolean
+  isActive?: boolean
+  tabHeader1?: boolean
+  tabHeader2?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
   durationMonths?: boolean
+  module?: boolean
+  daysPerWeek?: boolean
+  daysJSON?: boolean
+  noofsemster?: boolean
+  admissionfee?: boolean
+  monthlyfee?: boolean
+  classHour?: boolean
   classType?: boolean
   daysPerClassType?: boolean
-  classHour?: boolean
-  daysJSON?: boolean
-  course?: boolean | Prisma.Branch$courseArgs<ExtArgs>
+  location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
 }, ExtArgs["result"]["branch"]>
 
 export type BranchSelectScalar = {
   id?: boolean
-  courseId?: boolean
+  locationId?: boolean
+  uploadPhoto1?: boolean
+  uploadPhoto2?: boolean
+  text?: boolean
+  isActive?: boolean
+  tabHeader1?: boolean
+  tabHeader2?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
   durationMonths?: boolean
+  module?: boolean
+  daysPerWeek?: boolean
+  daysJSON?: boolean
+  noofsemster?: boolean
+  admissionfee?: boolean
+  monthlyfee?: boolean
+  classHour?: boolean
   classType?: boolean
   daysPerClassType?: boolean
-  classHour?: boolean
-  daysJSON?: boolean
 }
 
-export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "courseId" | "name" | "branchCode" | "color" | "durationMonths" | "classType" | "daysPerClassType" | "classHour" | "daysJSON", ExtArgs["result"]["branch"]>
+export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "locationId" | "uploadPhoto1" | "uploadPhoto2" | "text" | "isActive" | "tabHeader1" | "tabHeader2" | "name" | "branchCode" | "color" | "durationMonths" | "module" | "daysPerWeek" | "daysJSON" | "noofsemster" | "admissionfee" | "monthlyfee" | "classHour" | "classType" | "daysPerClassType", ExtArgs["result"]["branch"]>
 export type BranchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.Branch$courseArgs<ExtArgs>
-  student?: boolean | Prisma.Branch$studentArgs<ExtArgs>
+  location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
   semsters?: boolean | Prisma.Branch$semstersArgs<ExtArgs>
+  student?: boolean | Prisma.Branch$studentArgs<ExtArgs>
   studyMaterial?: boolean | Prisma.Branch$studyMaterialArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BranchIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.Branch$courseArgs<ExtArgs>
+  location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
 }
 export type BranchIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.Branch$courseArgs<ExtArgs>
+  location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
 }
 
 export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Branch"
   objects: {
-    course: Prisma.$CoursePayload<ExtArgs> | null
-    student: Prisma.$StudentPayload<ExtArgs>[]
+    location: Prisma.$locationPayload<ExtArgs> | null
     semsters: Prisma.$SemesterPayload<ExtArgs>[]
+    student: Prisma.$StudentPayload<ExtArgs>[]
     studyMaterial: Prisma.$StudyMaterialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    courseId: number | null
+    locationId: string | null
+    uploadPhoto1: string | null
+    uploadPhoto2: string | null
+    text: string | null
+    isActive: boolean
+    tabHeader1: string | null
+    tabHeader2: string | null
     name: string
     branchCode: string | null
     color: string | null
     durationMonths: number | null
+    module: string | null
+    daysPerWeek: string | null
+    daysJSON: string | null
+    noofsemster: number | null
+    admissionfee: number | null
+    monthlyfee: number | null
+    classHour: number | null
     classType: string | null
     daysPerClassType: number | null
-    classHour: number | null
-    daysJSON: string | null
   }, ExtArgs["result"]["branch"]>
   composites: {}
 }
@@ -1495,9 +2017,9 @@ readonly fields: BranchFieldRefs;
  */
 export interface Prisma__BranchClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  course<T extends Prisma.Branch$courseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$courseArgs<ExtArgs>>): Prisma.Prisma__CourseClient<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  student<T extends Prisma.Branch$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$studentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  location<T extends Prisma.Branch$locationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$locationArgs<ExtArgs>>): Prisma.Prisma__locationClient<runtime.Types.Result.GetResult<Prisma.$locationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   semsters<T extends Prisma.Branch$semstersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$semstersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SemesterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  student<T extends Prisma.Branch$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$studentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   studyMaterial<T extends Prisma.Branch$studyMaterialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$studyMaterialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1529,15 +2051,26 @@ export interface Prisma__BranchClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface BranchFieldRefs {
   readonly id: Prisma.FieldRef<"Branch", 'String'>
-  readonly courseId: Prisma.FieldRef<"Branch", 'Int'>
+  readonly locationId: Prisma.FieldRef<"Branch", 'String'>
+  readonly uploadPhoto1: Prisma.FieldRef<"Branch", 'String'>
+  readonly uploadPhoto2: Prisma.FieldRef<"Branch", 'String'>
+  readonly text: Prisma.FieldRef<"Branch", 'String'>
+  readonly isActive: Prisma.FieldRef<"Branch", 'Boolean'>
+  readonly tabHeader1: Prisma.FieldRef<"Branch", 'String'>
+  readonly tabHeader2: Prisma.FieldRef<"Branch", 'String'>
   readonly name: Prisma.FieldRef<"Branch", 'String'>
   readonly branchCode: Prisma.FieldRef<"Branch", 'String'>
   readonly color: Prisma.FieldRef<"Branch", 'String'>
   readonly durationMonths: Prisma.FieldRef<"Branch", 'Int'>
+  readonly module: Prisma.FieldRef<"Branch", 'String'>
+  readonly daysPerWeek: Prisma.FieldRef<"Branch", 'String'>
+  readonly daysJSON: Prisma.FieldRef<"Branch", 'String'>
+  readonly noofsemster: Prisma.FieldRef<"Branch", 'Int'>
+  readonly admissionfee: Prisma.FieldRef<"Branch", 'Int'>
+  readonly monthlyfee: Prisma.FieldRef<"Branch", 'Int'>
+  readonly classHour: Prisma.FieldRef<"Branch", 'Int'>
   readonly classType: Prisma.FieldRef<"Branch", 'String'>
   readonly daysPerClassType: Prisma.FieldRef<"Branch", 'Int'>
-  readonly classHour: Prisma.FieldRef<"Branch", 'Int'>
-  readonly daysJSON: Prisma.FieldRef<"Branch", 'String'>
 }
     
 
@@ -1934,46 +2467,22 @@ export type BranchDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Branch.course
+ * Branch.location
  */
-export type Branch$courseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Branch$locationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Course
+   * Select specific fields to fetch from the location
    */
-  select?: Prisma.CourseSelect<ExtArgs> | null
+  select?: Prisma.locationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Course
+   * Omit specific fields from the location
    */
-  omit?: Prisma.CourseOmit<ExtArgs> | null
+  omit?: Prisma.locationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  where?: Prisma.CourseWhereInput
-}
-
-/**
- * Branch.student
- */
-export type Branch$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Student
-   */
-  select?: Prisma.StudentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Student
-   */
-  omit?: Prisma.StudentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StudentInclude<ExtArgs> | null
-  where?: Prisma.StudentWhereInput
-  orderBy?: Prisma.StudentOrderByWithRelationInput | Prisma.StudentOrderByWithRelationInput[]
-  cursor?: Prisma.StudentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.StudentScalarFieldEnum | Prisma.StudentScalarFieldEnum[]
+  include?: Prisma.locationInclude<ExtArgs> | null
+  where?: Prisma.locationWhereInput
 }
 
 /**
@@ -1998,6 +2507,30 @@ export type Branch$semstersArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.SemesterScalarFieldEnum | Prisma.SemesterScalarFieldEnum[]
+}
+
+/**
+ * Branch.student
+ */
+export type Branch$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Student
+   */
+  select?: Prisma.StudentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Student
+   */
+  omit?: Prisma.StudentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentInclude<ExtArgs> | null
+  where?: Prisma.StudentWhereInput
+  orderBy?: Prisma.StudentOrderByWithRelationInput | Prisma.StudentOrderByWithRelationInput[]
+  cursor?: Prisma.StudentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StudentScalarFieldEnum | Prisma.StudentScalarFieldEnum[]
 }
 
 /**

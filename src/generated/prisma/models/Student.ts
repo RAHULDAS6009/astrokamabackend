@@ -28,13 +28,11 @@ export type AggregateStudent = {
 
 export type StudentAvgAggregateOutputType = {
   id: number | null
-  courseId: number | null
   rollNo: number | null
 }
 
 export type StudentSumAggregateOutputType = {
   id: number | null
-  courseId: number | null
   rollNo: number | null
 }
 
@@ -45,7 +43,6 @@ export type StudentMinAggregateOutputType = {
   email: string | null
   gender: string | null
   password: string | null
-  courseId: number | null
   branchId: string | null
   rollNo: number | null
   gurdianName: string | null
@@ -75,7 +72,6 @@ export type StudentMaxAggregateOutputType = {
   email: string | null
   gender: string | null
   password: string | null
-  courseId: number | null
   branchId: string | null
   rollNo: number | null
   gurdianName: string | null
@@ -105,7 +101,6 @@ export type StudentCountAggregateOutputType = {
   email: number
   gender: number
   password: number
-  courseId: number
   branchId: number
   rollNo: number
   gurdianName: number
@@ -132,13 +127,11 @@ export type StudentCountAggregateOutputType = {
 
 export type StudentAvgAggregateInputType = {
   id?: true
-  courseId?: true
   rollNo?: true
 }
 
 export type StudentSumAggregateInputType = {
   id?: true
-  courseId?: true
   rollNo?: true
 }
 
@@ -149,7 +142,6 @@ export type StudentMinAggregateInputType = {
   email?: true
   gender?: true
   password?: true
-  courseId?: true
   branchId?: true
   rollNo?: true
   gurdianName?: true
@@ -179,7 +171,6 @@ export type StudentMaxAggregateInputType = {
   email?: true
   gender?: true
   password?: true
-  courseId?: true
   branchId?: true
   rollNo?: true
   gurdianName?: true
@@ -209,7 +200,6 @@ export type StudentCountAggregateInputType = {
   email?: true
   gender?: true
   password?: true
-  courseId?: true
   branchId?: true
   rollNo?: true
   gurdianName?: true
@@ -326,7 +316,6 @@ export type StudentGroupByOutputType = {
   email: string | null
   gender: string | null
   password: string
-  courseId: number | null
   branchId: string | null
   rollNo: number | null
   gurdianName: string | null
@@ -379,7 +368,6 @@ export type StudentWhereInput = {
   email?: Prisma.StringNullableFilter<"Student"> | string | null
   gender?: Prisma.StringNullableFilter<"Student"> | string | null
   password?: Prisma.StringFilter<"Student"> | string
-  courseId?: Prisma.IntNullableFilter<"Student"> | number | null
   branchId?: Prisma.StringNullableFilter<"Student"> | string | null
   rollNo?: Prisma.IntNullableFilter<"Student"> | number | null
   gurdianName?: Prisma.StringNullableFilter<"Student"> | string | null
@@ -400,7 +388,6 @@ export type StudentWhereInput = {
   certificateUrl?: Prisma.StringNullableFilter<"Student"> | string | null
   idProofUrl?: Prisma.StringNullableFilter<"Student"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
-  course?: Prisma.XOR<Prisma.CourseNullableScalarRelationFilter, Prisma.CourseWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
   fees?: Prisma.FeeListRelationFilter
 }
@@ -412,7 +399,6 @@ export type StudentOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  courseId?: Prisma.SortOrderInput | Prisma.SortOrder
   branchId?: Prisma.SortOrderInput | Prisma.SortOrder
   rollNo?: Prisma.SortOrderInput | Prisma.SortOrder
   gurdianName?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -433,7 +419,6 @@ export type StudentOrderByWithRelationInput = {
   certificateUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   idProofUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  course?: Prisma.CourseOrderByWithRelationInput
   branch?: Prisma.BranchOrderByWithRelationInput
   fees?: Prisma.FeeOrderByRelationAggregateInput
 }
@@ -448,7 +433,6 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Student"> | string
   gender?: Prisma.StringNullableFilter<"Student"> | string | null
   password?: Prisma.StringFilter<"Student"> | string
-  courseId?: Prisma.IntNullableFilter<"Student"> | number | null
   branchId?: Prisma.StringNullableFilter<"Student"> | string | null
   rollNo?: Prisma.IntNullableFilter<"Student"> | number | null
   gurdianName?: Prisma.StringNullableFilter<"Student"> | string | null
@@ -469,7 +453,6 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   certificateUrl?: Prisma.StringNullableFilter<"Student"> | string | null
   idProofUrl?: Prisma.StringNullableFilter<"Student"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
-  course?: Prisma.XOR<Prisma.CourseNullableScalarRelationFilter, Prisma.CourseWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
   fees?: Prisma.FeeListRelationFilter
 }, "id" | "studentId" | "email">
@@ -481,7 +464,6 @@ export type StudentOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  courseId?: Prisma.SortOrderInput | Prisma.SortOrder
   branchId?: Prisma.SortOrderInput | Prisma.SortOrder
   rollNo?: Prisma.SortOrderInput | Prisma.SortOrder
   gurdianName?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -519,7 +501,6 @@ export type StudentScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
   gender?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
   password?: Prisma.StringWithAggregatesFilter<"Student"> | string
-  courseId?: Prisma.IntNullableWithAggregatesFilter<"Student"> | number | null
   branchId?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
   rollNo?: Prisma.IntNullableWithAggregatesFilter<"Student"> | number | null
   gurdianName?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
@@ -567,7 +548,6 @@ export type StudentCreateInput = {
   certificateUrl?: string | null
   idProofUrl?: string | null
   createdAt?: Date | string
-  course?: Prisma.CourseCreateNestedOneWithoutStudentsInput
   branch?: Prisma.BranchCreateNestedOneWithoutStudentInput
   fees?: Prisma.FeeCreateNestedManyWithoutStudentInput
 }
@@ -579,7 +559,6 @@ export type StudentUncheckedCreateInput = {
   email?: string | null
   gender?: string | null
   password: string
-  courseId?: number | null
   branchId?: string | null
   rollNo?: number | null
   gurdianName?: string | null
@@ -628,7 +607,6 @@ export type StudentUpdateInput = {
   certificateUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idProofUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course?: Prisma.CourseUpdateOneWithoutStudentsNestedInput
   branch?: Prisma.BranchUpdateOneWithoutStudentNestedInput
   fees?: Prisma.FeeUpdateManyWithoutStudentNestedInput
 }
@@ -640,7 +618,6 @@ export type StudentUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -671,7 +648,6 @@ export type StudentCreateManyInput = {
   email?: string | null
   gender?: string | null
   password: string
-  courseId?: number | null
   branchId?: string | null
   rollNo?: number | null
   gurdianName?: string | null
@@ -728,7 +704,6 @@ export type StudentUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -758,7 +733,6 @@ export type StudentCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   rollNo?: Prisma.SortOrder
   gurdianName?: Prisma.SortOrder
@@ -783,7 +757,6 @@ export type StudentCountOrderByAggregateInput = {
 
 export type StudentAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   rollNo?: Prisma.SortOrder
 }
 
@@ -794,7 +767,6 @@ export type StudentMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   rollNo?: Prisma.SortOrder
   gurdianName?: Prisma.SortOrder
@@ -824,7 +796,6 @@ export type StudentMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   rollNo?: Prisma.SortOrder
   gurdianName?: Prisma.SortOrder
@@ -849,7 +820,6 @@ export type StudentMinOrderByAggregateInput = {
 
 export type StudentSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   rollNo?: Prisma.SortOrder
 }
 
@@ -878,48 +848,6 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
-}
-
-export type StudentCreateNestedManyWithoutCourseInput = {
-  create?: Prisma.XOR<Prisma.StudentCreateWithoutCourseInput, Prisma.StudentUncheckedCreateWithoutCourseInput> | Prisma.StudentCreateWithoutCourseInput[] | Prisma.StudentUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCourseInput | Prisma.StudentCreateOrConnectWithoutCourseInput[]
-  createMany?: Prisma.StudentCreateManyCourseInputEnvelope
-  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-}
-
-export type StudentUncheckedCreateNestedManyWithoutCourseInput = {
-  create?: Prisma.XOR<Prisma.StudentCreateWithoutCourseInput, Prisma.StudentUncheckedCreateWithoutCourseInput> | Prisma.StudentCreateWithoutCourseInput[] | Prisma.StudentUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCourseInput | Prisma.StudentCreateOrConnectWithoutCourseInput[]
-  createMany?: Prisma.StudentCreateManyCourseInputEnvelope
-  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-}
-
-export type StudentUpdateManyWithoutCourseNestedInput = {
-  create?: Prisma.XOR<Prisma.StudentCreateWithoutCourseInput, Prisma.StudentUncheckedCreateWithoutCourseInput> | Prisma.StudentCreateWithoutCourseInput[] | Prisma.StudentUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCourseInput | Prisma.StudentCreateOrConnectWithoutCourseInput[]
-  upsert?: Prisma.StudentUpsertWithWhereUniqueWithoutCourseInput | Prisma.StudentUpsertWithWhereUniqueWithoutCourseInput[]
-  createMany?: Prisma.StudentCreateManyCourseInputEnvelope
-  set?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  disconnect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  delete?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  update?: Prisma.StudentUpdateWithWhereUniqueWithoutCourseInput | Prisma.StudentUpdateWithWhereUniqueWithoutCourseInput[]
-  updateMany?: Prisma.StudentUpdateManyWithWhereWithoutCourseInput | Prisma.StudentUpdateManyWithWhereWithoutCourseInput[]
-  deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
-}
-
-export type StudentUncheckedUpdateManyWithoutCourseNestedInput = {
-  create?: Prisma.XOR<Prisma.StudentCreateWithoutCourseInput, Prisma.StudentUncheckedCreateWithoutCourseInput> | Prisma.StudentCreateWithoutCourseInput[] | Prisma.StudentUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCourseInput | Prisma.StudentCreateOrConnectWithoutCourseInput[]
-  upsert?: Prisma.StudentUpsertWithWhereUniqueWithoutCourseInput | Prisma.StudentUpsertWithWhereUniqueWithoutCourseInput[]
-  createMany?: Prisma.StudentCreateManyCourseInputEnvelope
-  set?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  disconnect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  delete?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
-  update?: Prisma.StudentUpdateWithWhereUniqueWithoutCourseInput | Prisma.StudentUpdateWithWhereUniqueWithoutCourseInput[]
-  updateMany?: Prisma.StudentUpdateManyWithWhereWithoutCourseInput | Prisma.StudentUpdateManyWithWhereWithoutCourseInput[]
-  deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
 }
 
 export type StudentCreateNestedManyWithoutBranchInput = {
@@ -978,124 +906,6 @@ export type StudentUpdateOneRequiredWithoutFeesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutFeesInput, Prisma.StudentUpdateWithoutFeesInput>, Prisma.StudentUncheckedUpdateWithoutFeesInput>
 }
 
-export type StudentCreateWithoutCourseInput = {
-  studentId: string
-  name: string
-  email?: string | null
-  gender?: string | null
-  password: string
-  rollNo?: number | null
-  gurdianName?: string | null
-  relationWithGurdain?: string | null
-  courseMode: string
-  courseDetails: string
-  communicationAddress: string
-  permanentAddress: string
-  mobileNumber: string
-  whatsappNumber?: string | null
-  dateOfBirth: string
-  placeOfBirth: string
-  educationalQualification: string
-  extraExperience?: string | null
-  astrologicalExperience?: string | null
-  occupation?: string | null
-  photoUrl?: string | null
-  certificateUrl?: string | null
-  idProofUrl?: string | null
-  createdAt?: Date | string
-  branch?: Prisma.BranchCreateNestedOneWithoutStudentInput
-  fees?: Prisma.FeeCreateNestedManyWithoutStudentInput
-}
-
-export type StudentUncheckedCreateWithoutCourseInput = {
-  id?: number
-  studentId: string
-  name: string
-  email?: string | null
-  gender?: string | null
-  password: string
-  branchId?: string | null
-  rollNo?: number | null
-  gurdianName?: string | null
-  relationWithGurdain?: string | null
-  courseMode: string
-  courseDetails: string
-  communicationAddress: string
-  permanentAddress: string
-  mobileNumber: string
-  whatsappNumber?: string | null
-  dateOfBirth: string
-  placeOfBirth: string
-  educationalQualification: string
-  extraExperience?: string | null
-  astrologicalExperience?: string | null
-  occupation?: string | null
-  photoUrl?: string | null
-  certificateUrl?: string | null
-  idProofUrl?: string | null
-  createdAt?: Date | string
-  fees?: Prisma.FeeUncheckedCreateNestedManyWithoutStudentInput
-}
-
-export type StudentCreateOrConnectWithoutCourseInput = {
-  where: Prisma.StudentWhereUniqueInput
-  create: Prisma.XOR<Prisma.StudentCreateWithoutCourseInput, Prisma.StudentUncheckedCreateWithoutCourseInput>
-}
-
-export type StudentCreateManyCourseInputEnvelope = {
-  data: Prisma.StudentCreateManyCourseInput | Prisma.StudentCreateManyCourseInput[]
-  skipDuplicates?: boolean
-}
-
-export type StudentUpsertWithWhereUniqueWithoutCourseInput = {
-  where: Prisma.StudentWhereUniqueInput
-  update: Prisma.XOR<Prisma.StudentUpdateWithoutCourseInput, Prisma.StudentUncheckedUpdateWithoutCourseInput>
-  create: Prisma.XOR<Prisma.StudentCreateWithoutCourseInput, Prisma.StudentUncheckedCreateWithoutCourseInput>
-}
-
-export type StudentUpdateWithWhereUniqueWithoutCourseInput = {
-  where: Prisma.StudentWhereUniqueInput
-  data: Prisma.XOR<Prisma.StudentUpdateWithoutCourseInput, Prisma.StudentUncheckedUpdateWithoutCourseInput>
-}
-
-export type StudentUpdateManyWithWhereWithoutCourseInput = {
-  where: Prisma.StudentScalarWhereInput
-  data: Prisma.XOR<Prisma.StudentUpdateManyMutationInput, Prisma.StudentUncheckedUpdateManyWithoutCourseInput>
-}
-
-export type StudentScalarWhereInput = {
-  AND?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
-  OR?: Prisma.StudentScalarWhereInput[]
-  NOT?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
-  id?: Prisma.IntFilter<"Student"> | number
-  studentId?: Prisma.StringFilter<"Student"> | string
-  name?: Prisma.StringFilter<"Student"> | string
-  email?: Prisma.StringNullableFilter<"Student"> | string | null
-  gender?: Prisma.StringNullableFilter<"Student"> | string | null
-  password?: Prisma.StringFilter<"Student"> | string
-  courseId?: Prisma.IntNullableFilter<"Student"> | number | null
-  branchId?: Prisma.StringNullableFilter<"Student"> | string | null
-  rollNo?: Prisma.IntNullableFilter<"Student"> | number | null
-  gurdianName?: Prisma.StringNullableFilter<"Student"> | string | null
-  relationWithGurdain?: Prisma.StringNullableFilter<"Student"> | string | null
-  courseMode?: Prisma.StringFilter<"Student"> | string
-  courseDetails?: Prisma.StringFilter<"Student"> | string
-  communicationAddress?: Prisma.StringFilter<"Student"> | string
-  permanentAddress?: Prisma.StringFilter<"Student"> | string
-  mobileNumber?: Prisma.StringFilter<"Student"> | string
-  whatsappNumber?: Prisma.StringNullableFilter<"Student"> | string | null
-  dateOfBirth?: Prisma.StringFilter<"Student"> | string
-  placeOfBirth?: Prisma.StringFilter<"Student"> | string
-  educationalQualification?: Prisma.StringFilter<"Student"> | string
-  extraExperience?: Prisma.StringNullableFilter<"Student"> | string | null
-  astrologicalExperience?: Prisma.StringNullableFilter<"Student"> | string | null
-  occupation?: Prisma.StringNullableFilter<"Student"> | string | null
-  photoUrl?: Prisma.StringNullableFilter<"Student"> | string | null
-  certificateUrl?: Prisma.StringNullableFilter<"Student"> | string | null
-  idProofUrl?: Prisma.StringNullableFilter<"Student"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
-}
-
 export type StudentCreateWithoutBranchInput = {
   studentId: string
   name: string
@@ -1121,7 +931,6 @@ export type StudentCreateWithoutBranchInput = {
   certificateUrl?: string | null
   idProofUrl?: string | null
   createdAt?: Date | string
-  course?: Prisma.CourseCreateNestedOneWithoutStudentsInput
   fees?: Prisma.FeeCreateNestedManyWithoutStudentInput
 }
 
@@ -1132,7 +941,6 @@ export type StudentUncheckedCreateWithoutBranchInput = {
   email?: string | null
   gender?: string | null
   password: string
-  courseId?: number | null
   rollNo?: number | null
   gurdianName?: string | null
   relationWithGurdain?: string | null
@@ -1181,6 +989,38 @@ export type StudentUpdateManyWithWhereWithoutBranchInput = {
   data: Prisma.XOR<Prisma.StudentUpdateManyMutationInput, Prisma.StudentUncheckedUpdateManyWithoutBranchInput>
 }
 
+export type StudentScalarWhereInput = {
+  AND?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+  OR?: Prisma.StudentScalarWhereInput[]
+  NOT?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+  id?: Prisma.IntFilter<"Student"> | number
+  studentId?: Prisma.StringFilter<"Student"> | string
+  name?: Prisma.StringFilter<"Student"> | string
+  email?: Prisma.StringNullableFilter<"Student"> | string | null
+  gender?: Prisma.StringNullableFilter<"Student"> | string | null
+  password?: Prisma.StringFilter<"Student"> | string
+  branchId?: Prisma.StringNullableFilter<"Student"> | string | null
+  rollNo?: Prisma.IntNullableFilter<"Student"> | number | null
+  gurdianName?: Prisma.StringNullableFilter<"Student"> | string | null
+  relationWithGurdain?: Prisma.StringNullableFilter<"Student"> | string | null
+  courseMode?: Prisma.StringFilter<"Student"> | string
+  courseDetails?: Prisma.StringFilter<"Student"> | string
+  communicationAddress?: Prisma.StringFilter<"Student"> | string
+  permanentAddress?: Prisma.StringFilter<"Student"> | string
+  mobileNumber?: Prisma.StringFilter<"Student"> | string
+  whatsappNumber?: Prisma.StringNullableFilter<"Student"> | string | null
+  dateOfBirth?: Prisma.StringFilter<"Student"> | string
+  placeOfBirth?: Prisma.StringFilter<"Student"> | string
+  educationalQualification?: Prisma.StringFilter<"Student"> | string
+  extraExperience?: Prisma.StringNullableFilter<"Student"> | string | null
+  astrologicalExperience?: Prisma.StringNullableFilter<"Student"> | string | null
+  occupation?: Prisma.StringNullableFilter<"Student"> | string | null
+  photoUrl?: Prisma.StringNullableFilter<"Student"> | string | null
+  certificateUrl?: Prisma.StringNullableFilter<"Student"> | string | null
+  idProofUrl?: Prisma.StringNullableFilter<"Student"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+}
+
 export type StudentCreateWithoutFeesInput = {
   studentId: string
   name: string
@@ -1206,7 +1046,6 @@ export type StudentCreateWithoutFeesInput = {
   certificateUrl?: string | null
   idProofUrl?: string | null
   createdAt?: Date | string
-  course?: Prisma.CourseCreateNestedOneWithoutStudentsInput
   branch?: Prisma.BranchCreateNestedOneWithoutStudentInput
 }
 
@@ -1217,7 +1056,6 @@ export type StudentUncheckedCreateWithoutFeesInput = {
   email?: string | null
   gender?: string | null
   password: string
-  courseId?: number | null
   branchId?: string | null
   rollNo?: number | null
   gurdianName?: string | null
@@ -1281,129 +1119,10 @@ export type StudentUpdateWithoutFeesInput = {
   certificateUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idProofUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course?: Prisma.CourseUpdateOneWithoutStudentsNestedInput
   branch?: Prisma.BranchUpdateOneWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutFeesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  relationWithGurdain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  courseDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  communicationAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  educationalQualification?: Prisma.StringFieldUpdateOperationsInput | string
-  extraExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  astrologicalExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  certificateUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idProofUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type StudentCreateManyCourseInput = {
-  id?: number
-  studentId: string
-  name: string
-  email?: string | null
-  gender?: string | null
-  password: string
-  branchId?: string | null
-  rollNo?: number | null
-  gurdianName?: string | null
-  relationWithGurdain?: string | null
-  courseMode: string
-  courseDetails: string
-  communicationAddress: string
-  permanentAddress: string
-  mobileNumber: string
-  whatsappNumber?: string | null
-  dateOfBirth: string
-  placeOfBirth: string
-  educationalQualification: string
-  extraExperience?: string | null
-  astrologicalExperience?: string | null
-  occupation?: string | null
-  photoUrl?: string | null
-  certificateUrl?: string | null
-  idProofUrl?: string | null
-  createdAt?: Date | string
-}
-
-export type StudentUpdateWithoutCourseInput = {
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  relationWithGurdain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  courseDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  communicationAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  educationalQualification?: Prisma.StringFieldUpdateOperationsInput | string
-  extraExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  astrologicalExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  certificateUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idProofUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneWithoutStudentNestedInput
-  fees?: Prisma.FeeUpdateManyWithoutStudentNestedInput
-}
-
-export type StudentUncheckedUpdateWithoutCourseInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  relationWithGurdain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  courseDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  communicationAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  educationalQualification?: Prisma.StringFieldUpdateOperationsInput | string
-  extraExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  astrologicalExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  certificateUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idProofUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fees?: Prisma.FeeUncheckedUpdateManyWithoutStudentNestedInput
-}
-
-export type StudentUncheckedUpdateManyWithoutCourseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1439,7 +1158,6 @@ export type StudentCreateManyBranchInput = {
   email?: string | null
   gender?: string | null
   password: string
-  courseId?: number | null
   rollNo?: number | null
   gurdianName?: string | null
   relationWithGurdain?: string | null
@@ -1486,7 +1204,6 @@ export type StudentUpdateWithoutBranchInput = {
   certificateUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idProofUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course?: Prisma.CourseUpdateOneWithoutStudentsNestedInput
   fees?: Prisma.FeeUpdateManyWithoutStudentNestedInput
 }
 
@@ -1497,7 +1214,6 @@ export type StudentUncheckedUpdateWithoutBranchInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relationWithGurdain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1527,7 +1243,6 @@ export type StudentUncheckedUpdateManyWithoutBranchInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rollNo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gurdianName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relationWithGurdain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1587,7 +1302,6 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   email?: boolean
   gender?: boolean
   password?: boolean
-  courseId?: boolean
   branchId?: boolean
   rollNo?: boolean
   gurdianName?: boolean
@@ -1608,7 +1322,6 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   certificateUrl?: boolean
   idProofUrl?: boolean
   createdAt?: boolean
-  course?: boolean | Prisma.Student$courseArgs<ExtArgs>
   branch?: boolean | Prisma.Student$branchArgs<ExtArgs>
   fees?: boolean | Prisma.Student$feesArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
@@ -1621,7 +1334,6 @@ export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   gender?: boolean
   password?: boolean
-  courseId?: boolean
   branchId?: boolean
   rollNo?: boolean
   gurdianName?: boolean
@@ -1642,7 +1354,6 @@ export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   certificateUrl?: boolean
   idProofUrl?: boolean
   createdAt?: boolean
-  course?: boolean | Prisma.Student$courseArgs<ExtArgs>
   branch?: boolean | Prisma.Student$branchArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
@@ -1653,7 +1364,6 @@ export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   gender?: boolean
   password?: boolean
-  courseId?: boolean
   branchId?: boolean
   rollNo?: boolean
   gurdianName?: boolean
@@ -1674,7 +1384,6 @@ export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   certificateUrl?: boolean
   idProofUrl?: boolean
   createdAt?: boolean
-  course?: boolean | Prisma.Student$courseArgs<ExtArgs>
   branch?: boolean | Prisma.Student$branchArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
@@ -1685,7 +1394,6 @@ export type StudentSelectScalar = {
   email?: boolean
   gender?: boolean
   password?: boolean
-  courseId?: boolean
   branchId?: boolean
   rollNo?: boolean
   gurdianName?: boolean
@@ -1708,26 +1416,22 @@ export type StudentSelectScalar = {
   createdAt?: boolean
 }
 
-export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "name" | "email" | "gender" | "password" | "courseId" | "branchId" | "rollNo" | "gurdianName" | "relationWithGurdain" | "courseMode" | "courseDetails" | "communicationAddress" | "permanentAddress" | "mobileNumber" | "whatsappNumber" | "dateOfBirth" | "placeOfBirth" | "educationalQualification" | "extraExperience" | "astrologicalExperience" | "occupation" | "photoUrl" | "certificateUrl" | "idProofUrl" | "createdAt", ExtArgs["result"]["student"]>
+export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "name" | "email" | "gender" | "password" | "branchId" | "rollNo" | "gurdianName" | "relationWithGurdain" | "courseMode" | "courseDetails" | "communicationAddress" | "permanentAddress" | "mobileNumber" | "whatsappNumber" | "dateOfBirth" | "placeOfBirth" | "educationalQualification" | "extraExperience" | "astrologicalExperience" | "occupation" | "photoUrl" | "certificateUrl" | "idProofUrl" | "createdAt", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.Student$courseArgs<ExtArgs>
   branch?: boolean | Prisma.Student$branchArgs<ExtArgs>
   fees?: boolean | Prisma.Student$feesArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.Student$courseArgs<ExtArgs>
   branch?: boolean | Prisma.Student$branchArgs<ExtArgs>
 }
 export type StudentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.Student$courseArgs<ExtArgs>
   branch?: boolean | Prisma.Student$branchArgs<ExtArgs>
 }
 
 export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Student"
   objects: {
-    course: Prisma.$CoursePayload<ExtArgs> | null
     branch: Prisma.$BranchPayload<ExtArgs> | null
     fees: Prisma.$FeePayload<ExtArgs>[]
   }
@@ -1738,7 +1442,6 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     email: string | null
     gender: string | null
     password: string
-    courseId: number | null
     branchId: string | null
     rollNo: number | null
     gurdianName: string | null
@@ -2153,7 +1856,6 @@ readonly fields: StudentFieldRefs;
  */
 export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  course<T extends Prisma.Student$courseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$courseArgs<ExtArgs>>): Prisma.Prisma__CourseClient<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   branch<T extends Prisma.Student$branchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$branchArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   fees<T extends Prisma.Student$feesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$feesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2191,7 +1893,6 @@ export interface StudentFieldRefs {
   readonly email: Prisma.FieldRef<"Student", 'String'>
   readonly gender: Prisma.FieldRef<"Student", 'String'>
   readonly password: Prisma.FieldRef<"Student", 'String'>
-  readonly courseId: Prisma.FieldRef<"Student", 'Int'>
   readonly branchId: Prisma.FieldRef<"Student", 'String'>
   readonly rollNo: Prisma.FieldRef<"Student", 'Int'>
   readonly gurdianName: Prisma.FieldRef<"Student", 'String'>
@@ -2605,25 +2306,6 @@ export type StudentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Students to delete.
    */
   limit?: number
-}
-
-/**
- * Student.course
- */
-export type Student$courseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Course
-   */
-  select?: Prisma.CourseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Course
-   */
-  omit?: Prisma.CourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  where?: Prisma.CourseWhereInput
 }
 
 /**

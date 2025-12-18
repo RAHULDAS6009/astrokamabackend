@@ -28,12 +28,10 @@ export type AggregateStudyMaterial = {
 
 export type StudyMaterialAvgAggregateOutputType = {
   id: number | null
-  courseId: number | null
 }
 
 export type StudyMaterialSumAggregateOutputType = {
   id: number | null
-  courseId: number | null
 }
 
 export type StudyMaterialMinAggregateOutputType = {
@@ -41,7 +39,6 @@ export type StudyMaterialMinAggregateOutputType = {
   title: string | null
   type: string | null
   url: string | null
-  courseId: number | null
   createdAt: Date | null
   branchId: string | null
   semesterId: string | null
@@ -52,7 +49,6 @@ export type StudyMaterialMaxAggregateOutputType = {
   title: string | null
   type: string | null
   url: string | null
-  courseId: number | null
   createdAt: Date | null
   branchId: string | null
   semesterId: string | null
@@ -63,7 +59,6 @@ export type StudyMaterialCountAggregateOutputType = {
   title: number
   type: number
   url: number
-  courseId: number
   createdAt: number
   branchId: number
   semesterId: number
@@ -73,12 +68,10 @@ export type StudyMaterialCountAggregateOutputType = {
 
 export type StudyMaterialAvgAggregateInputType = {
   id?: true
-  courseId?: true
 }
 
 export type StudyMaterialSumAggregateInputType = {
   id?: true
-  courseId?: true
 }
 
 export type StudyMaterialMinAggregateInputType = {
@@ -86,7 +79,6 @@ export type StudyMaterialMinAggregateInputType = {
   title?: true
   type?: true
   url?: true
-  courseId?: true
   createdAt?: true
   branchId?: true
   semesterId?: true
@@ -97,7 +89,6 @@ export type StudyMaterialMaxAggregateInputType = {
   title?: true
   type?: true
   url?: true
-  courseId?: true
   createdAt?: true
   branchId?: true
   semesterId?: true
@@ -108,7 +99,6 @@ export type StudyMaterialCountAggregateInputType = {
   title?: true
   type?: true
   url?: true
-  courseId?: true
   createdAt?: true
   branchId?: true
   semesterId?: true
@@ -206,7 +196,6 @@ export type StudyMaterialGroupByOutputType = {
   title: string
   type: string
   url: string
-  courseId: number | null
   createdAt: Date
   branchId: string | null
   semesterId: string | null
@@ -240,11 +229,9 @@ export type StudyMaterialWhereInput = {
   title?: Prisma.StringFilter<"StudyMaterial"> | string
   type?: Prisma.StringFilter<"StudyMaterial"> | string
   url?: Prisma.StringFilter<"StudyMaterial"> | string
-  courseId?: Prisma.IntNullableFilter<"StudyMaterial"> | number | null
   createdAt?: Prisma.DateTimeFilter<"StudyMaterial"> | Date | string
   branchId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
   semesterId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
-  course?: Prisma.XOR<Prisma.CourseNullableScalarRelationFilter, Prisma.CourseWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
   semester?: Prisma.XOR<Prisma.SemesterNullableScalarRelationFilter, Prisma.SemesterWhereInput> | null
 }
@@ -254,11 +241,9 @@ export type StudyMaterialOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
   url?: Prisma.SortOrder
-  courseId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   branchId?: Prisma.SortOrderInput | Prisma.SortOrder
   semesterId?: Prisma.SortOrderInput | Prisma.SortOrder
-  course?: Prisma.CourseOrderByWithRelationInput
   branch?: Prisma.BranchOrderByWithRelationInput
   semester?: Prisma.SemesterOrderByWithRelationInput
 }
@@ -271,11 +256,9 @@ export type StudyMaterialWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"StudyMaterial"> | string
   type?: Prisma.StringFilter<"StudyMaterial"> | string
   url?: Prisma.StringFilter<"StudyMaterial"> | string
-  courseId?: Prisma.IntNullableFilter<"StudyMaterial"> | number | null
   createdAt?: Prisma.DateTimeFilter<"StudyMaterial"> | Date | string
   branchId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
   semesterId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
-  course?: Prisma.XOR<Prisma.CourseNullableScalarRelationFilter, Prisma.CourseWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
   semester?: Prisma.XOR<Prisma.SemesterNullableScalarRelationFilter, Prisma.SemesterWhereInput> | null
 }, "id">
@@ -285,7 +268,6 @@ export type StudyMaterialOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
   url?: Prisma.SortOrder
-  courseId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   branchId?: Prisma.SortOrderInput | Prisma.SortOrder
   semesterId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -304,7 +286,6 @@ export type StudyMaterialScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"StudyMaterial"> | string
   type?: Prisma.StringWithAggregatesFilter<"StudyMaterial"> | string
   url?: Prisma.StringWithAggregatesFilter<"StudyMaterial"> | string
-  courseId?: Prisma.IntNullableWithAggregatesFilter<"StudyMaterial"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StudyMaterial"> | Date | string
   branchId?: Prisma.StringNullableWithAggregatesFilter<"StudyMaterial"> | string | null
   semesterId?: Prisma.StringNullableWithAggregatesFilter<"StudyMaterial"> | string | null
@@ -315,7 +296,6 @@ export type StudyMaterialCreateInput = {
   type: string
   url: string
   createdAt?: Date | string
-  course?: Prisma.CourseCreateNestedOneWithoutStudyMaterialsInput
   branch?: Prisma.BranchCreateNestedOneWithoutStudyMaterialInput
   semester?: Prisma.SemesterCreateNestedOneWithoutStudyMaterialInput
 }
@@ -325,7 +305,6 @@ export type StudyMaterialUncheckedCreateInput = {
   title: string
   type: string
   url: string
-  courseId?: number | null
   createdAt?: Date | string
   branchId?: string | null
   semesterId?: string | null
@@ -336,7 +315,6 @@ export type StudyMaterialUpdateInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course?: Prisma.CourseUpdateOneWithoutStudyMaterialsNestedInput
   branch?: Prisma.BranchUpdateOneWithoutStudyMaterialNestedInput
   semester?: Prisma.SemesterUpdateOneWithoutStudyMaterialNestedInput
 }
@@ -346,7 +324,6 @@ export type StudyMaterialUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   semesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -357,7 +334,6 @@ export type StudyMaterialCreateManyInput = {
   title: string
   type: string
   url: string
-  courseId?: number | null
   createdAt?: Date | string
   branchId?: string | null
   semesterId?: string | null
@@ -375,7 +351,6 @@ export type StudyMaterialUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   semesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -396,7 +371,6 @@ export type StudyMaterialCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
   url?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   semesterId?: Prisma.SortOrder
@@ -404,7 +378,6 @@ export type StudyMaterialCountOrderByAggregateInput = {
 
 export type StudyMaterialAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
 }
 
 export type StudyMaterialMaxOrderByAggregateInput = {
@@ -412,7 +385,6 @@ export type StudyMaterialMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
   url?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   semesterId?: Prisma.SortOrder
@@ -423,7 +395,6 @@ export type StudyMaterialMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
   url?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   semesterId?: Prisma.SortOrder
@@ -431,49 +402,6 @@ export type StudyMaterialMinOrderByAggregateInput = {
 
 export type StudyMaterialSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  courseId?: Prisma.SortOrder
-}
-
-export type StudyMaterialCreateNestedManyWithoutCourseInput = {
-  create?: Prisma.XOR<Prisma.StudyMaterialCreateWithoutCourseInput, Prisma.StudyMaterialUncheckedCreateWithoutCourseInput> | Prisma.StudyMaterialCreateWithoutCourseInput[] | Prisma.StudyMaterialUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudyMaterialCreateOrConnectWithoutCourseInput | Prisma.StudyMaterialCreateOrConnectWithoutCourseInput[]
-  createMany?: Prisma.StudyMaterialCreateManyCourseInputEnvelope
-  connect?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-}
-
-export type StudyMaterialUncheckedCreateNestedManyWithoutCourseInput = {
-  create?: Prisma.XOR<Prisma.StudyMaterialCreateWithoutCourseInput, Prisma.StudyMaterialUncheckedCreateWithoutCourseInput> | Prisma.StudyMaterialCreateWithoutCourseInput[] | Prisma.StudyMaterialUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudyMaterialCreateOrConnectWithoutCourseInput | Prisma.StudyMaterialCreateOrConnectWithoutCourseInput[]
-  createMany?: Prisma.StudyMaterialCreateManyCourseInputEnvelope
-  connect?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-}
-
-export type StudyMaterialUpdateManyWithoutCourseNestedInput = {
-  create?: Prisma.XOR<Prisma.StudyMaterialCreateWithoutCourseInput, Prisma.StudyMaterialUncheckedCreateWithoutCourseInput> | Prisma.StudyMaterialCreateWithoutCourseInput[] | Prisma.StudyMaterialUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudyMaterialCreateOrConnectWithoutCourseInput | Prisma.StudyMaterialCreateOrConnectWithoutCourseInput[]
-  upsert?: Prisma.StudyMaterialUpsertWithWhereUniqueWithoutCourseInput | Prisma.StudyMaterialUpsertWithWhereUniqueWithoutCourseInput[]
-  createMany?: Prisma.StudyMaterialCreateManyCourseInputEnvelope
-  set?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  disconnect?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  delete?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  connect?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  update?: Prisma.StudyMaterialUpdateWithWhereUniqueWithoutCourseInput | Prisma.StudyMaterialUpdateWithWhereUniqueWithoutCourseInput[]
-  updateMany?: Prisma.StudyMaterialUpdateManyWithWhereWithoutCourseInput | Prisma.StudyMaterialUpdateManyWithWhereWithoutCourseInput[]
-  deleteMany?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
-}
-
-export type StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput = {
-  create?: Prisma.XOR<Prisma.StudyMaterialCreateWithoutCourseInput, Prisma.StudyMaterialUncheckedCreateWithoutCourseInput> | Prisma.StudyMaterialCreateWithoutCourseInput[] | Prisma.StudyMaterialUncheckedCreateWithoutCourseInput[]
-  connectOrCreate?: Prisma.StudyMaterialCreateOrConnectWithoutCourseInput | Prisma.StudyMaterialCreateOrConnectWithoutCourseInput[]
-  upsert?: Prisma.StudyMaterialUpsertWithWhereUniqueWithoutCourseInput | Prisma.StudyMaterialUpsertWithWhereUniqueWithoutCourseInput[]
-  createMany?: Prisma.StudyMaterialCreateManyCourseInputEnvelope
-  set?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  disconnect?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  delete?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  connect?: Prisma.StudyMaterialWhereUniqueInput | Prisma.StudyMaterialWhereUniqueInput[]
-  update?: Prisma.StudyMaterialUpdateWithWhereUniqueWithoutCourseInput | Prisma.StudyMaterialUpdateWithWhereUniqueWithoutCourseInput[]
-  updateMany?: Prisma.StudyMaterialUpdateManyWithWhereWithoutCourseInput | Prisma.StudyMaterialUpdateManyWithWhereWithoutCourseInput[]
-  deleteMany?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
 }
 
 export type StudyMaterialCreateNestedManyWithoutBranchInput = {
@@ -560,71 +488,11 @@ export type StudyMaterialUncheckedUpdateManyWithoutSemesterNestedInput = {
   deleteMany?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
 }
 
-export type StudyMaterialCreateWithoutCourseInput = {
-  title: string
-  type: string
-  url: string
-  createdAt?: Date | string
-  branch?: Prisma.BranchCreateNestedOneWithoutStudyMaterialInput
-  semester?: Prisma.SemesterCreateNestedOneWithoutStudyMaterialInput
-}
-
-export type StudyMaterialUncheckedCreateWithoutCourseInput = {
-  id?: number
-  title: string
-  type: string
-  url: string
-  createdAt?: Date | string
-  branchId?: string | null
-  semesterId?: string | null
-}
-
-export type StudyMaterialCreateOrConnectWithoutCourseInput = {
-  where: Prisma.StudyMaterialWhereUniqueInput
-  create: Prisma.XOR<Prisma.StudyMaterialCreateWithoutCourseInput, Prisma.StudyMaterialUncheckedCreateWithoutCourseInput>
-}
-
-export type StudyMaterialCreateManyCourseInputEnvelope = {
-  data: Prisma.StudyMaterialCreateManyCourseInput | Prisma.StudyMaterialCreateManyCourseInput[]
-  skipDuplicates?: boolean
-}
-
-export type StudyMaterialUpsertWithWhereUniqueWithoutCourseInput = {
-  where: Prisma.StudyMaterialWhereUniqueInput
-  update: Prisma.XOR<Prisma.StudyMaterialUpdateWithoutCourseInput, Prisma.StudyMaterialUncheckedUpdateWithoutCourseInput>
-  create: Prisma.XOR<Prisma.StudyMaterialCreateWithoutCourseInput, Prisma.StudyMaterialUncheckedCreateWithoutCourseInput>
-}
-
-export type StudyMaterialUpdateWithWhereUniqueWithoutCourseInput = {
-  where: Prisma.StudyMaterialWhereUniqueInput
-  data: Prisma.XOR<Prisma.StudyMaterialUpdateWithoutCourseInput, Prisma.StudyMaterialUncheckedUpdateWithoutCourseInput>
-}
-
-export type StudyMaterialUpdateManyWithWhereWithoutCourseInput = {
-  where: Prisma.StudyMaterialScalarWhereInput
-  data: Prisma.XOR<Prisma.StudyMaterialUpdateManyMutationInput, Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseInput>
-}
-
-export type StudyMaterialScalarWhereInput = {
-  AND?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
-  OR?: Prisma.StudyMaterialScalarWhereInput[]
-  NOT?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
-  id?: Prisma.IntFilter<"StudyMaterial"> | number
-  title?: Prisma.StringFilter<"StudyMaterial"> | string
-  type?: Prisma.StringFilter<"StudyMaterial"> | string
-  url?: Prisma.StringFilter<"StudyMaterial"> | string
-  courseId?: Prisma.IntNullableFilter<"StudyMaterial"> | number | null
-  createdAt?: Prisma.DateTimeFilter<"StudyMaterial"> | Date | string
-  branchId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
-  semesterId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
-}
-
 export type StudyMaterialCreateWithoutBranchInput = {
   title: string
   type: string
   url: string
   createdAt?: Date | string
-  course?: Prisma.CourseCreateNestedOneWithoutStudyMaterialsInput
   semester?: Prisma.SemesterCreateNestedOneWithoutStudyMaterialInput
 }
 
@@ -633,7 +501,6 @@ export type StudyMaterialUncheckedCreateWithoutBranchInput = {
   title: string
   type: string
   url: string
-  courseId?: number | null
   createdAt?: Date | string
   semesterId?: string | null
 }
@@ -664,12 +531,24 @@ export type StudyMaterialUpdateManyWithWhereWithoutBranchInput = {
   data: Prisma.XOR<Prisma.StudyMaterialUpdateManyMutationInput, Prisma.StudyMaterialUncheckedUpdateManyWithoutBranchInput>
 }
 
+export type StudyMaterialScalarWhereInput = {
+  AND?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
+  OR?: Prisma.StudyMaterialScalarWhereInput[]
+  NOT?: Prisma.StudyMaterialScalarWhereInput | Prisma.StudyMaterialScalarWhereInput[]
+  id?: Prisma.IntFilter<"StudyMaterial"> | number
+  title?: Prisma.StringFilter<"StudyMaterial"> | string
+  type?: Prisma.StringFilter<"StudyMaterial"> | string
+  url?: Prisma.StringFilter<"StudyMaterial"> | string
+  createdAt?: Prisma.DateTimeFilter<"StudyMaterial"> | Date | string
+  branchId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
+  semesterId?: Prisma.StringNullableFilter<"StudyMaterial"> | string | null
+}
+
 export type StudyMaterialCreateWithoutSemesterInput = {
   title: string
   type: string
   url: string
   createdAt?: Date | string
-  course?: Prisma.CourseCreateNestedOneWithoutStudyMaterialsInput
   branch?: Prisma.BranchCreateNestedOneWithoutStudyMaterialInput
 }
 
@@ -678,7 +557,6 @@ export type StudyMaterialUncheckedCreateWithoutSemesterInput = {
   title: string
   type: string
   url: string
-  courseId?: number | null
   createdAt?: Date | string
   branchId?: string | null
 }
@@ -709,51 +587,11 @@ export type StudyMaterialUpdateManyWithWhereWithoutSemesterInput = {
   data: Prisma.XOR<Prisma.StudyMaterialUpdateManyMutationInput, Prisma.StudyMaterialUncheckedUpdateManyWithoutSemesterInput>
 }
 
-export type StudyMaterialCreateManyCourseInput = {
-  id?: number
-  title: string
-  type: string
-  url: string
-  createdAt?: Date | string
-  branchId?: string | null
-  semesterId?: string | null
-}
-
-export type StudyMaterialUpdateWithoutCourseInput = {
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  url?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneWithoutStudyMaterialNestedInput
-  semester?: Prisma.SemesterUpdateOneWithoutStudyMaterialNestedInput
-}
-
-export type StudyMaterialUncheckedUpdateWithoutCourseInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  url?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  semesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type StudyMaterialUncheckedUpdateManyWithoutCourseInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  url?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  semesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
 export type StudyMaterialCreateManyBranchInput = {
   id?: number
   title: string
   type: string
   url: string
-  courseId?: number | null
   createdAt?: Date | string
   semesterId?: string | null
 }
@@ -763,7 +601,6 @@ export type StudyMaterialUpdateWithoutBranchInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course?: Prisma.CourseUpdateOneWithoutStudyMaterialsNestedInput
   semester?: Prisma.SemesterUpdateOneWithoutStudyMaterialNestedInput
 }
 
@@ -772,7 +609,6 @@ export type StudyMaterialUncheckedUpdateWithoutBranchInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   semesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -782,7 +618,6 @@ export type StudyMaterialUncheckedUpdateManyWithoutBranchInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   semesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -792,7 +627,6 @@ export type StudyMaterialCreateManySemesterInput = {
   title: string
   type: string
   url: string
-  courseId?: number | null
   createdAt?: Date | string
   branchId?: string | null
 }
@@ -802,7 +636,6 @@ export type StudyMaterialUpdateWithoutSemesterInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course?: Prisma.CourseUpdateOneWithoutStudyMaterialsNestedInput
   branch?: Prisma.BranchUpdateOneWithoutStudyMaterialNestedInput
 }
 
@@ -811,7 +644,6 @@ export type StudyMaterialUncheckedUpdateWithoutSemesterInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -821,7 +653,6 @@ export type StudyMaterialUncheckedUpdateManyWithoutSemesterInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
-  courseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -833,11 +664,9 @@ export type StudyMaterialSelect<ExtArgs extends runtime.Types.Extensions.Interna
   title?: boolean
   type?: boolean
   url?: boolean
-  courseId?: boolean
   createdAt?: boolean
   branchId?: boolean
   semesterId?: boolean
-  course?: boolean | Prisma.StudyMaterial$courseArgs<ExtArgs>
   branch?: boolean | Prisma.StudyMaterial$branchArgs<ExtArgs>
   semester?: boolean | Prisma.StudyMaterial$semesterArgs<ExtArgs>
 }, ExtArgs["result"]["studyMaterial"]>
@@ -847,11 +676,9 @@ export type StudyMaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   title?: boolean
   type?: boolean
   url?: boolean
-  courseId?: boolean
   createdAt?: boolean
   branchId?: boolean
   semesterId?: boolean
-  course?: boolean | Prisma.StudyMaterial$courseArgs<ExtArgs>
   branch?: boolean | Prisma.StudyMaterial$branchArgs<ExtArgs>
   semester?: boolean | Prisma.StudyMaterial$semesterArgs<ExtArgs>
 }, ExtArgs["result"]["studyMaterial"]>
@@ -861,11 +688,9 @@ export type StudyMaterialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   title?: boolean
   type?: boolean
   url?: boolean
-  courseId?: boolean
   createdAt?: boolean
   branchId?: boolean
   semesterId?: boolean
-  course?: boolean | Prisma.StudyMaterial$courseArgs<ExtArgs>
   branch?: boolean | Prisma.StudyMaterial$branchArgs<ExtArgs>
   semester?: boolean | Prisma.StudyMaterial$semesterArgs<ExtArgs>
 }, ExtArgs["result"]["studyMaterial"]>
@@ -875,25 +700,21 @@ export type StudyMaterialSelectScalar = {
   title?: boolean
   type?: boolean
   url?: boolean
-  courseId?: boolean
   createdAt?: boolean
   branchId?: boolean
   semesterId?: boolean
 }
 
-export type StudyMaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "url" | "courseId" | "createdAt" | "branchId" | "semesterId", ExtArgs["result"]["studyMaterial"]>
+export type StudyMaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "url" | "createdAt" | "branchId" | "semesterId", ExtArgs["result"]["studyMaterial"]>
 export type StudyMaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.StudyMaterial$courseArgs<ExtArgs>
   branch?: boolean | Prisma.StudyMaterial$branchArgs<ExtArgs>
   semester?: boolean | Prisma.StudyMaterial$semesterArgs<ExtArgs>
 }
 export type StudyMaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.StudyMaterial$courseArgs<ExtArgs>
   branch?: boolean | Prisma.StudyMaterial$branchArgs<ExtArgs>
   semester?: boolean | Prisma.StudyMaterial$semesterArgs<ExtArgs>
 }
 export type StudyMaterialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  course?: boolean | Prisma.StudyMaterial$courseArgs<ExtArgs>
   branch?: boolean | Prisma.StudyMaterial$branchArgs<ExtArgs>
   semester?: boolean | Prisma.StudyMaterial$semesterArgs<ExtArgs>
 }
@@ -901,7 +722,6 @@ export type StudyMaterialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $StudyMaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StudyMaterial"
   objects: {
-    course: Prisma.$CoursePayload<ExtArgs> | null
     branch: Prisma.$BranchPayload<ExtArgs> | null
     semester: Prisma.$SemesterPayload<ExtArgs> | null
   }
@@ -910,7 +730,6 @@ export type $StudyMaterialPayload<ExtArgs extends runtime.Types.Extensions.Inter
     title: string
     type: string
     url: string
-    courseId: number | null
     createdAt: Date
     branchId: string | null
     semesterId: string | null
@@ -1308,7 +1127,6 @@ readonly fields: StudyMaterialFieldRefs;
  */
 export interface Prisma__StudyMaterialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  course<T extends Prisma.StudyMaterial$courseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudyMaterial$courseArgs<ExtArgs>>): Prisma.Prisma__CourseClient<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   branch<T extends Prisma.StudyMaterial$branchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudyMaterial$branchArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   semester<T extends Prisma.StudyMaterial$semesterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudyMaterial$semesterArgs<ExtArgs>>): Prisma.Prisma__SemesterClient<runtime.Types.Result.GetResult<Prisma.$SemesterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1344,7 +1162,6 @@ export interface StudyMaterialFieldRefs {
   readonly title: Prisma.FieldRef<"StudyMaterial", 'String'>
   readonly type: Prisma.FieldRef<"StudyMaterial", 'String'>
   readonly url: Prisma.FieldRef<"StudyMaterial", 'String'>
-  readonly courseId: Prisma.FieldRef<"StudyMaterial", 'Int'>
   readonly createdAt: Prisma.FieldRef<"StudyMaterial", 'DateTime'>
   readonly branchId: Prisma.FieldRef<"StudyMaterial", 'String'>
   readonly semesterId: Prisma.FieldRef<"StudyMaterial", 'String'>
@@ -1741,25 +1558,6 @@ export type StudyMaterialDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many StudyMaterials to delete.
    */
   limit?: number
-}
-
-/**
- * StudyMaterial.course
- */
-export type StudyMaterial$courseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Course
-   */
-  select?: Prisma.CourseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Course
-   */
-  omit?: Prisma.CourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CourseInclude<ExtArgs> | null
-  where?: Prisma.CourseWhereInput
 }
 
 /**

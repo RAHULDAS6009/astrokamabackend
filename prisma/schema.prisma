@@ -19,14 +19,13 @@ model Admin {
 }
 
 model Student {
-  id                       Int     @id @default(autoincrement())
-  studentId                String  @unique
-  name                     String
-  email                    String? @unique
-  gender                   String?
-  password                 String
-  courseId                 Int?
-  course                   Course? @relation(fields: [courseId], references: [id])
+  id        Int     @id @default(autoincrement())
+  studentId String  @unique
+  name      String
+  email     String? @unique
+  gender    String?
+  password  String
+
   branchId                 String?
   branch                   Branch? @relation(fields: [branchId], references: [id])
   rollNo                   Int? // Sequential number within course/batch
@@ -54,40 +53,57 @@ model Student {
 }
 
 model Course {
-  id             Int             @id @default(autoincrement())
-  ranking        Int?
-  name           String // e.g., "Offline Astrology Full Course"
-  type           String? //offline or online 
-  description    String?
-  duration       Int?
-  bannerpdf      String?
-  bannerimage    String?
-  courseCode     String          @unique // e.g., "OFL", "ONL_LONG", "KAVACH"
-  gridTitle      String[]
-  courseType     String? // "Offline", "Online", "Kavach", "Vastu", "Reiki"
-  isActive       Boolean         @default(true)
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  branches       Branch[]
-  studyMaterials StudyMaterial[]
-  students       Student[]
+  id          Int     @id @default(autoincrement())
+  ranking     Int     @unique
+  name        String // e.g., "Offline Astrology Full Course"
+  description String?
+  bannerpdf   String?
+  bannerimage String?
+
+  gridTitle String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model location {
+  id       String   @id @default(uuid())
+  location String   @unique
+  branches Branch[]
 }
 
 model Branch {
-  id               String          @id @default(uuid())
-  course           Course?         @relation(fields: [courseId], references: [id])
-  courseId         Int?
-  name             String
-  branchCode       String?
-  color            String?
-  durationMonths   Int?
+  id String @id @default(uuid())
+
+  location   location? @relation(fields: [locationId], references: [id])
+  locationId String?
+
+  uploadPhoto1 String?
+  uploadPhoto2 String?
+
+  text     String?
+  isActive Boolean @default(true)
+
+  tabHeader1 String?
+  tabHeader2 String?
+
+  name           String
+  branchCode     String?    @unique
+  color          String?
+  durationMonths Int?
+  module         String?
+  daysPerWeek    String?
+  daysJSON       String? //isko timing jesa bana denge //Sun - 1:00 pm to 5 pm 
+  noofsemster    Int?
+  admissionfee   Int?
+  monthlyfee     Int?
+  classHour      Int?
+  semsters       Semester[]
+
   classType        String? //weekly or monthly 
   daysPerClassType Int?
-  classHour        Int?
-  daysJSON         String?
-  student          Student[]
-  semsters         Semester[]
-  studyMaterial    StudyMaterial[]
+
+  student       Student[]
+  studyMaterial StudyMaterial[]
 }
 
 model Semester {
@@ -112,8 +128,6 @@ model StudyMaterial {
   title      String
   type       String // "PDF", "DOC", "Image", "Video"
   url        String //url of that type
-  courseId   Int?
-  course     Course?   @relation(fields: [courseId], references: [id])
   createdAt  DateTime  @default(now())
   branch     Branch?   @relation(fields: [branchId], references: [id])
   branchId   String?

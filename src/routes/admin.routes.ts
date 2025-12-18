@@ -17,19 +17,15 @@ const router = Router();
 
 // NO auth for login
 router.post("/login", adminController.login);
+router.get("/allcourse", courseController.getAllCourses);
 
 // Admin Protected Routes
 router.use(auth.admin);
 
-//create course
-router.post("/course", courseController.createCourse);
-//update course
+router.post("/course", courseController.addCourse);
+router.get("/course/:id", courseController.getCourseById);
 router.put("/course/:id", courseController.updateCourse);
-//delete course
 router.delete("/course/:id", courseController.deleteCourse);
-//get course
-router.get("/course", courseController.getAllCourses);
-
 //get all admission if approve from admin then move to the Stduent DB
 //fees Download excel for all fess
 

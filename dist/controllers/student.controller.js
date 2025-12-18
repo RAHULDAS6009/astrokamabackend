@@ -1,26 +1,39 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { prisma } from "../lib/prisma.js";
+/* ======================================================
+   STUDENT CONTROLLER
+====================================================== */
 export const studentController = {
+    // ======================================================
+    // CREATE STUDENT + ADMISSION FEE
+    // ======================================================
     createStudent: async (req, res) => {
         try {
-            const { name, email, password, courseId, branchId, gurdianName, relationWithGurdain, courseMode, courseDetails, communicationAddress, permanentAddress, mobileNumber, gender, whatsappNumber, dateOfBirth, placeOfBirth, educationalQualification, extraExperience, astrologicalExperience, occupation, photoUrl, certificateUrl, idProofUrl, 
-            // Payment details
-            razorpayPaymentId, razorpayOrderId, razorpaySignature, } = req.body;
-            // Validate branch exists and get semester info
+            const { name, email, password, branchId, gurdianName, relationWithGurdain, courseMode, courseDetails, communicationAddress, permanentAddress, mobileNumber, gender, whatsappNumber, dateOfBirth, placeOfBirth, educationalQualification, extraExperience, astrologicalExperience, occupation, photoUrl, certificateUrl, idProofUrl, razorpayPaymentId, razorpayOrderId, razorpaySignature, } = req.body;
+            // ============================
+            // VALIDATE BRANCH + FIRST SEM
+            // ============================
             const branch = await prisma.branch.findUnique({
                 where: { id: branchId },
                 include: {
                     semsters: {
                         orderBy: { number: "asc" },
-                        take: 1, // Get first semester
+                        take: 1,
                     },
                 },
             });
             if (!branch) {
-                return res
-                    .status(404)
-                    .json({ success: false, message: "Branch not found" });
+                return res.status(404).json({
+                    success: false,
+                    message: "Branch not found",
+                });
+            }
+            if (!branch.branchCode) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Branch code not set",
+                });
             }
             if (!branch.semsters || branch.semsters.length === 0) {
                 return res.status(400).json({
@@ -29,26 +42,26 @@ export const studentController = {
                 });
             }
             const firstSemester = branch.semsters[0];
-            // const firstSemester = branch.semsters.find((sem) => sem.number == 1);
             if (!firstSemester.admissionFee) {
                 return res.status(400).json({
                     success: false,
-                    message: "Admission fee not set for this branch",
+                    message: "Admission fee not set for this semester",
                 });
             }
-            // Find last rollNo for this branch
+            // ============================
+            // GENERATE ROLL NO + STUDENT ID
+            // ============================
             const lastStudent = await prisma.student.findFirst({
                 where: { branchId },
                 orderBy: { rollNo: "desc" },
             });
-            const nextRollNo = lastStudent ? lastStudent.rollNo + 1 : 1;
-            // Generate Student ID
+            const nextRollNo = lastStudent ? (lastStudent.rollNo ?? 0) + 1 : 1;
             const studentId = `${branch.branchCode}-${String(nextRollNo).padStart(3, "0")}`;
-            // Hash Password
             const hashedPassword = await bcrypt.hash(password, 10);
-            // Create Student and Fee record in a transaction
+            // ============================
+            // TRANSACTION
+            // ============================
             const result = await prisma.$transaction(async (tx) => {
-                // Create Student
                 const student = await tx.student.create({
                     data: {
                         studentId,
@@ -56,7 +69,6 @@ export const studentController = {
                         email,
                         gender,
                         password: hashedPassword,
-                        courseId: Number(courseId),
                         branchId,
                         rollNo: nextRollNo,
                         gurdianName,
@@ -78,12 +90,11 @@ export const studentController = {
                         idProofUrl,
                     },
                 });
-                // Create Admission Fee Record
                 const feeRecord = await tx.fee.create({
                     data: {
                         studentId: student.id,
                         semesterId: firstSemester.id,
-                        description: `Admission Fee`,
+                        description: "Admission Fee",
                         amount: Number(firstSemester.admissionFee),
                         lateFine: 0,
                         status: "Paid",
@@ -99,39 +110,43 @@ export const studentController = {
             });
             return res.json({
                 success: true,
-                message: "Student created successfully with admission fee paid",
-                data: {
-                    student: result.student,
-                    admissionFee: result.feeRecord,
-                },
+                message: "Student created successfully",
+                data: result,
             });
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({
+            console.error(error);
+            res.status(500).json({
                 success: false,
                 message: "Internal server error",
-                error: error,
             });
         }
     },
+    // ======================================================
+    // GET STUDENT BASIC
+    // ======================================================
     getStudentBasic: async (req, res) => {
         try {
             const { studentId } = req.params;
             const student = await prisma.student.findUnique({
                 where: { studentId },
-                select: { name: true, email: true }, // only send basic info
+                select: {
+                    name: true,
+                    email: true,
+                },
             });
             if (!student) {
                 return res.status(404).json({ message: "Student not found" });
             }
-            return res.json(student);
+            res.json(student);
         }
         catch (error) {
-            console.log("Error fetching student basic:", error);
-            return res.status(500).json({ message: "Server error" });
+            res.status(500).json({ message: "Server error" });
         }
     },
+    // ======================================================
+    // LOGIN
+    // ======================================================
     login: async (req, res) => {
         try {
             const { studentId, password } = req.body;
@@ -141,46 +156,35 @@ export const studentController = {
             if (!student) {
                 return res.status(404).json({ message: "Student not found" });
             }
-            const match = await bcrypt.compare(password, student.password);
-            if (!match) {
+            const isMatch = await bcrypt.compare(password, student.password);
+            if (!isMatch) {
                 return res.status(400).json({ message: "Invalid password" });
             }
             const token = jwt.sign({ id: student.id, role: "STUDENT" }, process.env.JWT_SECRET);
             res.json({
                 success: true,
-                message: "Login successful",
                 token,
                 student,
             });
         }
-        catch (err) {
-            console.error(err);
+        catch {
             res.status(500).json({ message: "Login failed" });
         }
     },
+    // ======================================================
+    // GET PROFILE
+    // ======================================================
     getProfile: async (req, res) => {
         try {
             if (!req.user?.id) {
-                return res.status(401).json({
-                    success: false,
-                    message: "Unauthorized",
-                });
+                return res.status(401).json({ message: "Unauthorized" });
             }
             const student = await prisma.student.findUnique({
                 where: { id: req.user.id },
                 include: {
-                    course: {
-                        select: {
-                            id: true,
-                            name: true,
-                            courseCode: true,
-                        },
-                    },
                     branch: {
                         include: {
-                            semsters: {
-                                orderBy: { number: "asc" },
-                            },
+                            semsters: { orderBy: { number: "asc" } },
                             studyMaterial: true,
                         },
                     },
@@ -188,52 +192,33 @@ export const studentController = {
                         orderBy: { createdAt: "desc" },
                         include: {
                             semester: {
-                                select: {
-                                    name: true,
-                                    number: true,
-                                },
+                                select: { name: true, number: true },
                             },
                         },
                     },
                 },
             });
             if (!student) {
-                return res.status(404).json({
-                    success: false,
-                    message: "Student not found",
-                });
+                return res.status(404).json({ message: "Student not found" });
             }
-            const { password, ...studentData } = student;
-            res.json({
-                success: true,
-                data: studentData,
-            });
+            const { password, ...data } = student;
+            res.json({ success: true, data });
         }
-        catch (error) {
-            console.error("Error fetching student profile:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to fetch student profile",
-            });
+        catch {
+            res.status(500).json({ message: "Failed to fetch profile" });
         }
     },
+    // ======================================================
+    // UPDATE PROFILE
+    // ======================================================
     updateProfile: async (req, res) => {
         try {
             if (!req.user?.id) {
-                return res.status(401).json({
-                    success: false,
-                    message: "Unauthorized",
-                });
+                return res.status(401).json({ message: "Unauthorized" });
             }
-            const { mobileNumber, communicationAddress, permanentAddress, email } = req.body;
             const student = await prisma.student.update({
                 where: { id: req.user.id },
-                data: {
-                    ...(mobileNumber && { mobileNumber }),
-                    ...(communicationAddress && { communicationAddress }),
-                    ...(permanentAddress && { permanentAddress }),
-                    ...(email && { email }),
-                },
+                data: req.body,
                 select: {
                     id: true,
                     studentId: true,
@@ -246,25 +231,20 @@ export const studentController = {
             });
             res.json({
                 success: true,
-                message: "Profile updated successfully",
                 data: student,
             });
         }
-        catch (error) {
-            console.error("Error updating student profile:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to update profile",
-            });
+        catch {
+            res.status(500).json({ message: "Update failed" });
         }
     },
+    // ======================================================
+    // STUDY MATERIALS
+    // ======================================================
     getStudyMaterials: async (req, res) => {
         try {
             if (!req.user?.id) {
-                return res.status(401).json({
-                    success: false,
-                    message: "Unauthorized",
-                });
+                return res.status(401).json({ message: "Unauthorized" });
             }
             const student = await prisma.student.findUnique({
                 where: { id: req.user.id },
@@ -273,234 +253,121 @@ export const studentController = {
                         include: {
                             studyMaterial: true,
                             semsters: {
-                                include: {
-                                    studyMaterial: true,
-                                },
+                                include: { studyMaterial: true },
                             },
                         },
                     },
                 },
             });
             if (!student) {
-                return res.status(404).json({
-                    success: false,
-                    message: "Student not found",
-                });
+                return res.status(404).json({ message: "Student not found" });
             }
             const branchMaterials = student.branch?.studyMaterial || [];
-            const semesterMaterials = student.branch?.semsters?.flatMap((sem) => sem.studyMaterial || []) ||
-                [];
-            const allMaterials = [...branchMaterials, ...semesterMaterials];
+            const semesterMaterials = student.branch?.semsters.flatMap((s) => s.studyMaterial) || [];
             res.json({
                 success: true,
-                data: allMaterials,
+                data: [...branchMaterials, ...semesterMaterials],
             });
         }
-        catch (error) {
-            console.error("Error fetching study materials:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to fetch study materials",
-            });
+        catch {
+            res.status(500).json({ message: "Failed to fetch materials" });
         }
     },
 };
+/* ======================================================
+   ADMIN STUDENT CONTROLLER
+====================================================== */
 export const adminStudentController = {
-    getAllStudents: async (req, res) => {
+    // ======================================================
+    // GET ALL STUDENTS
+    // ======================================================
+    getAllStudents: async (_req, res) => {
         try {
             const students = await prisma.student.findMany({
                 include: {
-                    course: {
-                        select: {
-                            id: true,
-                            name: true,
-                        },
-                    },
                     branch: {
                         include: {
-                            semsters: {
-                                orderBy: { number: "asc" },
-                            },
+                            semsters: { orderBy: { number: "asc" } },
                         },
                     },
                     fees: {
                         include: {
-                            semester: {
-                                select: {
-                                    name: true,
-                                    number: true,
-                                },
-                            },
+                            semester: { select: { name: true, number: true } },
                         },
                     },
                 },
-                orderBy: { createdAt: "desc" },
             });
-            const studentsData = students.map(({ password, ...student }) => student);
-            res.json({
-                success: true,
-                data: studentsData,
-            });
+            const data = students.map(({ password, ...s }) => s);
+            res.json({ success: true, data });
         }
-        catch (error) {
-            console.error("Error fetching students:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to fetch students",
-            });
+        catch {
+            res.status(500).json({ message: "Failed to fetch students" });
         }
     },
+    // ======================================================
+    // GET STUDENT BY ID
+    // ======================================================
     getStudentById: async (req, res) => {
         try {
-            const { studentId } = req.params;
+            const id = Number(req.params.studentId);
             const student = await prisma.student.findUnique({
-                where: { id: parseInt(studentId) },
+                where: { id },
                 include: {
-                    course: {
-                        select: {
-                            id: true,
-                            name: true,
-                            courseCode: true,
-                        },
-                    },
                     branch: {
                         include: {
-                            semsters: {
-                                orderBy: { number: "asc" },
-                            },
+                            semsters: { orderBy: { number: "asc" } },
                         },
                     },
                     fees: {
                         orderBy: { createdAt: "desc" },
                         include: {
-                            semester: {
-                                select: {
-                                    name: true,
-                                    number: true,
-                                },
-                            },
+                            semester: { select: { name: true, number: true } },
                         },
                     },
                 },
             });
             if (!student) {
-                return res.status(404).json({
-                    success: false,
-                    message: "Student not found",
-                });
+                return res.status(404).json({ message: "Student not found" });
             }
-            const { password, ...studentData } = student;
-            res.json({
-                success: true,
-                data: studentData,
-            });
+            const { password, ...data } = student;
+            res.json({ success: true, data });
         }
-        catch (error) {
-            console.error("Error fetching student:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to fetch student",
-            });
+        catch {
+            res.status(500).json({ message: "Fetch failed" });
         }
     },
+    // ======================================================
+    // UPDATE STUDENT
+    // ======================================================
     updateStudent: async (req, res) => {
         try {
-            const { studentId } = req.params;
-            const updateData = req.body;
-            delete updateData.password;
-            delete updateData.id;
-            // ============================
-            // VALIDATE ROLL NO (if provided)
-            // ============================
-            if (updateData.rollNo !== undefined) {
-                const roll = Number(updateData.rollNo);
-                // Only allow 1, 2, or 3
-                if (![1, 2, 3].includes(roll)) {
-                    return res.status(400).json({
-                        success: false,
-                        message: "Roll No must be 1, 2, or 3 only",
-                    });
-                }
-                // Fetch student to know courseDetails
-                const existingStudent = await prisma.student.findUnique({
-                    where: { id: Number(studentId) },
-                });
-                if (!existingStudent) {
-                    return res.status(404).json({
-                        success: false,
-                        message: "Student not found",
-                    });
-                }
-                // Duplicate roll number check inside same courseDetails
-                const duplicateRoll = await prisma.student.findFirst({
-                    where: {
-                        id: { not: Number(studentId) },
-                        rollNo: roll,
-                    },
-                });
-                if (duplicateRoll) {
-                    return res.status(400).json({
-                        success: false,
-                        message: "This roll number is already taken for this batch",
-                    });
-                }
-            }
-            // ============================
-            // UPDATE STUDENT
-            // ============================
+            const id = Number(req.params.studentId);
+            delete req.body.password;
+            delete req.body.id;
             const student = await prisma.student.update({
-                where: { id: Number(studentId) },
-                data: updateData,
-                include: {
-                    course: true,
-                    branch: true,
-                },
+                where: { id },
+                data: req.body,
+                include: { branch: true },
             });
-            const { password, ...studentData } = student;
-            res.json({
-                success: true,
-                message: "Student updated successfully",
-                data: studentData,
-            });
+            const { password, ...data } = student;
+            res.json({ success: true, data });
         }
-        catch (error) {
-            console.error("Error updating student:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to update student",
-            });
+        catch {
+            res.status(500).json({ message: "Update failed" });
         }
     },
+    // ======================================================
+    // DELETE STUDENT
+    // ======================================================
     deleteStudent: async (req, res) => {
         try {
-            const { studentId } = req.params;
-            const id = parseInt(studentId);
-            // 1️⃣ Delete fees first
-            await prisma.fee.deleteMany({
-                where: { studentId: id },
-            });
-            // 2️⃣ Delete payments (if exists)
-            await prisma.fee
-                ?.deleteMany({
-                where: { studentId: id },
-            })
-                .catch(() => { });
-            // 3️⃣ Delete attendance (if exists)
-            // 4️⃣ Delete the student
-            await prisma.student.delete({
-                where: { id },
-            });
-            res.json({
-                success: true,
-                message: "Student deleted successfully",
-            });
+            const id = Number(req.params.studentId);
+            await prisma.fee.deleteMany({ where: { studentId: id } });
+            await prisma.student.delete({ where: { id } });
+            res.json({ success: true, message: "Student deleted" });
         }
-        catch (error) {
-            console.error("Error deleting student:", error);
-            res.status(500).json({
-                success: false,
-                message: "Failed to delete student",
-            });
+        catch {
+            res.status(500).json({ message: "Delete failed" });
         }
     },
 };

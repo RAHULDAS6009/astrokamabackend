@@ -11,6 +11,7 @@
 export type * from './models/Admin.js'
 export type * from './models/Student.js'
 export type * from './models/Course.js'
+export type * from './models/location.js'
 export type * from './models/Branch.js'
 export type * from './models/Semester.js'
 export type * from './models/StudyMaterial.js'
