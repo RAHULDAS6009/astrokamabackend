@@ -228,14 +228,14 @@ export type CMSOrderByWithRelationInput = {
 
 export type CMSWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  section?: string
   AND?: Prisma.CMSWhereInput | Prisma.CMSWhereInput[]
   OR?: Prisma.CMSWhereInput[]
   NOT?: Prisma.CMSWhereInput | Prisma.CMSWhereInput[]
-  section?: Prisma.StringFilter<"CMS"> | string
   content?: Prisma.StringFilter<"CMS"> | string
   imageUrl?: Prisma.StringNullableFilter<"CMS"> | string | null
   updatedAt?: Prisma.DateTimeFilter<"CMS"> | Date | string
-}, "id">
+}, "id" | "section">
 
 export type CMSOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

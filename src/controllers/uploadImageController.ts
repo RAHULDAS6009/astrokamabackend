@@ -3,6 +3,7 @@ import { s3 } from "../config/s3.js";
 import { Request, Response } from "express";
 
 export const uploadFile = async (req: Request, res: Response) => {
+  console.log("hello world");
   try {
     const file = req.file;
     const type = req.body.type || "image"; // or "pdf"

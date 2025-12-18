@@ -15,7 +15,7 @@ import { consultationController } from "../controllers/consultation.controller.j
 const router = Router();
 
 // path to get all cms
-router.get("/", async (req: Request, res: Response) => {
+router.get("/cms", async (req: Request, res: Response) => {
   try {
     const allCMS = await prisma.cMS.findMany({
       orderBy: { section: "asc" }, // optional sorting

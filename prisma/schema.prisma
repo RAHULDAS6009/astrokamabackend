@@ -268,7 +268,7 @@ model Review {
 
 model CMS {
   id        Int      @id @default(autoincrement())
-  section   String // "Hero", "About", "Philosophy", etc.
+  section   String   @unique // "Hero", "About", "Philosophy", etc. 
   content   String
   imageUrl  String?
   updatedAt DateTime @updatedAt

@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { adminController } from "../controllers/admin.controller.js";
 import {
   adminConsultationController,
@@ -12,6 +12,7 @@ import { cmsController } from "../controllers/cms.controller.js";
 import { auth } from "../middleware/auth.js";
 import { adminFeeController } from "../controllers/adminFeeController.js";
 import { adminStudentController } from "../controllers/student.controller.js";
+import { prisma } from "../lib/prisma.js";
 
 const router = Router();
 
@@ -21,6 +22,38 @@ router.get("/allcourse", courseController.getAllCourses);
 
 // Admin Protected Routes
 router.use(auth.admin);
+
+router.put("/cms/:section", async (req: Request, res: Response) => {
+  try {
+    const { section } = req.params;
+    const { content, imageUrl } = req.body;
+
+    if (!section) {
+      return res.status(400).json({ message: "Section is required" });
+    }
+
+    const cms = await prisma.cMS.upsert({
+      where: { section },
+      update: {
+        content: content ?? "",
+        imageUrl: imageUrl ?? null,
+      },
+      create: {
+        section,
+        content: content ?? "",
+        imageUrl: imageUrl ?? null,
+      },
+    });
+
+    return res.status(200).json({
+      message: "CMS content saved successfully",
+      data: cms,
+    });
+  } catch (error) {
+    console.error("Error updating CMS:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 router.post("/course", courseController.addCourse);
 router.get("/course/:id", courseController.getCourseById);

@@ -11,11 +11,22 @@ import locationroutes from "./routes/location.routes.js";
 
 const app = express();
 const corsOptions = {
-  origin: ["https://astrokama.com", "https://astro-admin-seven.vercel.app"],
+  origin: [
+    "https://astrokama.com",
+    "https://www.astrokama.com",
+    "https://astro-admin-seven.vercel.app",
+  ],
   // Replace with your actual frontend domain
   optionsSuccessStatus: 200,
   // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
+
+// const corsOptions = {
+//   origin: ["http://localhost:3000", "http://localhost:3010"],
+//   // Replace with your actual frontend domain
+//   optionsSuccessStatus: 200,
+//   // Some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use((req: Request, res: Response, next: NextFunction) => {
