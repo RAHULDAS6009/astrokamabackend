@@ -49,7 +49,6 @@ app.use("/api/v1/", routes);
 // But with the above fix, the frontend won't need to call this
 
 app.post("/upload-file", upload.single("file"), uploadFile);
-app.post("/", upload.single("file"), uploadFile);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
