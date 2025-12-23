@@ -23,6 +23,168 @@ router.get("/allcourse", courseController.getAllCourses);
 // Admin Protected Routes
 router.use(auth.admin);
 
+router.get(
+  "/by-branch-code/:branchCode",
+  async (req: Request, res: Response) => {
+    try {
+      const { branchCode } = req.params;
+
+      // 1️⃣ Find branch by branchCode
+      const branch = await prisma.branch.findUnique({
+        where: { branchCode },
+        select: { id: true, name: true },
+      });
+
+      if (!branch) {
+        return res.status(404).json({
+          success: false,
+          message: "Invalid branch code",
+        });
+      }
+
+      // 2️⃣ Get students of that branch
+      const students = await prisma.student.findMany({
+        where: { branchId: branch.id },
+        orderBy: { createdAt: "asc" },
+        select: {
+          id: true,
+          name: true,
+          rollNo: true,
+        },
+      });
+
+      res.json({
+        success: true,
+        branch: {
+          name: branch.name,
+          branchCode,
+        },
+        students,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch students",
+      });
+    }
+  }
+);
+
+router.put(
+  "/bulk-roll-update-by-branch-code",
+  async (req: Request, res: Response) => {
+    try {
+      const { branchCode, rolls } = req.body;
+
+      /* ---------------- VALIDATION ---------------- */
+
+      if (!branchCode || !Array.isArray(rolls) || rolls.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: "branchCode and rolls array are required",
+        });
+      }
+
+      // Validate roll structure
+      for (const r of rolls) {
+        if (
+          typeof r.studentId !== "number" ||
+          typeof r.rollNo !== "number" ||
+          r.rollNo <= 0
+        ) {
+          return res.status(400).json({
+            success: false,
+            message: "Invalid studentId or rollNo in payload",
+          });
+        }
+      }
+
+      /* ---------------- FIND BRANCH ---------------- */
+
+      const branch = await prisma.branch.findUnique({
+        where: { branchCode },
+        select: { id: true },
+      });
+
+      if (!branch) {
+        return res.status(404).json({
+          success: false,
+          message: "Invalid branch code",
+        });
+      }
+
+      /* ---------------- DUPLICATE CHECK (REQUEST) ---------------- */
+
+      const rollNumbers = rolls.map((r) => r.rollNo);
+      const uniqueRolls = new Set(rollNumbers);
+
+      if (uniqueRolls.size !== rollNumbers.length) {
+        return res.status(409).json({
+          success: false,
+          message: "Duplicate roll numbers in request",
+        });
+      }
+
+      /* ---------------- DUPLICATE CHECK (DB) ---------------- */
+
+      const existing = await prisma.student.findMany({
+        where: {
+          branchId: branch.id,
+          rollNo: { in: rollNumbers },
+        },
+        select: { rollNo: true },
+      });
+
+      if (existing.length > 0) {
+        return res.status(409).json({
+          success: false,
+          message: "One or more roll numbers already exist in this branch",
+          existingRolls: existing.map((e) => e.rollNo),
+        });
+      }
+
+      /* ---------------- TRANSACTION UPDATE ---------------- */
+
+      await prisma.$transaction(
+        rolls.map((r) =>
+          prisma.student.update({
+            where: {
+              id: r.studentId,
+            },
+            data: {
+              rollNo: r.rollNo,
+            },
+          })
+        )
+      );
+
+      /* ---------------- RESPONSE ---------------- */
+
+      return res.json({
+        success: true,
+        message: "Custom roll numbers assigned successfully",
+        updatedCount: rolls.length,
+      });
+    } catch (error: any) {
+      // Prisma unique constraint safety
+      if (error.code === "P2002") {
+        return res.status(409).json({
+          success: false,
+          message: "Duplicate roll number detected",
+        });
+      }
+
+      console.error("ROLL UPDATE ERROR:", error);
+
+      return res.status(500).json({
+        success: false,
+        message: "Bulk roll update failed",
+      });
+    }
+  }
+);
+
 router.post("/alumni", async (req: Request, res: Response) => {
   try {
     const { name, registrationNumber, imageUrl } = req.body;

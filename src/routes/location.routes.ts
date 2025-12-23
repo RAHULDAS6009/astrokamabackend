@@ -27,6 +27,7 @@ const formatDaysJSON = (classDays: any, classTime: any) => {
 /* ======================================================
    CREATE BRANCH + SEMSTERS
 ====================================================== */
+
 router.post("/branch", async (req: Request, res: Response) => {
   try {
     const { courseData } = req.body;
