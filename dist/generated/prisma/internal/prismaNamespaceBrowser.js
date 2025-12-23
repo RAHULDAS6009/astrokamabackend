@@ -51,7 +51,8 @@ export const ModelName = {
     ScheduleTemplate: 'ScheduleTemplate',
     TimeSlot: 'TimeSlot',
     Review: 'Review',
-    CMS: 'CMS'
+    CMS: 'CMS',
+    Alumni: 'Alumni'
 };
 /*
  * Enums
@@ -121,6 +122,7 @@ export const BranchScalarFieldEnum = {
     isActive: 'isActive',
     tabHeader1: 'tabHeader1',
     tabHeader2: 'tabHeader2',
+    isoffline: 'isoffline',
     name: 'name',
     branchCode: 'branchCode',
     color: 'color',
@@ -254,6 +256,12 @@ export const CMSScalarFieldEnum = {
     content: 'content',
     imageUrl: 'imageUrl',
     updatedAt: 'updatedAt'
+};
+export const AlumniScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    imageUrl: 'imageUrl',
+    RegistrationNumber: 'RegistrationNumber'
 };
 export const SortOrder = {
     asc: 'asc',

@@ -63,7 +63,8 @@ export const ModelName = {
   ScheduleTemplate: 'ScheduleTemplate',
   TimeSlot: 'TimeSlot',
   Review: 'Review',
-  CMS: 'CMS'
+  CMS: 'CMS',
+  Alumni: 'Alumni'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -157,6 +158,7 @@ export const BranchScalarFieldEnum = {
   isActive: 'isActive',
   tabHeader1: 'tabHeader1',
   tabHeader2: 'tabHeader2',
+  isoffline: 'isoffline',
   name: 'name',
   branchCode: 'branchCode',
   color: 'color',
@@ -325,6 +327,16 @@ export const CMSScalarFieldEnum = {
 } as const
 
 export type CMSScalarFieldEnum = (typeof CMSScalarFieldEnum)[keyof typeof CMSScalarFieldEnum]
+
+
+export const AlumniScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  imageUrl: 'imageUrl',
+  RegistrationNumber: 'RegistrationNumber'
+} as const
+
+export type AlumniScalarFieldEnum = (typeof AlumniScalarFieldEnum)[keyof typeof AlumniScalarFieldEnum]
 
 
 export const SortOrder = {

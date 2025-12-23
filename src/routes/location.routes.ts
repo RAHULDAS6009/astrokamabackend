@@ -102,6 +102,10 @@ router.post("/branch", async (req: Request, res: Response) => {
         tabHeader1: courseData.tabName?.header1 || null,
         tabHeader2: courseData.tabName?.header2 || null,
 
+        isoffline: courseData.isOffline,
+
+        isActive: courseData.isActive,
+
         // PHOTOS (store filenames only)
         uploadPhoto1: courseData.photo1 || "",
         uploadPhoto2: courseData.photo2 || "",

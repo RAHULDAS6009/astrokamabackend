@@ -53,6 +53,7 @@ export type BranchMinAggregateOutputType = {
   isActive: boolean | null
   tabHeader1: string | null
   tabHeader2: string | null
+  isoffline: boolean | null
   name: string | null
   branchCode: string | null
   color: string | null
@@ -77,6 +78,7 @@ export type BranchMaxAggregateOutputType = {
   isActive: boolean | null
   tabHeader1: string | null
   tabHeader2: string | null
+  isoffline: boolean | null
   name: string | null
   branchCode: string | null
   color: string | null
@@ -101,6 +103,7 @@ export type BranchCountAggregateOutputType = {
   isActive: number
   tabHeader1: number
   tabHeader2: number
+  isoffline: number
   name: number
   branchCode: number
   color: number
@@ -145,6 +148,7 @@ export type BranchMinAggregateInputType = {
   isActive?: true
   tabHeader1?: true
   tabHeader2?: true
+  isoffline?: true
   name?: true
   branchCode?: true
   color?: true
@@ -169,6 +173,7 @@ export type BranchMaxAggregateInputType = {
   isActive?: true
   tabHeader1?: true
   tabHeader2?: true
+  isoffline?: true
   name?: true
   branchCode?: true
   color?: true
@@ -193,6 +198,7 @@ export type BranchCountAggregateInputType = {
   isActive?: true
   tabHeader1?: true
   tabHeader2?: true
+  isoffline?: true
   name?: true
   branchCode?: true
   color?: true
@@ -304,6 +310,7 @@ export type BranchGroupByOutputType = {
   isActive: boolean
   tabHeader1: string | null
   tabHeader2: string | null
+  isoffline: boolean | null
   name: string
   branchCode: string | null
   color: string | null
@@ -351,6 +358,7 @@ export type BranchWhereInput = {
   isActive?: Prisma.BoolFilter<"Branch"> | boolean
   tabHeader1?: Prisma.StringNullableFilter<"Branch"> | string | null
   tabHeader2?: Prisma.StringNullableFilter<"Branch"> | string | null
+  isoffline?: Prisma.BoolNullableFilter<"Branch"> | boolean | null
   name?: Prisma.StringFilter<"Branch"> | string
   branchCode?: Prisma.StringNullableFilter<"Branch"> | string | null
   color?: Prisma.StringNullableFilter<"Branch"> | string | null
@@ -379,6 +387,7 @@ export type BranchOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   tabHeader1?: Prisma.SortOrderInput | Prisma.SortOrder
   tabHeader2?: Prisma.SortOrderInput | Prisma.SortOrder
+  isoffline?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrderInput | Prisma.SortOrder
   color?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -411,6 +420,7 @@ export type BranchWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"Branch"> | boolean
   tabHeader1?: Prisma.StringNullableFilter<"Branch"> | string | null
   tabHeader2?: Prisma.StringNullableFilter<"Branch"> | string | null
+  isoffline?: Prisma.BoolNullableFilter<"Branch"> | boolean | null
   name?: Prisma.StringFilter<"Branch"> | string
   color?: Prisma.StringNullableFilter<"Branch"> | string | null
   durationMonths?: Prisma.IntNullableFilter<"Branch"> | number | null
@@ -438,6 +448,7 @@ export type BranchOrderByWithAggregationInput = {
   isActive?: Prisma.SortOrder
   tabHeader1?: Prisma.SortOrderInput | Prisma.SortOrder
   tabHeader2?: Prisma.SortOrderInput | Prisma.SortOrder
+  isoffline?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrderInput | Prisma.SortOrder
   color?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -470,6 +481,7 @@ export type BranchScalarWhereWithAggregatesInput = {
   isActive?: Prisma.BoolWithAggregatesFilter<"Branch"> | boolean
   tabHeader1?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   tabHeader2?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
+  isoffline?: Prisma.BoolNullableWithAggregatesFilter<"Branch"> | boolean | null
   name?: Prisma.StringWithAggregatesFilter<"Branch"> | string
   branchCode?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   color?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
@@ -493,6 +505,7 @@ export type BranchCreateInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -521,6 +534,7 @@ export type BranchUncheckedCreateInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -547,6 +561,7 @@ export type BranchUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -575,6 +590,7 @@ export type BranchUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -602,6 +618,7 @@ export type BranchCreateManyInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -625,6 +642,7 @@ export type BranchUpdateManyMutationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -649,6 +667,7 @@ export type BranchUncheckedUpdateManyInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -688,6 +707,7 @@ export type BranchCountOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   tabHeader1?: Prisma.SortOrder
   tabHeader2?: Prisma.SortOrder
+  isoffline?: Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrder
   color?: Prisma.SortOrder
@@ -721,6 +741,7 @@ export type BranchMaxOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   tabHeader1?: Prisma.SortOrder
   tabHeader2?: Prisma.SortOrder
+  isoffline?: Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrder
   color?: Prisma.SortOrder
@@ -745,6 +766,7 @@ export type BranchMinOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   tabHeader1?: Prisma.SortOrder
   tabHeader2?: Prisma.SortOrder
+  isoffline?: Prisma.SortOrder
   name?: Prisma.SortOrder
   branchCode?: Prisma.SortOrder
   color?: Prisma.SortOrder
@@ -831,6 +853,10 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
+}
+
 export type BranchCreateNestedOneWithoutSemstersInput = {
   create?: Prisma.XOR<Prisma.BranchCreateWithoutSemstersInput, Prisma.BranchUncheckedCreateWithoutSemstersInput>
   connectOrCreate?: Prisma.BranchCreateOrConnectWithoutSemstersInput
@@ -871,6 +897,7 @@ export type BranchCreateWithoutStudentInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -898,6 +925,7 @@ export type BranchUncheckedCreateWithoutStudentInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -939,6 +967,7 @@ export type BranchUpdateWithoutStudentInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -966,6 +995,7 @@ export type BranchUncheckedUpdateWithoutStudentInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -991,6 +1021,7 @@ export type BranchCreateWithoutLocationInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1017,6 +1048,7 @@ export type BranchUncheckedCreateWithoutLocationInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1073,6 +1105,7 @@ export type BranchScalarWhereInput = {
   isActive?: Prisma.BoolFilter<"Branch"> | boolean
   tabHeader1?: Prisma.StringNullableFilter<"Branch"> | string | null
   tabHeader2?: Prisma.StringNullableFilter<"Branch"> | string | null
+  isoffline?: Prisma.BoolNullableFilter<"Branch"> | boolean | null
   name?: Prisma.StringFilter<"Branch"> | string
   branchCode?: Prisma.StringNullableFilter<"Branch"> | string | null
   color?: Prisma.StringNullableFilter<"Branch"> | string | null
@@ -1096,6 +1129,7 @@ export type BranchCreateWithoutSemstersInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1123,6 +1157,7 @@ export type BranchUncheckedCreateWithoutSemstersInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1164,6 +1199,7 @@ export type BranchUpdateWithoutSemstersInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1191,6 +1227,7 @@ export type BranchUncheckedUpdateWithoutSemstersInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1216,6 +1253,7 @@ export type BranchCreateWithoutStudyMaterialInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1243,6 +1281,7 @@ export type BranchUncheckedCreateWithoutStudyMaterialInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1284,6 +1323,7 @@ export type BranchUpdateWithoutStudyMaterialInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1311,6 +1351,7 @@ export type BranchUncheckedUpdateWithoutStudyMaterialInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1336,6 +1377,7 @@ export type BranchCreateManyLocationInput = {
   isActive?: boolean
   tabHeader1?: string | null
   tabHeader2?: string | null
+  isoffline?: boolean | null
   name: string
   branchCode?: string | null
   color?: string | null
@@ -1359,6 +1401,7 @@ export type BranchUpdateWithoutLocationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1385,6 +1428,7 @@ export type BranchUncheckedUpdateWithoutLocationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1411,6 +1455,7 @@ export type BranchUncheckedUpdateManyWithoutLocationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tabHeader1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tabHeader2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isoffline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1484,6 +1529,7 @@ export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   isActive?: boolean
   tabHeader1?: boolean
   tabHeader2?: boolean
+  isoffline?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
@@ -1513,6 +1559,7 @@ export type BranchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   isActive?: boolean
   tabHeader1?: boolean
   tabHeader2?: boolean
+  isoffline?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
@@ -1538,6 +1585,7 @@ export type BranchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   isActive?: boolean
   tabHeader1?: boolean
   tabHeader2?: boolean
+  isoffline?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
@@ -1563,6 +1611,7 @@ export type BranchSelectScalar = {
   isActive?: boolean
   tabHeader1?: boolean
   tabHeader2?: boolean
+  isoffline?: boolean
   name?: boolean
   branchCode?: boolean
   color?: boolean
@@ -1578,7 +1627,7 @@ export type BranchSelectScalar = {
   daysPerClassType?: boolean
 }
 
-export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "locationId" | "uploadPhoto1" | "uploadPhoto2" | "text" | "isActive" | "tabHeader1" | "tabHeader2" | "name" | "branchCode" | "color" | "durationMonths" | "module" | "daysPerWeek" | "daysJSON" | "noofsemster" | "admissionfee" | "monthlyfee" | "classHour" | "classType" | "daysPerClassType", ExtArgs["result"]["branch"]>
+export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "locationId" | "uploadPhoto1" | "uploadPhoto2" | "text" | "isActive" | "tabHeader1" | "tabHeader2" | "isoffline" | "name" | "branchCode" | "color" | "durationMonths" | "module" | "daysPerWeek" | "daysJSON" | "noofsemster" | "admissionfee" | "monthlyfee" | "classHour" | "classType" | "daysPerClassType", ExtArgs["result"]["branch"]>
 export type BranchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   location?: boolean | Prisma.Branch$locationArgs<ExtArgs>
   semsters?: boolean | Prisma.Branch$semstersArgs<ExtArgs>
@@ -1610,6 +1659,7 @@ export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     isActive: boolean
     tabHeader1: string | null
     tabHeader2: string | null
+    isoffline: boolean | null
     name: string
     branchCode: string | null
     color: string | null
@@ -2058,6 +2108,7 @@ export interface BranchFieldRefs {
   readonly isActive: Prisma.FieldRef<"Branch", 'Boolean'>
   readonly tabHeader1: Prisma.FieldRef<"Branch", 'String'>
   readonly tabHeader2: Prisma.FieldRef<"Branch", 'String'>
+  readonly isoffline: Prisma.FieldRef<"Branch", 'Boolean'>
   readonly name: Prisma.FieldRef<"Branch", 'String'>
   readonly branchCode: Prisma.FieldRef<"Branch", 'String'>
   readonly color: Prisma.FieldRef<"Branch", 'String'>

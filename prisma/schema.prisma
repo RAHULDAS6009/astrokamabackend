@@ -86,6 +86,8 @@ model Branch {
   tabHeader1 String?
   tabHeader2 String?
 
+  isoffline Boolean?
+
   name           String
   branchCode     String?    @unique
   color          String?
@@ -272,4 +274,11 @@ model CMS {
   content   String
   imageUrl  String?
   updatedAt DateTime @updatedAt
+}
+
+model Alumni {
+  id                 Int     @id @default(autoincrement())
+  name               String
+  imageUrl           String?
+  RegistrationNumber String  @unique
 }

@@ -396,7 +396,8 @@ export const ModelName = {
   ScheduleTemplate: 'ScheduleTemplate',
   TimeSlot: 'TimeSlot',
   Review: 'Review',
-  CMS: 'CMS'
+  CMS: 'CMS',
+  Alumni: 'Alumni'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -412,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "student" | "course" | "location" | "branch" | "semester" | "studyMaterial" | "fee" | "consultation" | "scheduleTemplate" | "timeSlot" | "review" | "cMS"
+    modelProps: "admin" | "student" | "course" | "location" | "branch" | "semester" | "studyMaterial" | "fee" | "consultation" | "scheduleTemplate" | "timeSlot" | "review" | "cMS" | "alumni"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1378,6 +1379,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Alumni: {
+      payload: Prisma.$AlumniPayload<ExtArgs>
+      fields: Prisma.AlumniFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AlumniFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AlumniFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>
+        }
+        findFirst: {
+          args: Prisma.AlumniFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AlumniFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>
+        }
+        findMany: {
+          args: Prisma.AlumniFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>[]
+        }
+        create: {
+          args: Prisma.AlumniCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>
+        }
+        createMany: {
+          args: Prisma.AlumniCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AlumniCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>[]
+        }
+        delete: {
+          args: Prisma.AlumniDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>
+        }
+        update: {
+          args: Prisma.AlumniUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>
+        }
+        deleteMany: {
+          args: Prisma.AlumniDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AlumniUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AlumniUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>[]
+        }
+        upsert: {
+          args: Prisma.AlumniUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlumniPayload>
+        }
+        aggregate: {
+          args: Prisma.AlumniAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAlumni>
+        }
+        groupBy: {
+          args: Prisma.AlumniGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlumniGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AlumniCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlumniCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1492,6 +1567,7 @@ export const BranchScalarFieldEnum = {
   isActive: 'isActive',
   tabHeader1: 'tabHeader1',
   tabHeader2: 'tabHeader2',
+  isoffline: 'isoffline',
   name: 'name',
   branchCode: 'branchCode',
   color: 'color',
@@ -1660,6 +1736,16 @@ export const CMSScalarFieldEnum = {
 } as const
 
 export type CMSScalarFieldEnum = (typeof CMSScalarFieldEnum)[keyof typeof CMSScalarFieldEnum]
+
+
+export const AlumniScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  imageUrl: 'imageUrl',
+  RegistrationNumber: 'RegistrationNumber'
+} as const
+
+export type AlumniScalarFieldEnum = (typeof AlumniScalarFieldEnum)[keyof typeof AlumniScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1846,6 +1932,7 @@ export type GlobalOmitConfig = {
   timeSlot?: Prisma.TimeSlotOmit
   review?: Prisma.ReviewOmit
   cMS?: Prisma.CMSOmit
+  alumni?: Prisma.AlumniOmit
 }
 
 /* Types for Logging */

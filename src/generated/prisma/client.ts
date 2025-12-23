@@ -104,3 +104,8 @@ export type Review = Prisma.ReviewModel
  * 
  */
 export type CMS = Prisma.CMSModel
+/**
+ * Model Alumni
+ * 
+ */
+export type Alumni = Prisma.AlumniModel

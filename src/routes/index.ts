@@ -14,6 +14,51 @@ import { consultationController } from "../controllers/consultation.controller.j
 
 const router = Router();
 
+router.get("/alumnis", async (_req: Request, res: Response) => {
+  try {
+    const alumniList = await prisma.alumni.findMany({
+      orderBy: {
+        id: "desc",
+      },
+      select: {
+        id: true,
+        name: true,
+        imageUrl: true,
+        RegistrationNumber: true,
+      },
+    });
+
+    return res.json(alumniList);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Failed to fetch alumni",
+    });
+  }
+});
+
+router.get("/all-students", async (_req: Request, res: Response) => {
+  try {
+    const students = await prisma.student.findMany({
+      orderBy: {
+        id: "desc",
+      },
+      select: {
+        id: true,
+        name: true,
+        photoUrl: true, // 👈 student image
+      },
+    });
+
+    return res.status(200).json(students);
+  } catch (error) {
+    console.error("Fetch students error:", error);
+    return res.status(500).json({
+      message: "Failed to fetch students",
+    });
+  }
+});
+
 // path to get all cms
 router.get("/cms", async (req: Request, res: Response) => {
   try {
@@ -31,6 +76,58 @@ router.get("/cms", async (req: Request, res: Response) => {
   }
 });
 
+router.post("/check-followup", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.json({ eligible: false });
+    }
+
+    const lastConsultation = await prisma.consultation.findFirst({
+      where: {
+        emailAddress: email,
+        paymentStatus: "Paid",
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    if (!lastConsultation) {
+      return res.json({ eligible: false });
+    }
+
+    const now = new Date();
+    const lastDate = new Date(lastConsultation.createdAt);
+
+    const diffMonths =
+      (now.getFullYear() - lastDate.getFullYear()) * 12 +
+      (now.getMonth() - lastDate.getMonth());
+
+    const eligible = diffMonths <= 3;
+
+    return res.json({
+      eligible,
+      lastBookingDate: lastDate,
+      fees: eligible
+        ? {
+            offline: 1000,
+            online: 1200,
+            bookingAmount: 500,
+          }
+        : {
+            offline: 1500,
+            online: 1800,
+            bookingAmount: 500,
+          },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ eligible: false });
+  }
+});
+
 // router.get("/courses", async (req: Request, res: Response) => {
 //   try {
 //     const allCMS = await prisma.course.findMany({where:{
@@ -43,6 +140,35 @@ router.get("/cms", async (req: Request, res: Response) => {
 // });
 
 // Get available slots for booking calendar
+router.use("/admission/check-email", async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+
+    // 🔒 Validate input
+    if (!email) {
+      return res.status(400).json({
+        exists: false,
+        message: "Email is required",
+      });
+    }
+
+    // 🔍 Check email
+    const existingStudent = await prisma.student.findFirst({
+      where: { email },
+      select: { id: true }, // lightweight query
+    });
+
+    return res.status(200).json({
+      exists: !!existingStudent,
+    });
+  } catch (error) {
+    console.error("Check email error:", error);
+    return res.status(500).json({
+      exists: false,
+      message: "Internal server error",
+    });
+  }
+});
 router.get("/available-slots", consultationController.getAvailableSlots);
 
 // Create booking order (before payment)

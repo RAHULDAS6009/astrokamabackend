@@ -23,6 +23,50 @@ router.get("/allcourse", courseController.getAllCourses);
 // Admin Protected Routes
 router.use(auth.admin);
 
+router.post("/alumni", async (req: Request, res: Response) => {
+  try {
+    const { name, registrationNumber, imageUrl } = req.body;
+
+    if (!name || !registrationNumber || !imageUrl) {
+      return res.status(400).json({
+        message: "Name , registration,image are required",
+      });
+    }
+
+    // 🔍 CHECK IF ALREADY EXISTS
+    const existingAlumni = await prisma.alumni.findUnique({
+      where: {
+        RegistrationNumber: registrationNumber,
+      },
+    });
+
+    if (existingAlumni) {
+      return res.status(409).json({
+        message: "Alumni already exists with this registration number",
+      });
+    }
+
+    // ✅ CREATE NEW ALUMNI
+    const alumni = await prisma.alumni.create({
+      data: {
+        name,
+        imageUrl,
+        RegistrationNumber: registrationNumber,
+      },
+    });
+
+    return res.status(201).json({
+      message: "Alumni created successfully",
+      alumni,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
+
 router.put("/cms/:section", async (req: Request, res: Response) => {
   try {
     const { section } = req.params;
